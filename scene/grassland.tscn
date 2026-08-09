@@ -1,0 +1,97 @@
+[gd_scene format=4 uid="uid://dhh78k34kbkmc"]
+
+[ext_resource type="TileSet" uid="uid://brp8q5c2tejwt" path="res://tiles/terrain.tres" id="1_3kscr"]
+[ext_resource type="TileSet" uid="uid://bs8dl8jwcrqhj" path="res://tiles/decoration.tres" id="2_dm3bm"]
+[ext_resource type="PackedScene" uid="uid://b1mcpjmilt0gt" path="res://entities/player.tscn" id="3_wgvfe"]
+[ext_resource type="PackedScene" uid="uid://cgu14otkjsei" path="res://entities/camera_2d.tscn" id="4_tcqb0"]
+[ext_resource type="Texture2D" uid="uid://dp05k7gc0km16" path="res://sprites/Seasonal Tilesets/1 - Grassland/Background parts/5 - Sky_color.png" id="5_u35md"]
+[ext_resource type="Texture2D" uid="uid://djq5sgn1m0wu4" path="res://sprites/Seasonal Tilesets/1 - Grassland/Background parts/4 - Cloud_cover_2.png" id="6_mrqkn"]
+[ext_resource type="Texture2D" uid="uid://d2s30xc0544iq" path="res://sprites/Seasonal Tilesets/1 - Grassland/Background parts/3 - Cloud_cover_1.png" id="7_ut6yh"]
+[ext_resource type="Texture2D" uid="uid://bloql02qgj6r1" path="res://sprites/Seasonal Tilesets/1 - Grassland/Background parts/2 - Hills.png" id="8_d5gue"]
+[ext_resource type="Texture2D" uid="uid://dhwhguc0r0es5" path="res://sprites/Seasonal Tilesets/1 - Grassland/Background parts/1 - Foreground_scenery.png" id="9_5evsw"]
+[ext_resource type="PackedScene" uid="uid://cwlvyoug4fke4" path="res://entities/level_end.tscn" id="10_d4ph7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ym5sv"]
+size = Vector2(41, 61)
+
+[node name="Grassland" type="Node2D" unique_id=415001896]
+
+[node name="Tiles" type="Node2D" parent="." unique_id=179190428]
+
+[node name="Terrain" type="TileMapLayer" parent="Tiles" unique_id=183484202]
+tile_map_data = PackedByteArray("AADc/wwAAAACAAMAAADd/wwAAAACAAMAAADe/wwAAAACAAMAAADf/wwAAAACAAMAAADg/wwAAAACAAMAAADh/wwAAAACAAMAAADi/wwAAAACAAMAAADj/wwAAAACAAMAAADk/wwAAAACAAMAAADl/wwAAAACAAMAAADm/wwAAAACAAMAAADn/wwAAAACAAMAAADo/wwAAAACAAMAAADp/wwAAAACAAMAAADq/wwAAAACAAMAAADr/wwAAAACAAMAAADs/wwAAAACAAMAAADt/wwAAAACAAMAAADu/wwAAAACAAMAAADv/wwAAAACAAMAAADw/wwAAAACAAMAAADx/wwAAAACAAMAAADy/wwAAAACAAMAAADz/wwAAAACAAMAAAD0/wwAAAACAAMAAAD1/wwAAAACAAMAAAD2/wwAAAACAAMAAAD3/wwAAAACAAMAAAD4/wwAAAACAAMAAAD5/wwAAAACAAMAAAD6/wwAAAACAAMAAAD7/wwAAAACAAMAAAD8/wwAAAACAAMAAAD9/wwAAAACAAMAAAD+/wwAAAACAAMAAAD//wwAAAACAAMAAAAAAAwAAAACAAMAAAABAAwAAAACAAMAAAACAAwAAAACAAMAAAADAAwAAAACAAMAAAAEAAwAAAACAAMAAAAFAAwAAAACAAMAAAAGAAwAAAACAAMAAAAHAAwAAAACAAMAAAAIAAwAAAACAAMAAAAJAAwAAAACAAMAAAAKAAwAAAACAAMAAAALAAwAAAACAAMAAAAMAAwAAAACAAMAAAANAAwAAAACAAMAAAAOAAwAAAACAAMAAAAPAAwAAAACAAMAAAAQAAwAAAACAAMAAAARAAwAAAACAAMAAAASAAwAAAACAAMAAAATAAwAAAACAAMAAAAUAAwAAAACAAMAAAAVAAwAAAACAAMAAAAWAAwAAAACAAMAAAAXAAwAAAACAAMAAAAYAAwAAAACAAMAAAAZAAwAAAACAAMAAAAaAAwAAAACAAMAAAAbAAwAAAACAAMAAAAcAAwAAAACAAMAAAAdAAwAAAACAAMAAAAeAAwAAAACAAMAAAAfAAwAAAACAAMAAAAgAAwAAAACAAMAAAAhAAwAAAACAAMAAAAiAAwAAAACAAMAAAAjAAwAAAACAAMAAAAkAAwAAAACAAMAAAAlAAwAAAACAAMAAAAmAAwAAAACAAMAAAAnAAwAAAACAAMAAAAoAAwAAAACAAMAAAApAAwAAAACAAMAAAAqAAwAAAACAAMAAAArAAwAAAACAAMAAAAsAAwAAAACAAMAAAAtAAwAAAACAAMAAAAuAAwAAAACAAMAAAAvAAwAAAACAAMAAAAwAAwAAAACAAMAAAAxAAwAAAACAAMAAAAyAAwAAAACAAMAAAAzAAwAAAACAAMAAAA0AAwAAAACAAMAAAA1AAwAAAACAAMAAAD1/wYAAAABAAMAAAD2/wYAAAACAAMAAAD3/wYAAAAHAAMAAAD0/wcAAAABAAMAAADz/wgAAAABAAMAAADx/woAAAABAAMAAAD4/wcAAAAHAAMAAAD5/wgAAAAHAAMAAAD6/wkAAAAHAAMAAAD7/woAAAAHAAMAAAD8/wsAAAAHAAMAAAD0/wgAAAAEAAQAAADx/wsAAAADAAMAAAD6/woAAAADAAQAAAD5/woAAAADAAQAAAD5/wkAAAADAAQAAAD4/wkAAAADAAQAAAD3/wcAAAAFAAMAAAD2/wcAAAADAAQAAAD1/wcAAAADAAMAAAD1/wgAAAADAAQAAAD2/wgAAAADAAQAAAD3/wgAAAADAAQAAAD1/wkAAAADAAQAAAD2/wkAAAADAAQAAAD3/wkAAAADAAQAAAD3/woAAAADAAQAAAD2/woAAAADAAQAAAD1/woAAAADAAQAAAD0/woAAAAEAAQAAADz/woAAAAEAAQAAADy/wsAAAADAAQAAADz/wsAAAADAAQAAAD0/wsAAAADAAQAAAD1/wsAAAADAAQAAAD2/wsAAAADAAQAAAD3/wsAAAADAAQAAAD4/wsAAAADAAQAAAD5/wsAAAADAAQAAAD6/wsAAAADAAQAAAD4/woAAAADAAQAAADw/wsAAAABAAMAAAD7/wsAAAAEAAQAAAD0/wkAAAAEAAQAAAD4/wgAAAAFAAMAAADy/wkAAAABAAMAAADy/woAAAAEAAQAAADz/wkAAAAEAAQAAAA=")
+tile_set = ExtResource("1_3kscr")
+
+[node name="Decoration" type="TileMapLayer" parent="Tiles" unique_id=533102424]
+tile_map_data = PackedByteArray("AAD2/wQAAAAJAAEAAADw/woAAQAAAAAAAAD8/woAAQAAAAAAAAD7/wkAAQABAAAAAADx/wkAAQABAAAAAADy/wgAAQACAAAAAAD6/wgAAQACAAAAAADz/wcAAQADAAAAAAD5/wcAAQADAAAAAAD0/wYAAAABAAUAAAD4/wYAAAABAAUAAADg/wgABwAAAAIAAADg/wkABwAAAAMAAADg/woABwAAAAQAAADg/wsABwAAAAUAAADh/wcABwABAAEAAADh/wgABwABAAIAAADh/wkABwABAAMAAADh/woABwABAAQAAADh/wsABwABAAUAAADi/wYABwACAAAAAADi/wcABwACAAEAAADi/wgABwACAAIAAADi/wkABwACAAMAAADi/woABwACAAQAAADi/wsABwACAAUAAADj/wYABwADAAAAAADj/wcABwADAAEAAADj/wgABwADAAIAAADj/wkABwADAAMAAADj/woABwADAAQAAADj/wsABwADAAUAAADk/wYABwAEAAAAAADk/wcABwAEAAEAAADk/wgABwAEAAIAAADk/wkABwAEAAMAAADk/woABwAEAAQAAADk/wsABwAEAAUAAADl/wcABwAFAAEAAADl/wgABwAFAAIAAADl/wkABwAFAAMAAADl/woABwAFAAQAAADl/wsABwAFAAUAAADm/wgABwAGAAIAAADm/wkABwAGAAMAAADm/woABwAGAAQAAADm/wsABwAGAAUAAADo/woABgADAAEAAADo/wsABgADAAIAAADp/woABgAEAAEAAADp/wsABgAEAAIAAADq/woABgAFAAEAAADq/wsABgAFAAIAAAAEAAsAAAADAAUAAAA=")
+tile_set = ExtResource("2_dm3bm")
+
+[node name="Player" parent="." unique_id=1696542837 instance=ExtResource("3_wgvfe")]
+position = Vector2(-361, 160)
+
+[node name="Camera2D" parent="." unique_id=1596842023 instance=ExtResource("4_tcqb0")]
+position = Vector2(-383, 159)
+limit_left = -576
+limit_right = 115
+
+[node name="Parallax" type="Node" parent="." unique_id=555339925]
+
+[node name="5" type="Parallax2D" parent="Parallax" unique_id=481090846]
+z_index = -10
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(288, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/5" unique_id=1281550807]
+texture = ExtResource("5_u35md")
+centered = false
+
+[node name="4" type="Parallax2D" parent="Parallax" unique_id=1334571146]
+z_index = -10
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(288, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/4" unique_id=885489091]
+texture = ExtResource("6_mrqkn")
+centered = false
+
+[node name="3" type="Parallax2D" parent="Parallax" unique_id=1574216374]
+z_index = -10
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(288, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/3" unique_id=307514139]
+texture = ExtResource("7_ut6yh")
+centered = false
+
+[node name="2" type="Parallax2D" parent="Parallax" unique_id=1680173354]
+z_index = -10
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(288, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/2" unique_id=255843662]
+texture = ExtResource("8_d5gue")
+centered = false
+
+[node name="1" type="Parallax2D" parent="Parallax" unique_id=69676709]
+z_index = -10
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(288, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/1" unique_id=2123083823]
+texture = ExtResource("9_5evsw")
+centered = false
+
+[node name="LevelEnd" parent="." unique_id=1974563663 instance=ExtResource("10_d4ph7")]
+position = Vector2(98, 179)
+next_level = "tropic"
+
+[node name="CollisionShape2D" parent="LevelEnd" index="0" unique_id=959228167]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_ym5sv")
+
+[editable path="LevelEnd"]

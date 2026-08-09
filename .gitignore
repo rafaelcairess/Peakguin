@@ -1,0 +1,17 @@
+# Godot
+.godot/
+
+# Godot C#
+.mono/
+
+# VS Code / IDEs
+.vscode/
+.idea/
+
+# Builds
+build/
+exports/
+
+# Windows / sistema
+Thumbs.db
+.DS_Store
