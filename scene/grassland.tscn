@@ -31,6 +31,7 @@ tile_set = ExtResource("2_dm3bm")
 
 [node name="Player" parent="." unique_id=1696542837 instance=ExtResource("3_wgvfe")]
 position = Vector2(-361, 160)
+max_jump_count = 70
 
 [node name="Camera2D" parent="." unique_id=1596842023 instance=ExtResource("4_tcqb0")]
 position = Vector2(-383, 159)
@@ -41,7 +42,7 @@ limit_right = 115
 
 [node name="5" type="Parallax2D" parent="Parallax" unique_id=481090846]
 z_index = -10
-scroll_scale = Vector2(0.1, 0.1)
+scroll_scale = Vector2(0.1, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -51,7 +52,7 @@ centered = false
 
 [node name="4" type="Parallax2D" parent="Parallax" unique_id=1334571146]
 z_index = -10
-scroll_scale = Vector2(0.2, 0.2)
+scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -61,7 +62,7 @@ centered = false
 
 [node name="3" type="Parallax2D" parent="Parallax" unique_id=1574216374]
 z_index = -10
-scroll_scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.3, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -71,7 +72,7 @@ centered = false
 
 [node name="2" type="Parallax2D" parent="Parallax" unique_id=1680173354]
 z_index = -10
-scroll_scale = Vector2(0.4, 0.4)
+scroll_scale = Vector2(0.4, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -81,7 +82,7 @@ centered = false
 
 [node name="1" type="Parallax2D" parent="Parallax" unique_id=69676709]
 z_index = -10
-scroll_scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.5, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -98,7 +99,7 @@ position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_ym5sv")
 
 [node name="Limit" type="StaticBody2D" parent="LevelEnd" unique_id=597331864]
-position = Vector2(-673, -162)
+position = Vector2(-674, -176)
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd/Limit" unique_id=212268674]

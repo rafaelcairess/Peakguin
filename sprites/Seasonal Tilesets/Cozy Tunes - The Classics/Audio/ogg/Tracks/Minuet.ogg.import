@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://byv560crb6qu4"
+path="res://.godot/imported/Minuet.ogg-91b7d95624de4783f9a901231f5adb49.oggvorbisstr"
+
+[deps]
+
+source_file="res://sprites/Seasonal Tilesets/Cozy Tunes - The Classics/Audio/ogg/Tracks/Minuet.ogg"
+dest_files=["res://.godot/imported/Minuet.ogg-91b7d95624de4783f9a901231f5adb49.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

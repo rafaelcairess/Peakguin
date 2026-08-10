@@ -32,6 +32,7 @@ Atualmente existem três biomas conectados em um ciclo jogável:
 - Plataformas móveis com duração configurável.
 - Blocos que quebram, caem e reaparecem após alguns segundos.
 - Esqueletos com patrulha, detecção e ataque à distância.
+- Sereia amigável patrulhando a área submersa da fase tropical.
 - Lava, projéteis e outras áreas letais.
 - Transição automática entre fases.
 - Cenários com múltiplas camadas de paralaxe.
@@ -53,6 +54,7 @@ Atualmente existem três biomas conectados em um ciclo jogável:
 | Mover para a direita | `D` ou `→` |
 | Pular / nadar | `W`, `↑` ou `Espaço` |
 | Agachar / deslizar | `S` ou `↓` |
+| Sentar / levantar | `3` ou automaticamente após 25 s parado |
 | Animação de vitória (teste) | `4` |
 
 ## Como executar

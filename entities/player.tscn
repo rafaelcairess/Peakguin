@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://biu7aq8rbvva2" path="res://sprites/1 - Penguin/Lying_On_Ground (16 x 16).png" id="3_x08pd"]
 [ext_resource type="Texture2D" uid="uid://c62btjdoop4gb" path="res://sprites/1 - Penguin/Victory_Dance (16 x 16).png" id="6_6nm46"]
 [ext_resource type="Texture2D" uid="uid://hrprm4n5h72" path="res://sprites/1 - Penguin/Belly_Sliding (16 x 16).png" id="6_i623q"]
+[ext_resource type="Texture2D" uid="uid://bmga7vqj5yhv3" path="res://sprites/1 - Penguin/Sitting (16 x 16).png" id="8_kdgjc"]
 [ext_resource type="Texture2D" uid="uid://cr851cmml6n0v" path="res://sprites/1 - Penguin/Swimming (16 x 16).png" id="9_dchgp"]
 [ext_resource type="Texture2D" uid="uid://b8f700i8vf1vl" path="res://sprites/1 - Penguin/Wall_Slide (16x16).png" id="11_x08pd"]
 
@@ -39,6 +40,14 @@ region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q0i8f"]
 atlas = ExtResource("3_rfe5m")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2i2q"]
+atlas = ExtResource("8_kdgjc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdqif"]
+atlas = ExtResource("8_kdgjc")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1n8aq"]
@@ -188,6 +197,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_d2i2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdqif")
+}],
+"loop": 1,
+"name": &"sit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1n8aq")
 }, {
 "duration": 1.0,
@@ -289,7 +309,7 @@ size = Vector2(13, 15)
 
 [node name="Player" type="CharacterBody2D" unique_id=1696542837 groups=["Player"]]
 collision_layer = 2
-collision_mask = 9
+collision_mask = 73
 script = ExtResource("1_merdl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=935727018]
@@ -299,9 +319,10 @@ shape = SubResource("CapsuleShape2D_qxs8s")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406390326]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_qxs8s")
-animation = &"swimming"
+animation = &"dead"
 autoplay = "idle"
-frame_progress = 0.019426297
+frame = 1
+frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=2060798186]
 visible = false

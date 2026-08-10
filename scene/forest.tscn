@@ -131,7 +131,7 @@ tile_set = ExtResource("5_boiax")
 
 [node name="6" type="Parallax2D" parent="Parallax" unique_id=380258949]
 z_index = -10
-scroll_scale = Vector2(0.1, 0.1)
+scroll_scale = Vector2(0.1, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -141,7 +141,7 @@ centered = false
 
 [node name="5" type="Parallax2D" parent="Parallax" unique_id=1507578258]
 z_index = -10
-scroll_scale = Vector2(0.2, 0.2)
+scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -151,7 +151,7 @@ centered = false
 
 [node name="4" type="Parallax2D" parent="Parallax" unique_id=300173911]
 z_index = -10
-scroll_scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.3, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -161,7 +161,7 @@ centered = false
 
 [node name="3" type="Parallax2D" parent="Parallax" unique_id=1265229616]
 z_index = -10
-scroll_scale = Vector2(0.4, 0.4)
+scroll_scale = Vector2(0.4, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -171,7 +171,7 @@ centered = false
 
 [node name="2" type="Parallax2D" parent="Parallax" unique_id=1864167437]
 z_index = -10
-scroll_scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.5, 0)
 repeat_size = Vector2(288, 0)
 repeat_times = 4
 
@@ -192,7 +192,7 @@ centered = false
 [node name="Player" parent="." unique_id=1696542837 instance=ExtResource("1_e2knd")]
 position = Vector2(79, 174)
 max_speed = 80.0
-max_jump_count = 3
+max_jump_count = 60
 
 [node name="Skeleton" parent="." unique_id=1036719238 instance=ExtResource("11_ja8kk")]
 position = Vector2(319, 107)
@@ -207,8 +207,7 @@ position = Vector2(626, 138)
 position = Vector2(684, 107)
 
 [node name="Camera2D" parent="." unique_id=1596842023 instance=ExtResource("9_jo4av")]
-position = Vector2(273, 30)
-limit_top = 0
+position = Vector2(93, 175)
 limit_right = 915
 
 [node name="LevelEnd" parent="." unique_id=1974563663 instance=ExtResource("13_kmspj")]

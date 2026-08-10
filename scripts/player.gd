@@ -7,6 +7,7 @@ enum PlayerState {
 	fall,
 	duck,
 	swimming,
+	sit,
 	victory,
 	slide,
 	wall,
@@ -24,6 +25,7 @@ enum PlayerState {
 @export var deceleration: float = 400.0
 @export var slide_deceleration: float = 100.0
 @export var max_jump_count: int = 2
+@export var idle_to_sit_time: float = 25.0
 
 @export var wall_aceleration: float = 40.0
 @export var wall_jump_velocity: float = 240.0
@@ -37,6 +39,7 @@ const JUMP_VELOCITY: float = -300.0
 var direction: float = 0.0
 var status: PlayerState
 var jump_count: int = 0
+var idle_time: float = 0.0
 
 
 func _ready() -> void:
@@ -64,6 +67,9 @@ func _physics_process(delta: float) -> void:
 		PlayerState.swimming:
 			swimming_state(delta)
 
+		PlayerState.sit:
+			sit_state(delta)
+
 		PlayerState.victory:
 			victory_state(delta)
 
@@ -82,6 +88,7 @@ func _physics_process(delta: float) -> void:
 func go_to_idle_state():
 	status = PlayerState.idle
 	anim.play("idle")
+	idle_time = 0.0
 
 
 func go_to_walk_state():
@@ -139,6 +146,17 @@ func go_to_swimming_state():
 	)
 
 
+func go_to_sit_state():
+	status = PlayerState.sit
+	anim.play("sit")
+	velocity.x = 0
+	idle_time = 0.0
+
+
+func exit_from_sit_state():
+	go_to_idle_state()
+
+
 func go_to_victory_state():
 	status = PlayerState.victory
 	anim.play("victorydance")
@@ -174,8 +192,18 @@ func idle_state(delta):
 		go_to_walk_state()
 		return
 
+	if Input.is_action_just_pressed("sit"):
+		go_to_sit_state()
+		return
+
 	if Input.is_action_just_pressed("victory"):
 		go_to_victory_state()
+		return
+
+	idle_time += delta
+
+	if idle_time >= idle_to_sit_time:
+		go_to_sit_state()
 		return
 
 
@@ -197,6 +225,10 @@ func walk_state(delta):
 
 	if not is_on_floor():
 		go_to_fall_state()
+		return
+
+	if Input.is_action_just_pressed("sit"):
+		go_to_sit_state()
 		return
 
 	if Input.is_action_just_pressed("victory"):
@@ -262,6 +294,21 @@ func victory_state(delta):
 
 	if Input.is_action_just_pressed("victory"):
 		exit_from_victory_state()
+		return
+
+
+func sit_state(delta):
+	apply_gravity(delta)
+	update_direction()
+
+	velocity.x = 0
+
+	if direction != 0:
+		go_to_walk_state()
+		return
+
+	if Input.is_action_just_pressed("sit"):
+		exit_from_sit_state()
 		return
 
 

@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/mermaid.gd" id="1_mermaid"]
+[ext_resource type="Texture2D" uid="uid://0r0b1yyy7xnl" path="res://sprites/Seasonal Tilesets/7 - Ocean/blue_hair_mermaid_idle.png" id="2_mermaid"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mermaid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mermaid")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mermaid"]
+radius = 6.0
+height = 18.0
+
+[node name="Mermaid" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 64
+collision_mask = 131
+script = ExtResource("1_mermaid")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mermaid")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_mermaid")
+
+[node name="LeftDetector" type="RayCast2D" parent="."]
+position = Vector2(-7, 0)
+target_position = Vector2(-24, 0)
+collision_mask = 129
+
+[node name="RightDetector" type="RayCast2D" parent="."]
+position = Vector2(7, 0)
+target_position = Vector2(24, 0)
+collision_mask = 129
