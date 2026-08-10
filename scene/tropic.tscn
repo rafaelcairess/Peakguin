@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cgu14otkjsei" path="res://entities/camera_2d.tscn" id="9_34ia6"]
 [ext_resource type="Texture2D" uid="uid://ddojrmst6wrjd" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/distant-water.png" id="9_ei81g"]
 [ext_resource type="PackedScene" uid="uid://cwlvyoug4fke4" path="res://entities/level_end.tscn" id="10_d18o5"]
+[ext_resource type="PackedScene" uid="uid://c8b61ndwhfjly" path="res://entities/moving_plataform.tscn" id="10_xflqb"]
 [ext_resource type="TileSet" uid="uid://bola7b7xpecj8" path="res://tiles/underwater.tres" id="13_ytc0w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytc0w"]
@@ -123,6 +124,12 @@ centered = false
 offset = Vector2(0, 208)
 region_rect = Rect2(0, 0, 578, 208)
 
+[node name="MovingPlataform" parent="." unique_id=1092210582 instance=ExtResource("10_xflqb")]
+position = Vector2(624, 113)
+
+[node name="Target" parent="MovingPlataform" index="2" unique_id=206864028]
+position = Vector2(2, -105)
+
 [node name="Player" parent="." unique_id=1696542837 instance=ExtResource("1_bmxgx")]
 position = Vector2(70, 130)
 max_speed = 80.0
@@ -155,4 +162,5 @@ collision_mask = 6
 position = Vector2(-10, 96)
 shape = SubResource("RectangleShape2D_ytc0w")
 
+[editable path="MovingPlataform"]
 [editable path="LevelEnd"]
