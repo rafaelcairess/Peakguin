@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cgu14otkjsei" path="res://entities/camera_2d.tscn" id="9_jo4av"]
 [ext_resource type="PackedScene" uid="uid://dp74ecwa4nc4t" path="res://entities/skeleton.tscn" id="11_ja8kk"]
 [ext_resource type="PackedScene" uid="uid://cwlvyoug4fke4" path="res://entities/level_end.tscn" id="13_kmspj"]
+[ext_resource type="PackedScene" uid="uid://20c47yswjisn" path="res://entities/broken_block.tscn" id="16_0xhum"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja8kk"]
 texture = ExtResource("3_64es3")
@@ -189,7 +190,7 @@ texture = ExtResource("8_64es3")
 centered = false
 
 [node name="Player" parent="." unique_id=1696542837 instance=ExtResource("1_e2knd")]
-position = Vector2(742, 159)
+position = Vector2(79, 174)
 max_speed = 80.0
 max_jump_count = 3
 
@@ -221,3 +222,11 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limit" unique_id=466059972]
 position = Vector2(-10, 96)
 shape = SubResource("RectangleShape2D_qxs8s")
+
+[node name="BrokenBlock" parent="." unique_id=1749848802 instance=ExtResource("16_0xhum")]
+position = Vector2(124, 172)
+
+[node name="CollisionShape2D" parent="BrokenBlock" index="0" unique_id=966314599]
+one_way_collision = true
+
+[editable path="BrokenBlock"]

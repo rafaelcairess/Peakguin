@@ -12,10 +12,11 @@
 build/
 exports/
 
+# Arquivos de documentação não usados como recursos da Godot
+docs/**/*.import
+
 # Windows / sistema
 Thumbs.db
 .DS_Store
-
-*.tmp
 
 *.tmp

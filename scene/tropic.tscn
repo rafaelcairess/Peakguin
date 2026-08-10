@@ -126,6 +126,7 @@ region_rect = Rect2(0, 0, 578, 208)
 
 [node name="MovingPlataform" parent="." unique_id=1092210582 instance=ExtResource("10_xflqb")]
 position = Vector2(624, 113)
+time = 3
 
 [node name="Target" parent="MovingPlataform" index="2" unique_id=206864028]
 position = Vector2(2, -105)
