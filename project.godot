@@ -30,6 +30,9 @@ project/assembly_name="Game"
 [global_group]
 
 Player=""
+Enemies=""
+LethalArea=""
+Water=""
 
 [input]
 
@@ -75,6 +78,8 @@ victory={
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="level_end"
+2d_physics/layer_5="lethal_area"
+2d_physics/layer_6="water"
 
 [physics]
 

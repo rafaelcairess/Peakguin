@@ -14,6 +14,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ym5sv"]
 size = Vector2(41, 61)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kscr"]
+size = Vector2(20, 192)
+
 [node name="Grassland" type="Node2D" unique_id=415001896]
 
 [node name="Tiles" type="Node2D" parent="." unique_id=179190428]
@@ -93,5 +96,13 @@ next_level = "tropic"
 [node name="CollisionShape2D" parent="LevelEnd" index="0" unique_id=959228167]
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_ym5sv")
+
+[node name="Limit" type="StaticBody2D" parent="LevelEnd" unique_id=597331864]
+position = Vector2(-673, -162)
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd/Limit" unique_id=212268674]
+position = Vector2(-10, 96)
+shape = SubResource("RectangleShape2D_3kscr")
 
 [editable path="LevelEnd"]
