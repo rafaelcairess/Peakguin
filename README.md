@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <sub>Uma viagem por Pradaria · Inverno · Floresta · Trópicos</sub>
+  <sub>Uma viagem por Inverno · Pradaria · Floresta · Trópicos</sub>
 </p>
 
 ## Sobre o jogo
@@ -40,21 +40,21 @@ Atualmente existem quatro biomas em desenvolvimento:
 ### Combate e plataformas
 
 <p align="center">
-  <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim dança, atravessa a floresta, sobe pelos terrenos e derrota esqueletos" width="576">
+  <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim dança, atravessa a floresta, sobe pelos terrenos e derrota um esqueleto" width="576">
 </p>
 
 <p align="center">
-  <sub>Depois de comemorar, o pinguim sobe pelos terrenos e derrota os esqueletos pelo caminho.</sub>
+  <sub>Depois de comemorar, o pinguim vence os desníveis da floresta e derrota o primeiro esqueleto.</sub>
 </p>
 
 ### Tutorial de movimentação
 
 <p align="center">
-  <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim pratica os saltos do tutorial e dança sobre uma plataforma" width="576">
+  <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim caminha pelo tutorial, pula, nada para sair da água e dança" width="576">
 </p>
 
 <p align="center">
-  <sub>No tutorial, as plataformas apresentam a movimentação vertical antes da dança de comemoração.</sub>
+  <sub>No tutorial, o pinguim caminha, salta, cai na água, nada para sair e comemora em terreno seguro.</sub>
 </p>
 
 ### Vida no oceano
