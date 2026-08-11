@@ -19,6 +19,7 @@ enum PlayerState {
 @onready var hitbox_shape: CollisionShape2D = $Hitbox/CollisionShape2D
 @onready var left_wall_detector: RayCast2D = $LeftWallDetector
 @onready var right_wall_detector: RayCast2D = $RightWallDetector
+@onready var reload_timer: Timer = $ReloadTimer
 
 @export var max_speed: float = 180.0
 @export var acceleration: float = 400.0
@@ -43,6 +44,14 @@ var idle_time: float = 0.0
 
 
 func _ready() -> void:
+	var current_scene := get_tree().current_scene
+
+	if current_scene != null:
+		global_position = CheckpointManager.get_respawn_position(
+			current_scene.scene_file_path,
+			global_position
+		)
+
 	set_large_collider()
 	go_to_idle_state()
 
@@ -174,6 +183,7 @@ func go_to_dead_state():
 	status = PlayerState.dead
 	velocity = Vector2.ZERO
 	anim.play("dead")
+	reload_timer.start()
 
 
 func idle_state(delta):
@@ -502,4 +512,4 @@ func hit_lethal_area():
 
 
 func _on_reload_timer_timeout() -> void:
-	pass
+	get_tree().reload_current_scene()

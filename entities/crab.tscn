@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/crab.gd" id="1_crab"]
+[ext_resource type="Texture2D" uid="uid://ywetcmropa43" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_crab_00002_.png" id="2_crab_blue"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crab"]
+size = Vector2(16, 8)
+
+[node name="Crab" type="CharacterBody2D" groups=["NPC"]]
+z_index = 1
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_crab")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("2_crab_blue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_crab")
+
+[node name="LeftWallDetector" type="RayCast2D" parent="."]
+position = Vector2(-8, 5)
+target_position = Vector2(-6, 0)
+collision_mask = 1
+
+[node name="RightWallDetector" type="RayCast2D" parent="."]
+position = Vector2(8, 5)
+target_position = Vector2(6, 0)
+collision_mask = 1
+
+[node name="LeftGroundDetector" type="RayCast2D" parent="."]
+position = Vector2(-7, 9)
+target_position = Vector2(0, 6)
+collision_mask = 1
+
+[node name="RightGroundDetector" type="RayCast2D" parent="."]
+position = Vector2(7, 9)
+target_position = Vector2(0, 6)
+collision_mask = 1

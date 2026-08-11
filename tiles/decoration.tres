@@ -4,12 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://d2f1di8a748w8" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/Flowers (16 x 16).png" id="2_k56fq"]
 [ext_resource type="Texture2D" uid="uid://blpi5iq3scm0l" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/House (112 x 96).png" id="3_b4fdq"]
 [ext_resource type="Texture2D" uid="uid://b786gcfr0gxvu" path="res://sprites/Seasonal Tilesets/3 - Tropics/Tropics_entities (16 x 16).png" id="3_k56fq"]
+[ext_resource type="Texture2D" uid="uid://paobsiri2274" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_corals_00001_.png" id="3_q3okc"]
 [ext_resource type="Texture2D" uid="uid://p22vcdxkw6xv" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/Snack_machine_Bench_Trash_bin (16 x 16).png" id="4_hjahj"]
 [ext_resource type="Texture2D" uid="uid://bsw6utwg4xolc" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Autumn_entities (16 x 16).png" id="4_lb8v8"]
 [ext_resource type="Texture2D" uid="uid://chon20kkhhekr" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="5_3sstm"]
+[ext_resource type="Texture2D" uid="uid://2tgvd17uki6j" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_starfish_00002_.png" id="5_gv215"]
 [ext_resource type="Texture2D" uid="uid://bmci1pq63tucm" path="res://sprites/Seasonal Tilesets/4 - Winter World/Winter_entities (16 x 16).png" id="6_3sstm"]
-[ext_resource type="Texture2D" uid="uid://dmfsu8idpn0er" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_mermaid_idle_00003_.png" id="9_30dmw"]
+[ext_resource type="Texture2D" uid="uid://yqby8e3cke4m" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_treasure_chests_00003_.png" id="6_o45bs"]
 [ext_resource type="Texture2D" uid="uid://cjadi85x4a6vl" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_corals_00003_.png" id="10_q3okc"]
+[ext_resource type="Texture2D" uid="uid://dyv4q0aus7lom" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/Water_frames (16 x 32).png" id="13_o45bs"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_hjahj"]
 tile_data = PackedInt32Array(0, 589824, 1, 65537, 1, 0)
@@ -55,6 +58,69 @@ texture = ExtResource("2_k56fq")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gv215"]
+texture = ExtResource("3_q3okc")
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_day2t"]
+texture = ExtResource("10_q3okc")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kbqlo"]
+texture = ExtResource("5_gv215")
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+2:3/0 = 0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g7ieo"]
+texture = ExtResource("6_o45bs")
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b4fdq"]
 texture = ExtResource("3_k56fq")
@@ -295,36 +361,12 @@ texture = ExtResource("3_b4fdq")
 13:5/0 = 0
 14:5/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gv215"]
-texture = ExtResource("9_30dmw")
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o45bs"]
-texture = ExtResource("10_q3okc")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cujei"]
+texture = ExtResource("13_o45bs")
+0:0/0 = 0
 1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
 
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_xwcet")
@@ -335,6 +377,9 @@ sources/6 = SubResource("TileSetAtlasSource_3sstm")
 sources/3 = SubResource("TileSetAtlasSource_q3okc")
 sources/4 = SubResource("TileSetAtlasSource_0dcsc")
 sources/5 = SubResource("TileSetAtlasSource_30dmw")
-sources/8 = SubResource("TileSetAtlasSource_gv215")
-sources/9 = SubResource("TileSetAtlasSource_o45bs")
+sources/10 = SubResource("TileSetAtlasSource_gv215")
+sources/11 = SubResource("TileSetAtlasSource_day2t")
+sources/13 = SubResource("TileSetAtlasSource_kbqlo")
+sources/14 = SubResource("TileSetAtlasSource_g7ieo")
+sources/8 = SubResource("TileSetAtlasSource_cujei")
 pattern_0 = SubResource("TileMapPattern_hjahj")

@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Game"
-run/main_scene="uid://bkvtdrx02py13"
+run/main_scene="uid://nrsoqne511dm"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+CheckpointManager="*res://scripts/checkpoint_manager.gd"
 
 [display]
 
@@ -33,6 +37,11 @@ Player=""
 Enemies=""
 LethalArea=""
 Water=""
+Checkpoint=""
+
+[gui]
+
+theme/custom="res://themes/game_theme.tres"
 
 [input]
 
@@ -86,7 +95,6 @@ sit={
 2d_physics/layer_5="lethal_area"
 2d_physics/layer_6="water"
 2d_physics/layer_7="npc"
-2d_physics/layer_8="swim_bounds"
 
 [physics]
 

@@ -9,31 +9,50 @@
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/gameplay.gif" alt="Gameplay na floresta mostrando o personagem e um bloco quebrável" width="720">
+  <img src="docs/screenshots/gameplay.gif" alt="O pinguim se agacha para desviar de um osso e salta entre terrenos" width="720">
+</p>
+
+<p align="center">
+  <sub>Esquive dos projéteis, atravesse os obstáculos e explore cada canto das fases.</sub>
 </p>
 
 ## Sobre o jogo
 
 O jogador controla um pinguim por cenários com identidades e desafios diferentes. O projeto combina movimentação responsiva, exploração, inimigos, perigos ambientais e objetos interativos.
 
-Atualmente existem três biomas conectados em um ciclo jogável:
+Atualmente existem quatro biomas em desenvolvimento:
 
-1. **Floresta** — esqueletos, projéteis, lava e blocos quebráveis.
-2. **Pradaria** — uma introdução mais tranquila à movimentação.
-3. **Trópicos** — água, plataformas móveis e trechos de precisão.
+1. **Pradaria** — uma introdução mais tranquila à movimentação.
+2. **Inverno** — plataformas geladas e um cenário montanhoso.
+3. **Floresta** — esqueletos, projéteis, lava e blocos quebráveis.
+4. **Trópicos** — água, plataformas móveis e trechos de precisão.
+
+## Em movimento
+
+<p align="center">
+  <img src="docs/screenshots/player_actions.gif" alt="O pinguim sentado e dançando" width="48%">
+  <img src="docs/screenshots/biomes.gif" alt="Passeio pelos biomas de pradaria, inverno, floresta e trópicos" width="48%">
+</p>
+
+<p align="center">
+  <sub>Animações do personagem · Pradaria · Inverno · Floresta · Trópicos</sub>
+</p>
 
 ## Mecânicas
 
 - Movimento com aceleração e desaceleração.
 - Pulo e múltiplos saltos configuráveis por fase.
 - Agachamento e deslize.
+- Animações de espera, incluindo sentar automaticamente e dançar.
 - Interação e salto em paredes.
 - Natação com física própria.
 - Plataformas móveis com duração configurável.
 - Blocos que quebram, caem e reaparecem após alguns segundos.
 - Esqueletos com patrulha, detecção e ataque à distância.
-- Sereia amigável patrulhando a área submersa da fase tropical.
+- Sereia NPC amigável na área submersa da fase tropical.
+- Caranguejos com patrulha lateral e detecção de paredes e bordas.
 - Lava, projéteis e outras áreas letais.
+- Checkpoints persistentes por fase com retorno após a morte.
 - Transição automática entre fases.
 - Cenários com múltiplas camadas de paralaxe.
 - Máquina de estados para controlar as ações do jogador.
@@ -56,6 +75,19 @@ Atualmente existem três biomas conectados em um ciclo jogável:
 | Agachar / deslizar | `S` ou `↓` |
 | Sentar / levantar | `3` ou automaticamente após 25 s parado |
 | Animação de vitória (teste) | `4` |
+
+## Checkpoints
+
+O checkpoint utiliza a plaquinha do tileset de pradaria e pode ser reutilizado em qualquer fase. Ao ser ativada pelo jogador, a placa fica verde. Se o jogador morrer, a fase é recarregada e ele retorna ao último checkpoint alcançado naquela mesma fase.
+
+Para adicionar um checkpoint pelo editor:
+
+1. Arraste `res://entities/checkpoint.tscn` para a árvore da fase.
+2. Posicione o nó `Checkpoint` no local desejado usando a ferramenta de movimento.
+3. Se necessário, habilite **Filhos Editáveis** para ajustar `CollisionShape2D` ou `RespawnPosition`.
+4. Execute a fase, encoste na placa e depois alcance uma área letal para testar o retorno.
+
+Sem um checkpoint ativado, o jogador reaparece no início da fase. Ao entrar em outra fase, o checkpoint anterior é descartado.
 
 ## Como executar
 
@@ -89,7 +121,7 @@ JogoPlataforma/
 
 ## Estado do desenvolvimento
 
-O projeto está em desenvolvimento. Entre os próximos passos estão o refinamento das fases, melhorias no ciclo de morte e reinício, novos objetos interativos e mais feedback visual e sonoro para as ações do jogador.
+O projeto está em desenvolvimento. Entre os próximos passos estão o refinamento das fases, novos objetos interativos e mais feedback visual e sonoro para as ações do jogador.
 
 ## Créditos e licença
 

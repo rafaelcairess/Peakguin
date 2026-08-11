@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhck138vptfxt"]
+
+[ext_resource type="PackedScene" path="res://entities/crab.tscn" id="1_crab"]
+[ext_resource type="Texture2D" uid="uid://ywetcmropa43" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_crab_00002_.png" id="2_blue"]
+
+[node name="crab1" unique_id=1874063219 instance=ExtResource("1_crab")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, 4)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("2_blue")

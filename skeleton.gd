@@ -14,16 +14,28 @@ const SPINNING_BONE = preload("uid://bql71380nqtcg")
 @onready var ground_detector: RayCast2D = $GroundDetector
 @onready var player_detector: RayCast2D = $PlayerDetector
 @onready var bone_start_position: Node = $BoneStartPosition
+@onready var burst_cooldown_timer: Timer = $BurstCooldownTimer
 
-const SPEED = 7.0
 const JUMP_VELOCITY = -400.0
 
+@export var speed: float = 7.0
+@export_range(-1, 1, 2) var initial_direction: int = 1
+@export_range(1, 10, 1) var bones_per_burst: int = 3
+@export_range(0.1, 30.0, 0.1) var burst_cooldown_seconds: float = 5.0
+
 var status: SkeletonState
-var direction = 1
+var direction: int = 1
 var can_throw = true
+var bones_thrown_in_burst: int = 0
+var burst_is_recharging: bool = false
 
 
 func _ready() -> void:
+	direction = initial_direction
+	update_direction()
+	wall_detector.force_raycast_update()
+	ground_detector.force_raycast_update()
+	player_detector.force_raycast_update()
 	go_to_walk_state()
 
 
@@ -50,6 +62,9 @@ func go_to_walk_state():
 
 
 func go_to_attack_state():
+	if burst_is_recharging:
+		return
+
 	status = SkeletonState.attack
 	anim.play("attack")
 	velocity = Vector2.ZERO
@@ -65,17 +80,15 @@ func go_to_dead_state():
 
 func walk_state(_delta):
 	if anim.frame == 3 or anim.frame == 4:
-		velocity.x = SPEED * direction
+		velocity.x = speed * direction
 	else:
 		velocity.x = 0
 
-	if wall_detector.is_colliding():
-		scale.x *= -1
-		direction *= -1
-
-	if not ground_detector.is_colliding():
-		scale.x *= -1
-		direction *= -1
+	if speed > 0.0 and (
+		wall_detector.is_colliding()
+		or not ground_detector.is_colliding()
+	):
+		turn_around()
 
 	if player_detector.is_colliding():
 		go_to_attack_state()
@@ -92,6 +105,21 @@ func dead_state(_delta):
 	pass
 
 
+func turn_around() -> void:
+	direction *= -1
+	update_direction()
+
+
+func update_direction() -> void:
+	anim.flip_h = direction < 0
+	wall_detector.position.x = -2.0 * direction
+	wall_detector.target_position.x = 30.0 * direction
+	ground_detector.position.x = 13.0 * direction
+	player_detector.position.x = 1.0 * direction
+	player_detector.target_position.x = 43.0 * direction
+	bone_start_position.position.x = 13.0 * direction
+
+
 func take_damage():
 	go_to_dead_state()
 
@@ -103,6 +131,16 @@ func throw_bone():
 
 	new_bone.global_position = bone_start_position.global_position
 	new_bone.set_direction(direction)
+	bones_thrown_in_burst += 1
+
+	if bones_thrown_in_burst >= bones_per_burst:
+		burst_is_recharging = true
+		burst_cooldown_timer.start(burst_cooldown_seconds)
+
+
+func _on_burst_cooldown_timer_timeout() -> void:
+	bones_thrown_in_burst = 0
+	burst_is_recharging = false
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
