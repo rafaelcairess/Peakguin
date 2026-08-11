@@ -1,15 +1,11 @@
-<h1 align="center">🐧 Peakguin</h1>
+<h1 align="center">Peakguin 🐧</h1>
 
 <p align="center">
-  <strong>Um platformer 2D em pixel art desenvolvido na Godot.</strong>
+  Um jogo de plataforma 2D em pixel art desenvolvido na Godot.
 </p>
 
 <p align="center">
-  Explore diferentes biomas, domine novas formas de movimentação e ajude um pequeno pinguim a atravessar um mundo cheio de plataformas, inimigos e perigos.
-</p>
-
-<p align="center">
-  <code>Godot 4.7.1</code> · <code>GDScript</code> · <code>Pixel Art</code> · <code>2D Platformer</code> · <code>Em desenvolvimento</code>
+  <code>Godot 4.7.1</code> · <code>GDScript</code> · <code>Em desenvolvimento</code>
 </p>
 
 <p align="center">
@@ -17,361 +13,201 @@
 </p>
 
 <p align="center">
-  <sub>Até os heróis precisam descansar antes da próxima aventura.</sub>
+  <sub>Até os pinguins precisam descansar de vez em quando.</sub>
 </p>
 
----
+## 🐧 Sobre
 
-## 🎮 Sobre Peakguin
+**Peakguin** é meu primeiro jogo indie de plataforma 2D.
 
-**Peakguin** é meu primeiro jogo indie de plataforma 2D, criado com **Godot Engine** e **GDScript**.
+O projeto ainda está bem no começo e está sendo desenvolvido por uma única pessoa. Estou cuidando da programação, das fases, das mecânicas, dos inimigos, das interações e do restante da construção do jogo utilizando Godot e GDScript.
 
-O jogador controla um pequeno pinguim durante uma jornada por diferentes ambientes, cada um apresentando novos obstáculos, inimigos e mecânicas.
+A ideia é que Peakguin seja um platformer relativamente curto, com algo em torno de **3 horas de duração**, passando por diferentes regiões e introduzindo novas mecânicas durante o caminho.
 
-O projeto começou como parte do meu aprendizado em desenvolvimento de jogos e evoluiu para um projeto autoral no qual desenvolvo a **programação, os sistemas de gameplay, a construção das fases, as interações e o level design**.
+Não quero que seja apenas uma sequência de plataformas. Também pretendo adicionar pequenos momentos de exploração e interação com personagens pelo mapa.
 
-A proposta é explorar diferentes formas de movimentação ao longo das fases, fazendo com que o jogador não apenas pule entre plataformas, mas também nade, deslize, interaja com paredes, utilize plataformas móveis e enfrente diferentes tipos de perigos.
+Um exemplo é a **sereia encontrada na fase tropical**, que futuramente terá diálogos com o pinguim. A intenção é adicionar outros NPCs ao longo da aventura, dando mais vida aos cenários e personalidade à jornada.
+
+O projeto continua mudando bastante conforme aprendo mais sobre desenvolvimento de jogos e experimento novas ideias.
 
 <p align="center">
   <img src="docs/screenshots/world_tour.gif" alt="O pinguim atravessa inverno, floresta, pradaria e trópicos" width="640">
 </p>
 
 <p align="center">
-  <sub>Uma jornada por Pradaria · Inverno · Floresta · Trópicos</sub>
+  <sub>Pradaria · Inverno · Floresta · Trópicos</sub>
 </p>
 
----
+## O jogo
 
-## 🌎 Biomas
+Atualmente existem quatro áreas em desenvolvimento:
 
-Peakguin possui atualmente quatro ambientes principais em desenvolvimento.
+* **Pradaria** — uma área mais tranquila, usada para apresentar parte da movimentação.
+* **Inverno** — plataformas em um cenário congelado e montanhoso.
+* **Floresta** — esqueletos, projéteis, lava e blocos interativos.
+* **Trópicos** — plataformas, água, natação, caranguejos e uma área submersa com uma sereia.
 
-### 🌱 Pradaria
+As fases ainda não estão finalizadas e provavelmente vão mudar bastante até uma versão completa do jogo.
 
-Uma região mais tranquila que apresenta ao jogador os fundamentos de movimentação e plataforma.
+## 🎮 Gameplay
 
-É onde as principais mecânicas começam a ser introduzidas antes que os desafios se tornem mais complexos.
-
-### ❄️ Inverno
-
-Montanhas, neve e plataformas em um cenário congelado que combina naturalmente com o protagonista.
-
-A fase amplia os desafios de movimentação e verticalidade.
-
-### 🌲 Floresta
-
-Uma área mais perigosa, com inimigos, ataques à distância, blocos interativos, lava e sequências maiores de plataforma.
-
-### 🌴 Trópicos
-
-Uma região que mistura plataforma tradicional com exploração aquática.
-
-O jogador pode entrar na água e utilizar um sistema próprio de natação enquanto encontra novos personagens, inimigos e obstáculos.
-
----
-
-# 🎥 Gameplay
-
-## ⚔️ Combate e plataformas
+### Floresta
 
 <p align="center">
   <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim atravessa a floresta, enfrenta esqueletos e supera plataformas sobre a lava" width="640">
 </p>
 
 <p align="center">
-  <sub>Esqueletos, projéteis, lava e plataformas durante a travessia pela floresta.</sub>
+  <sub>Esqueletos, projéteis, lava e plataformas.</sub>
 </p>
 
-## 🐧 Movimentação
+### Movimentação
 
 <p align="center">
   <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim aprende movimentação, natação, escalada, plataformas e agachamento" width="640">
 </p>
 
 <p align="center">
-  <sub>Diferentes mecânicas de movimentação são introduzidas progressivamente durante as fases.</sub>
+  <sub>Algumas das mecânicas de movimentação disponíveis atualmente.</sub>
 </p>
 
-## 🌊 Exploração subaquática
+### Área submersa
 
 <p align="center">
   <img src="docs/screenshots/ocean_gameplay.gif" alt="O pinguim explora a superfície, nada entre caranguejos e encontra a sereia" width="640">
 </p>
 
 <p align="center">
-  <sub>A exploração continua debaixo d'água, com movimentação própria, inimigos e NPCs.</sub>
+  <sub>A fase tropical também possui exploração debaixo d'água.</sub>
 </p>
 
----
+## Mecânicas implementadas
 
-# ✨ Mecânicas
+Até agora o jogo possui:
 
-Peakguin possui diferentes sistemas de gameplay implementados em GDScript.
-
-### 🏃 Movimentação do jogador
-
-* Movimento horizontal com aceleração e desaceleração.
-* Pulo.
-* Quantidade de saltos configurável de acordo com a fase.
+* Movimento com aceleração e desaceleração.
+* Pulo e múltiplos saltos configuráveis.
 * Agachamento.
 * Deslize.
 * Interação e salto em paredes.
-* Sistema próprio de movimentação dentro da água.
-* Diferentes estados de queda e movimentação aérea.
-
-### 🎭 Estados e animações
-
-O personagem utiliza uma **máquina de estados** para organizar suas diferentes ações e comportamentos.
-
-Entre os estados existentes estão:
-
-* Idle.
-* Walk.
-* Jump.
-* Fall.
-* Duck.
-* Slide.
-* Swimming.
-* Dead.
-* Victory.
-
-O personagem também possui animações contextuais de espera, podendo sentar automaticamente após permanecer parado por determinado tempo.
-
-### 💀 Inimigos
-
-O projeto possui diferentes comportamentos de inimigos.
-
-**Esqueletos**
-
-* Patrulha automática.
-* Detecção do jogador.
-* Ataques à distância.
-* Uso de projéteis.
-
-**Caranguejos**
-
-* Patrulha lateral.
-* Detecção de paredes.
-* Detecção de bordas da plataforma.
-* Mudança automática de direção.
-
-### 🧱 Objetos interativos
-
+* Natação.
+* Máquina de estados para as ações do personagem.
 * Plataformas móveis.
 * Blocos quebráveis.
-* Blocos que caem.
-* Objetos que reaparecem após determinado período.
-* Áreas letais.
+* Blocos que caem e reaparecem.
+* Inimigos com patrulha.
+* Esqueletos capazes de detectar e atacar o jogador.
+* Caranguejos que detectam paredes e bordas.
+* Lava, projéteis e outras áreas letais.
+* Sistema de morte e respawn.
 * Checkpoints.
-* Transições entre fases.
+* Transição entre fases.
+* Cenários com paralaxe.
+* NPCs, ainda em fase inicial de implementação.
 
-### 🌋 Perigos ambientais
+Também existem algumas animações extras para o pinguim. Se ele ficar parado durante algum tempo, por exemplo, acaba sentando sozinho.
 
-O jogador pode encontrar diferentes obstáculos durante as fases, incluindo:
+## NPCs e diálogos
 
-* Lava.
-* Projéteis.
-* Inimigos.
-* Quedas.
-* Áreas letais.
-* Plataformas temporárias.
+Essa parte ainda está no início.
 
----
+A ideia é que durante as fases seja possível encontrar personagens e conversar com eles, mesmo Peakguin continuando sendo principalmente um jogo de plataforma.
 
-# 🚩 Sistema de checkpoints
+A primeira personagem desse tipo é uma **sereia localizada na área submersa da fase tropical**.
 
-As fases possuem um sistema de checkpoints que registra o último ponto alcançado pelo jogador.
+Atualmente ela já está presente no mapa, mas o sistema de diálogo ainda será desenvolvido.
 
-Quando um checkpoint é ativado, ele muda visualmente para indicar seu novo estado.
+Pretendo usar esses encontros para colocar pequenas conversas, comentários sobre os lugares, pistas e momentos mais tranquilos entre as partes de plataforma.
 
-Caso o jogador morra, a fase é reiniciada e o personagem retorna ao último checkpoint ativado naquela fase.
-
-Se nenhum checkpoint tiver sido alcançado, o jogador retorna ao ponto inicial.
-
-Ao avançar para outra fase, o checkpoint da fase anterior é descartado.
-
----
-
-# 🎮 Controles
+## 🎮 Controles
 
 | Ação                  | Teclas               |
 | --------------------- | -------------------- |
 | Mover para a esquerda | `A` ou `←`           |
 | Mover para a direita  | `D` ou `→`           |
-| Pular                 | `W`, `↑` ou `Espaço` |
-| Nadar                 | `W`, `↑` ou `Espaço` |
+| Pular / nadar         | `W`, `↑` ou `Espaço` |
 | Agachar / deslizar    | `S` ou `↓`           |
 | Sentar / levantar     | `3`                  |
 
-Algumas ações também podem acontecer automaticamente dependendo do estado atual do personagem.
+Os controles ainda podem mudar durante o desenvolvimento.
 
----
+## Checkpoints
 
-# 🛠️ Tecnologias
+Algumas fases possuem checkpoints.
 
-O projeto é desenvolvido utilizando:
+Quando o jogador ativa um deles, a placa muda de aparência. Caso o pinguim morra depois disso, a fase é recarregada e ele retorna ao último checkpoint alcançado.
 
-* **Godot Engine 4.7.1**
-* **GDScript**
-* **Git**
-* **GitHub**
+Se nenhum checkpoint tiver sido ativado, ele volta para o começo da fase.
 
-Entre os recursos da Godot utilizados no projeto estão:
+Ao avançar para outra fase, o checkpoint anterior é descartado.
 
-* `CharacterBody2D`
-* `Area2D`
-* `CollisionShape2D`
-* `AnimatedSprite2D`
-* `TileMap`
-* `Parallax2D`
-* Sistema de cenas
-* Sistema de sinais
-* Grupos de nós
-* Física 2D
-* Máquina de estados
-* Cenas reutilizáveis
+## Como executar
 
----
+O projeto utiliza **Godot 4.7.1**.
 
-# 🧠 Desenvolvimento
-
-Um dos principais objetivos do projeto é utilizar Peakguin como experiência prática para estudar arquitetura e desenvolvimento de jogos.
-
-Durante o desenvolvimento foram trabalhados conceitos como:
-
-* Separação de responsabilidades entre scripts.
-* Reutilização de cenas.
-* Comunicação entre nós.
-* Uso de sinais.
-* Gerenciamento de estados.
-* Física e movimentação 2D.
-* Detecção de colisões.
-* Inteligência e comportamento básico de inimigos.
-* Construção e transição de fases.
-* Level design.
-* Sistemas de respawn.
-* Organização de assets.
-* Animação de personagens.
-* Paralaxe e composição de cenários.
-
-O projeto continua sendo expandido conforme novos sistemas e conceitos são estudados e implementados.
-
----
-
-# 📁 Estrutura do projeto
-
-```text
-JogoPlataforma/
-│
-├── entities/       # Jogador, inimigos e objetos reutilizáveis
-├── scene/          # Fases e cenas jogáveis
-├── scripts/        # Sistemas e lógica de gameplay
-├── sprites/        # Sprites, personagens e animações
-├── tiles/          # Tilesets, terrenos e elementos dos cenários
-├── docs/           # GIFs e imagens utilizadas na documentação
-│
-└── project.godot   # Configuração principal do projeto
-```
-
-A estrutura continua sendo reorganizada conforme o projeto cresce.
-
----
-
-# ▶️ Executando o projeto
-
-## Requisitos
-
-* **Godot Engine 4.7.1**
-
-Não existem dependências externas adicionais para executar o projeto dentro da Godot.
-
-## Clonando o repositório
+Clone o repositório:
 
 ```bash
 git clone https://github.com/rafaelcairess/JogoPlataforma.git
 ```
 
-Depois de clonar:
+Depois:
 
-1. Abra a **Godot Engine**.
-2. Selecione **Importar** no Gerenciador de Projetos.
-3. Navegue até a pasta clonada.
-4. Selecione o arquivo `project.godot`.
-5. Abra o projeto.
-6. Pressione `F5` para executar o jogo.
+1. Abra a Godot.
+2. Clique em **Importar**.
+3. Selecione o arquivo `project.godot`.
+4. Abra o projeto.
+5. Pressione `F5` para executar.
 
-Também é possível baixar o projeto como ZIP diretamente pelo GitHub e importar o arquivo `project.godot`.
+Não existem dependências externas adicionais no momento.
 
----
+## Estrutura do projeto
 
-# 🚧 Estado do desenvolvimento
+```text
+JogoPlataforma/
+├── entities/       # Player, inimigos, NPCs e objetos reutilizáveis
+├── scene/          # Fases do jogo
+├── scripts/        # Scripts em GDScript
+├── sprites/        # Personagens, animações e cenários
+├── tiles/          # Terrenos e elementos dos mapas
+├── docs/           # GIFs e imagens usados no README
+└── project.godot
+```
 
-> **Peakguin está em desenvolvimento ativo.**
+## 🚧 Estado atual
 
-O projeto ainda não representa uma versão final do jogo. Mecânicas, fases, animações e estruturas internas podem mudar durante o desenvolvimento.
+Peakguin ainda está **bem no começo do desenvolvimento**.
 
-### Já implementado
+Existem várias mecânicas funcionando e algumas áreas jogáveis, mas ainda falta bastante conteúdo para chegar ao jogo que tenho em mente.
 
-* [x] Movimentação básica.
-* [x] Pulo.
-* [x] Múltiplos saltos.
-* [x] Agachamento.
-* [x] Deslize.
-* [x] Interação com paredes.
-* [x] Máquina de estados do jogador.
-* [x] Sistema de natação.
-* [x] Plataformas móveis.
-* [x] Blocos interativos.
-* [x] Inimigos com patrulha.
-* [x] Inimigos com ataque à distância.
-* [x] Áreas letais.
-* [x] Sistema de morte e respawn.
-* [x] Checkpoints.
-* [x] Transição entre fases.
-* [x] Cenários com paralaxe.
-* [x] Diferentes biomas.
+Entre as coisas que pretendo desenvolver estão:
 
-### Próximos objetivos
+* Sistema de diálogos.
+* Mais NPCs.
+* Novos inimigos.
+* Mais fases e áreas.
+* Sons e músicas.
+* Interface e menus.
+* Melhorias nas animações.
+* Mais objetos interativos.
+* Refinamento das fases existentes.
+* Melhor equilíbrio de dificuldade.
+* Uma progressão que resulte em aproximadamente 3 horas de jogo.
 
-* [ ] Refinar as fases existentes.
-* [ ] Expandir o comportamento dos inimigos.
-* [ ] Adicionar novos tipos de inimigos.
-* [ ] Criar mais objetos interativos.
-* [ ] Melhorar feedback visual das ações.
-* [ ] Adicionar efeitos sonoros.
-* [ ] Adicionar música.
-* [ ] Refinar animações.
-* [ ] Melhorar as transições entre áreas.
-* [ ] Criar menus e interface do jogo.
-* [ ] Balancear progressão e dificuldade.
-* [ ] Finalizar as fases principais.
+Como é um projeto desenvolvido por uma pessoa só e também meu primeiro jogo, não existe uma previsão definida para terminar.
 
----
+A prioridade é continuar aprendendo e melhorar o projeto aos poucos.
 
-# 🎨 Assets
+## Créditos
 
-Os assets de pixel art utilizados em Peakguin foram criados por **GrafxKid** e disponibilizados sob a licença **CC0 1.0 Universal**.
+Os assets de pixel art utilizados no projeto são de **GrafxKid** e foram disponibilizados sob a licença **CC0 1.0 Universal**.
 
-Mais informações podem ser encontradas no arquivo:
+A licença pode ser encontrada em:
 
 [`sprites/Seasonal Tilesets/LICENSE.txt`](sprites/Seasonal%20Tilesets/LICENSE.txt)
 
-A programação, implementação dos sistemas, montagem das fases e desenvolvimento do gameplay de Peakguin são realizados por mim.
+A programação, montagem das fases, implementação das mecânicas e desenvolvimento geral de Peakguin são feitos por mim.
 
----
+## Licença
 
-# 📜 Licença
-
-Os assets externos utilizados possuem suas respectivas licenças descritas na seção de créditos.
-
-A licença do código-fonte de Peakguin ainda não foi definida.
-
----
-
-<p align="center">
-  🐧 <strong>Peakguin</strong>
-</p>
-
-<p align="center">
-  Meu primeiro passo no desenvolvimento de jogos.
-</p>
+A licença do código-fonte ainda não foi definida.
