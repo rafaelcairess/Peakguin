@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/gameplay.gif" alt="O pinguim se agacha para desviar de um osso e salta entre terrenos" width="720">
+  <img src="docs/screenshots/player_actions.gif" alt="O pinguim sentado e dançando" width="720">
 </p>
 
 <p align="center">
-  <sub>Esquive dos projéteis, atravesse os obstáculos e explore cada canto das fases.</sub>
+  <sub>Até os heróis precisam descansar antes da próxima aventura.</sub>
 </p>
 
 ## Sobre o jogo
@@ -27,15 +27,22 @@ Atualmente existem quatro biomas em desenvolvimento:
 3. **Floresta** — esqueletos, projéteis, lava e blocos quebráveis.
 4. **Trópicos** — água, plataformas móveis e trechos de precisão.
 
-## Em movimento
+## Aventuras em movimento
 
 <p align="center">
-  <img src="docs/screenshots/player_actions.gif" alt="O pinguim sentado e dançando" width="48%">
-  <img src="docs/screenshots/biomes.gif" alt="Passeio pelos biomas de pradaria, inverno, floresta e trópicos" width="48%">
+  <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim atravessa a floresta, sobe pelos terrenos e derrota esqueletos" width="720">
 </p>
 
 <p align="center">
-  <sub>Animações do personagem · Pradaria · Inverno · Floresta · Trópicos</sub>
+  <sub>Na floresta, o pinguim parte do descanso, sobe pelos terrenos e derrota os esqueletos pelo caminho.</sub>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim pratica os saltos do tutorial e dança sobre uma plataforma" width="720">
+</p>
+
+<p align="center">
+  <sub>No tutorial, as plataformas apresentam a movimentação vertical antes da dança de comemoração.</sub>
 </p>
 
 ## Mecânicas
