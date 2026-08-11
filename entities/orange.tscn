@@ -297,7 +297,8 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1729820891]
 sprite_frames = SubResource("SpriteFrames_ynr55")
 animation = &"idle"
-frame_progress = 0.4751861
+autoplay = "idle"
+frame_progress = 0.64630324
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1080787873]
 shape = SubResource("CapsuleShape2D_qxs8s")
