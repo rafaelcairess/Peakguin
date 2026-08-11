@@ -296,9 +296,10 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1729820891]
 sprite_frames = SubResource("SpriteFrames_ynr55")
-animation = &"idle"
+animation = &"walking"
 autoplay = "idle"
-frame_progress = 0.64630324
+frame_progress = 0.038902536
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1080787873]
+visible = false
 shape = SubResource("CapsuleShape2D_qxs8s")

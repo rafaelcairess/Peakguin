@@ -40,16 +40,17 @@ tile_set = ExtResource("2_dm3bm")
 z_index = 20
 
 [node name="Andar" type="Label" parent="Tutorial" unique_id=1340926298]
-offset_left = -486.0
-offset_top = 127.0
-offset_right = -394.0
-offset_bottom = 145.0
+offset_left = -383.0
+offset_top = 128.0
+offset_right = -291.0
+offset_bottom = 146.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.0784314, 0.101961, 0.105882, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("13_tutorial_font")
 theme_override_font_sizes/font_size = 12
-text = "A / D  MOVER"
+text = "A / D para Andar!
+"
 
 [node name="Pular" type="Label" parent="Tutorial" unique_id=963539007]
 offset_left = -184.0
@@ -62,6 +63,18 @@ theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("13_tutorial_font")
 theme_override_font_sizes/font_size = 12
 text = "W / Espaco para pular!"
+
+[node name="Plataforma" type="Label" parent="Tutorial" unique_id=119982070]
+offset_left = 730.0
+offset_top = -60.0
+offset_right = 869.0
+offset_bottom = -42.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.0784314, 0.101961, 0.105882, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("13_tutorial_font")
+theme_override_font_sizes/font_size = 12
+text = "Plataforma em movimento!"
 
 [node name="Pular_Lava" type="Label" parent="Tutorial" unique_id=877654887]
 offset_left = 186.0

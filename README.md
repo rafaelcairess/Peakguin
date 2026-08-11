@@ -17,11 +17,11 @@
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/world_tour.gif" alt="O pinguim dança no inverno e atravessa pradaria, floresta e trópicos" width="576">
+  <img src="docs/screenshots/world_tour.gif" alt="O pinguim atravessa inverno, floresta, pradaria e trópicos" width="640">
 </p>
 
 <p align="center">
-  <sub>Uma viagem por Inverno · Pradaria · Floresta · Trópicos</sub>
+  <sub>Uma viagem por Inverno · Floresta · Pradaria · Trópicos</sub>
 </p>
 
 ## Sobre o jogo
@@ -40,27 +40,27 @@ Atualmente existem quatro biomas em desenvolvimento:
 ### Combate e plataformas
 
 <p align="center">
-  <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim dança, atravessa a floresta, sobe pelos terrenos e derrota um esqueleto" width="576">
+  <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim atravessa a floresta, enfrenta esqueletos e supera plataformas sobre a lava" width="640">
 </p>
 
 <p align="center">
-  <sub>Depois de comemorar, o pinguim vence os desníveis da floresta e derrota o primeiro esqueleto.</sub>
+  <sub>Combate, lava e plataformas em uma corrida pela floresta.</sub>
 </p>
 
 ### Tutorial de movimentação
 
 <p align="center">
-  <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim caminha pelo tutorial, pula, nada para sair da água e dança" width="576">
+  <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim aprende movimentação, natação, escalada, plataformas e agachamento" width="640">
 </p>
 
 <p align="center">
-  <sub>No tutorial, o pinguim caminha, salta, cai na água, nada para sair e comemora em terreno seguro.</sub>
+  <sub>As principais mecânicas são apresentadas em ordem, do primeiro salto ao encontro com o esqueleto.</sub>
 </p>
 
 ### Vida no oceano
 
 <p align="center">
-  <img src="docs/screenshots/ocean_gameplay.gif" alt="O pinguim nada entre caranguejos e encontra a sereia" width="576">
+  <img src="docs/screenshots/ocean_gameplay.gif" alt="O pinguim explora a superfície, nada entre caranguejos e encontra a sereia" width="640">
 </p>
 
 <p align="center">

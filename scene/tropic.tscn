@@ -144,7 +144,7 @@ time = 3
 position = Vector2(2, -105)
 
 [node name="Player" parent="." unique_id=1696542837 instance=ExtResource("1_bmxgx")]
-position = Vector2(588, 342)
+position = Vector2(33, 126)
 max_speed = 80.0
 max_jump_count = 50
 

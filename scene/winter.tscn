@@ -72,7 +72,7 @@ position = Vector2(-10, 96)
 shape = SubResource("RectangleShape2D_qc071")
 
 [node name="BrokenBlock" parent="." unique_id=1749848802 instance=ExtResource("7_t555a")]
-position = Vector2(-384, 140)
+position = Vector2(-127, -30)
 
 [node name="CollisionShape2D" parent="BrokenBlock" index="0" unique_id=966314599]
 one_way_collision = true
