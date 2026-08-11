@@ -1,11 +1,15 @@
-<h1 align="center">Jogo de Plataforma 2D</h1>
+<h1 align="center">🐧 Peakguin</h1>
 
 <p align="center">
-  Um platformer 2D em pixel art desenvolvido com Godot 4 e GDScript.
+  <strong>Um platformer 2D em pixel art desenvolvido na Godot.</strong>
 </p>
 
 <p align="center">
-  <code>Godot 4.7.1</code> · <code>GDScript</code> · <code>Em desenvolvimento</code>
+  Explore diferentes biomas, domine novas formas de movimentação e ajude um pequeno pinguim a atravessar um mundo cheio de plataformas, inimigos e perigos.
+</p>
+
+<p align="center">
+  <code>Godot 4.7.1</code> · <code>GDScript</code> · <code>Pixel Art</code> · <code>2D Platformer</code> · <code>Em desenvolvimento</code>
 </p>
 
 <p align="center">
@@ -16,136 +20,358 @@
   <sub>Até os heróis precisam descansar antes da próxima aventura.</sub>
 </p>
 
+---
+
+## 🎮 Sobre Peakguin
+
+**Peakguin** é meu primeiro jogo indie de plataforma 2D, criado com **Godot Engine** e **GDScript**.
+
+O jogador controla um pequeno pinguim durante uma jornada por diferentes ambientes, cada um apresentando novos obstáculos, inimigos e mecânicas.
+
+O projeto começou como parte do meu aprendizado em desenvolvimento de jogos e evoluiu para um projeto autoral no qual desenvolvo a **programação, os sistemas de gameplay, a construção das fases, as interações e o level design**.
+
+A proposta é explorar diferentes formas de movimentação ao longo das fases, fazendo com que o jogador não apenas pule entre plataformas, mas também nade, deslize, interaja com paredes, utilize plataformas móveis e enfrente diferentes tipos de perigos.
+
 <p align="center">
   <img src="docs/screenshots/world_tour.gif" alt="O pinguim atravessa inverno, floresta, pradaria e trópicos" width="640">
 </p>
 
 <p align="center">
-  <sub>Uma viagem por Inverno · Floresta · Pradaria · Trópicos</sub>
+  <sub>Uma jornada por Pradaria · Inverno · Floresta · Trópicos</sub>
 </p>
 
-## Sobre o jogo
+---
 
-O jogador controla um pinguim por cenários com identidades e desafios diferentes. O projeto combina movimentação responsiva, exploração, inimigos, perigos ambientais e objetos interativos.
+## 🌎 Biomas
 
-Atualmente existem quatro biomas em desenvolvimento:
+Peakguin possui atualmente quatro ambientes principais em desenvolvimento.
 
-1. **Pradaria** — uma introdução mais tranquila à movimentação.
-2. **Inverno** — plataformas geladas e um cenário montanhoso.
-3. **Floresta** — esqueletos, projéteis, lava e blocos quebráveis.
-4. **Trópicos** — água, plataformas móveis e trechos de precisão.
+### 🌱 Pradaria
 
-## Destaques de gameplay
+Uma região mais tranquila que apresenta ao jogador os fundamentos de movimentação e plataforma.
 
-### Combate e plataformas
+É onde as principais mecânicas começam a ser introduzidas antes que os desafios se tornem mais complexos.
+
+### ❄️ Inverno
+
+Montanhas, neve e plataformas em um cenário congelado que combina naturalmente com o protagonista.
+
+A fase amplia os desafios de movimentação e verticalidade.
+
+### 🌲 Floresta
+
+Uma área mais perigosa, com inimigos, ataques à distância, blocos interativos, lava e sequências maiores de plataforma.
+
+### 🌴 Trópicos
+
+Uma região que mistura plataforma tradicional com exploração aquática.
+
+O jogador pode entrar na água e utilizar um sistema próprio de natação enquanto encontra novos personagens, inimigos e obstáculos.
+
+---
+
+# 🎥 Gameplay
+
+## ⚔️ Combate e plataformas
 
 <p align="center">
   <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim atravessa a floresta, enfrenta esqueletos e supera plataformas sobre a lava" width="640">
 </p>
 
 <p align="center">
-  <sub>Combate, lava e plataformas em uma corrida pela floresta.</sub>
+  <sub>Esqueletos, projéteis, lava e plataformas durante a travessia pela floresta.</sub>
 </p>
 
-### Tutorial de movimentação
+## 🐧 Movimentação
 
 <p align="center">
   <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim aprende movimentação, natação, escalada, plataformas e agachamento" width="640">
 </p>
 
 <p align="center">
-  <sub>As principais mecânicas são apresentadas em ordem, do primeiro salto ao encontro com o esqueleto.</sub>
+  <sub>Diferentes mecânicas de movimentação são introduzidas progressivamente durante as fases.</sub>
 </p>
 
-### Vida no oceano
+## 🌊 Exploração subaquática
 
 <p align="center">
   <img src="docs/screenshots/ocean_gameplay.gif" alt="O pinguim explora a superfície, nada entre caranguejos e encontra a sereia" width="640">
 </p>
 
 <p align="center">
-  <sub>Na área submersa, caranguejos patrulham o fundo enquanto a sereia aguarda o jogador.</sub>
+  <sub>A exploração continua debaixo d'água, com movimentação própria, inimigos e NPCs.</sub>
 </p>
 
-## Mecânicas
+---
 
-- Movimento com aceleração e desaceleração.
-- Pulo e múltiplos saltos configuráveis por fase.
-- Agachamento e deslize.
-- Animações de espera, incluindo sentar automaticamente e dançar.
-- Interação e salto em paredes.
-- Natação com física própria.
-- Plataformas móveis com duração configurável.
-- Blocos que quebram, caem e reaparecem após alguns segundos.
-- Esqueletos com patrulha, detecção e ataque à distância.
-- Sereia NPC amigável na área submersa da fase tropical.
-- Caranguejos com patrulha lateral e detecção de paredes e bordas.
-- Lava, projéteis e outras áreas letais.
-- Checkpoints persistentes por fase com retorno após a morte.
-- Transição automática entre fases.
-- Cenários com múltiplas camadas de paralaxe.
-- Máquina de estados para controlar as ações do jogador.
+# ✨ Mecânicas
 
-## Controles
+Peakguin possui diferentes sistemas de gameplay implementados em GDScript.
 
-| Ação | Teclas |
-| --- | --- |
-| Mover para a esquerda | `A` ou `←` |
-| Mover para a direita | `D` ou `→` |
-| Pular / nadar | `W`, `↑` ou `Espaço` |
-| Agachar / deslizar | `S` ou `↓` |
-| Sentar / levantar | `3` ou automaticamente após 25 s parado |
-| Animação de vitória (teste) | `4` |
+### 🏃 Movimentação do jogador
 
-## Checkpoints
+* Movimento horizontal com aceleração e desaceleração.
+* Pulo.
+* Quantidade de saltos configurável de acordo com a fase.
+* Agachamento.
+* Deslize.
+* Interação e salto em paredes.
+* Sistema próprio de movimentação dentro da água.
+* Diferentes estados de queda e movimentação aérea.
 
-O checkpoint utiliza a plaquinha do tileset de pradaria e pode ser reutilizado em qualquer fase. Ao ser ativada pelo jogador, a placa fica verde. Se o jogador morrer, a fase é recarregada e ele retorna ao último checkpoint alcançado naquela mesma fase.
+### 🎭 Estados e animações
 
-Para adicionar um checkpoint pelo editor:
+O personagem utiliza uma **máquina de estados** para organizar suas diferentes ações e comportamentos.
 
-1. Arraste `res://entities/checkpoint.tscn` para a árvore da fase.
-2. Posicione o nó `Checkpoint` no local desejado usando a ferramenta de movimento.
-3. Se necessário, habilite **Filhos Editáveis** para ajustar `CollisionShape2D` ou `RespawnPosition`.
-4. Execute a fase, encoste na placa e depois alcance uma área letal para testar o retorno.
+Entre os estados existentes estão:
 
-Sem um checkpoint ativado, o jogador reaparece no início da fase. Ao entrar em outra fase, o checkpoint anterior é descartado.
+* Idle.
+* Walk.
+* Jump.
+* Fall.
+* Duck.
+* Slide.
+* Swimming.
+* Dead.
+* Victory.
 
-## Como executar
+O personagem também possui animações contextuais de espera, podendo sentar automaticamente após permanecer parado por determinado tempo.
 
-### Pela Godot
+### 💀 Inimigos
 
-1. Instale a **Godot 4.7.1**, versão utilizada no desenvolvimento.
-2. Clone o repositório:
+O projeto possui diferentes comportamentos de inimigos.
 
-   ```bash
-   git clone https://github.com/rafaelcairess/JogoPlataforma.git
-   ```
+**Esqueletos**
 
-3. No Gerenciador de Projetos da Godot, selecione **Importar**.
-4. Escolha o arquivo `project.godot`.
-5. Pressione `F5` para iniciar o jogo ou `F6` para executar a cena aberta.
+* Patrulha automática.
+* Detecção do jogador.
+* Ataques à distância.
+* Uso de projéteis.
 
-Também é possível baixar o projeto como ZIP pelo GitHub e importar o `project.godot`. Não há dependências externas nem etapa adicional de compilação.
+**Caranguejos**
 
-## Estrutura do projeto
+* Patrulha lateral.
+* Detecção de paredes.
+* Detecção de bordas da plataforma.
+* Mudança automática de direção.
+
+### 🧱 Objetos interativos
+
+* Plataformas móveis.
+* Blocos quebráveis.
+* Blocos que caem.
+* Objetos que reaparecem após determinado período.
+* Áreas letais.
+* Checkpoints.
+* Transições entre fases.
+
+### 🌋 Perigos ambientais
+
+O jogador pode encontrar diferentes obstáculos durante as fases, incluindo:
+
+* Lava.
+* Projéteis.
+* Inimigos.
+* Quedas.
+* Áreas letais.
+* Plataformas temporárias.
+
+---
+
+# 🚩 Sistema de checkpoints
+
+As fases possuem um sistema de checkpoints que registra o último ponto alcançado pelo jogador.
+
+Quando um checkpoint é ativado, ele muda visualmente para indicar seu novo estado.
+
+Caso o jogador morra, a fase é reiniciada e o personagem retorna ao último checkpoint ativado naquela fase.
+
+Se nenhum checkpoint tiver sido alcançado, o jogador retorna ao ponto inicial.
+
+Ao avançar para outra fase, o checkpoint da fase anterior é descartado.
+
+---
+
+# 🎮 Controles
+
+| Ação                  | Teclas               |
+| --------------------- | -------------------- |
+| Mover para a esquerda | `A` ou `←`           |
+| Mover para a direita  | `D` ou `→`           |
+| Pular                 | `W`, `↑` ou `Espaço` |
+| Nadar                 | `W`, `↑` ou `Espaço` |
+| Agachar / deslizar    | `S` ou `↓`           |
+| Sentar / levantar     | `3`                  |
+
+Algumas ações também podem acontecer automaticamente dependendo do estado atual do personagem.
+
+---
+
+# 🛠️ Tecnologias
+
+O projeto é desenvolvido utilizando:
+
+* **Godot Engine 4.7.1**
+* **GDScript**
+* **Git**
+* **GitHub**
+
+Entre os recursos da Godot utilizados no projeto estão:
+
+* `CharacterBody2D`
+* `Area2D`
+* `CollisionShape2D`
+* `AnimatedSprite2D`
+* `TileMap`
+* `Parallax2D`
+* Sistema de cenas
+* Sistema de sinais
+* Grupos de nós
+* Física 2D
+* Máquina de estados
+* Cenas reutilizáveis
+
+---
+
+# 🧠 Desenvolvimento
+
+Um dos principais objetivos do projeto é utilizar Peakguin como experiência prática para estudar arquitetura e desenvolvimento de jogos.
+
+Durante o desenvolvimento foram trabalhados conceitos como:
+
+* Separação de responsabilidades entre scripts.
+* Reutilização de cenas.
+* Comunicação entre nós.
+* Uso de sinais.
+* Gerenciamento de estados.
+* Física e movimentação 2D.
+* Detecção de colisões.
+* Inteligência e comportamento básico de inimigos.
+* Construção e transição de fases.
+* Level design.
+* Sistemas de respawn.
+* Organização de assets.
+* Animação de personagens.
+* Paralaxe e composição de cenários.
+
+O projeto continua sendo expandido conforme novos sistemas e conceitos são estudados e implementados.
+
+---
+
+# 📁 Estrutura do projeto
 
 ```text
 JogoPlataforma/
-|-- entities/       # Jogador, inimigos e objetos reutilizáveis
-|-- scene/          # Fases jogáveis
-|-- scripts/        # Lógica de gameplay em GDScript
-|-- sprites/        # Personagens, cenários e animações
-|-- tiles/          # Terrenos, decorações, água e lava
-|-- docs/           # Imagens e animações da documentação
-`-- project.godot   # Configuração principal da Godot
+│
+├── entities/       # Jogador, inimigos e objetos reutilizáveis
+├── scene/          # Fases e cenas jogáveis
+├── scripts/        # Sistemas e lógica de gameplay
+├── sprites/        # Sprites, personagens e animações
+├── tiles/          # Tilesets, terrenos e elementos dos cenários
+├── docs/           # GIFs e imagens utilizadas na documentação
+│
+└── project.godot   # Configuração principal do projeto
 ```
 
-## Estado do desenvolvimento
+A estrutura continua sendo reorganizada conforme o projeto cresce.
 
-O projeto está em desenvolvimento. Entre os próximos passos estão o refinamento das fases, novos objetos interativos e mais feedback visual e sonoro para as ações do jogador.
+---
 
-## Créditos e licença
+# ▶️ Executando o projeto
 
-Os assets de pixel art são de **GrafxKid** e foram disponibilizados sob a licença **CC0 1.0 Universal**. Consulte o arquivo [LICENSE dos assets](sprites/Seasonal%20Tilesets/LICENSE.txt) para mais informações.
+## Requisitos
 
-A licença do código-fonte do projeto ainda não foi definida.
+* **Godot Engine 4.7.1**
+
+Não existem dependências externas adicionais para executar o projeto dentro da Godot.
+
+## Clonando o repositório
+
+```bash
+git clone https://github.com/rafaelcairess/JogoPlataforma.git
+```
+
+Depois de clonar:
+
+1. Abra a **Godot Engine**.
+2. Selecione **Importar** no Gerenciador de Projetos.
+3. Navegue até a pasta clonada.
+4. Selecione o arquivo `project.godot`.
+5. Abra o projeto.
+6. Pressione `F5` para executar o jogo.
+
+Também é possível baixar o projeto como ZIP diretamente pelo GitHub e importar o arquivo `project.godot`.
+
+---
+
+# 🚧 Estado do desenvolvimento
+
+> **Peakguin está em desenvolvimento ativo.**
+
+O projeto ainda não representa uma versão final do jogo. Mecânicas, fases, animações e estruturas internas podem mudar durante o desenvolvimento.
+
+### Já implementado
+
+* [x] Movimentação básica.
+* [x] Pulo.
+* [x] Múltiplos saltos.
+* [x] Agachamento.
+* [x] Deslize.
+* [x] Interação com paredes.
+* [x] Máquina de estados do jogador.
+* [x] Sistema de natação.
+* [x] Plataformas móveis.
+* [x] Blocos interativos.
+* [x] Inimigos com patrulha.
+* [x] Inimigos com ataque à distância.
+* [x] Áreas letais.
+* [x] Sistema de morte e respawn.
+* [x] Checkpoints.
+* [x] Transição entre fases.
+* [x] Cenários com paralaxe.
+* [x] Diferentes biomas.
+
+### Próximos objetivos
+
+* [ ] Refinar as fases existentes.
+* [ ] Expandir o comportamento dos inimigos.
+* [ ] Adicionar novos tipos de inimigos.
+* [ ] Criar mais objetos interativos.
+* [ ] Melhorar feedback visual das ações.
+* [ ] Adicionar efeitos sonoros.
+* [ ] Adicionar música.
+* [ ] Refinar animações.
+* [ ] Melhorar as transições entre áreas.
+* [ ] Criar menus e interface do jogo.
+* [ ] Balancear progressão e dificuldade.
+* [ ] Finalizar as fases principais.
+
+---
+
+# 🎨 Assets
+
+Os assets de pixel art utilizados em Peakguin foram criados por **GrafxKid** e disponibilizados sob a licença **CC0 1.0 Universal**.
+
+Mais informações podem ser encontradas no arquivo:
+
+[`sprites/Seasonal Tilesets/LICENSE.txt`](sprites/Seasonal%20Tilesets/LICENSE.txt)
+
+A programação, implementação dos sistemas, montagem das fases e desenvolvimento do gameplay de Peakguin são realizados por mim.
+
+---
+
+# 📜 Licença
+
+Os assets externos utilizados possuem suas respectivas licenças descritas na seção de créditos.
+
+A licença do código-fonte de Peakguin ainda não foi definida.
+
+---
+
+<p align="center">
+  🐧 <strong>Peakguin</strong>
+</p>
+
+<p align="center">
+  Meu primeiro passo no desenvolvimento de jogos.
+</p>
