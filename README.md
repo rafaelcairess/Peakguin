@@ -9,11 +9,19 @@
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/player_actions.gif" alt="O pinguim sentado e dançando" width="720">
+  <img src="docs/screenshots/penguin_sit.gif" alt="Pinguim sentado" width="108">
 </p>
 
 <p align="center">
   <sub>Até os heróis precisam descansar antes da próxima aventura.</sub>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/world_tour.gif" alt="O pinguim dança no inverno e atravessa pradaria, floresta e trópicos" width="576">
+</p>
+
+<p align="center">
+  <sub>Uma viagem por Pradaria · Inverno · Floresta · Trópicos</sub>
 </p>
 
 ## Sobre o jogo
@@ -27,22 +35,36 @@ Atualmente existem quatro biomas em desenvolvimento:
 3. **Floresta** — esqueletos, projéteis, lava e blocos quebráveis.
 4. **Trópicos** — água, plataformas móveis e trechos de precisão.
 
-## Aventuras em movimento
+## Destaques de gameplay
+
+### Combate e plataformas
 
 <p align="center">
-  <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim atravessa a floresta, sobe pelos terrenos e derrota esqueletos" width="720">
+  <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim dança, atravessa a floresta, sobe pelos terrenos e derrota esqueletos" width="576">
 </p>
 
 <p align="center">
-  <sub>Na floresta, o pinguim parte do descanso, sobe pelos terrenos e derrota os esqueletos pelo caminho.</sub>
+  <sub>Depois de comemorar, o pinguim sobe pelos terrenos e derrota os esqueletos pelo caminho.</sub>
 </p>
 
+### Tutorial de movimentação
+
 <p align="center">
-  <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim pratica os saltos do tutorial e dança sobre uma plataforma" width="720">
+  <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim pratica os saltos do tutorial e dança sobre uma plataforma" width="576">
 </p>
 
 <p align="center">
   <sub>No tutorial, as plataformas apresentam a movimentação vertical antes da dança de comemoração.</sub>
+</p>
+
+### Vida no oceano
+
+<p align="center">
+  <img src="docs/screenshots/ocean_gameplay.gif" alt="O pinguim nada entre caranguejos e encontra a sereia" width="576">
+</p>
+
+<p align="center">
+  <sub>Na área submersa, caranguejos patrulham o fundo enquanto a sereia aguarda o jogador.</sub>
 </p>
 
 ## Mecânicas
@@ -63,14 +85,6 @@ Atualmente existem quatro biomas em desenvolvimento:
 - Transição automática entre fases.
 - Cenários com múltiplas camadas de paralaxe.
 - Máquina de estados para controlar as ações do jogador.
-
-## Cenários
-
-<p align="center">
-  <img src="docs/screenshots/grassland.png" alt="Fase de pradaria" width="31%">
-  <img src="docs/screenshots/forest.png" alt="Fase de floresta" width="31%">
-  <img src="docs/screenshots/tropic.png" alt="Fase tropical" width="31%">
-</p>
 
 ## Controles
 
