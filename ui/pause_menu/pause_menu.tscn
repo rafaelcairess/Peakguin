@@ -1,0 +1,294 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_script"]
+[ext_resource type="Shader" path="res://shaders/ui/pause_blur.gdshader" id="2_blur"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
+shader = ExtResource("2_blur")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.055, 0.082, 0.118, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63, 0.82, 0.91, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.1, 0.16, 0.22, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.47, 0.57, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.15, 0.28, 0.37, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.71, 0.91, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+bg_color = Color(0.06, 0.11, 0.16, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.81, 0.95, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_script")
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blur" type="ColorRect" parent="Overlay"]
+material = SubResource("ShaderMaterial_blur")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.01, 0.02, 0.035, 0.42)
+
+[node name="Center" type="CenterContainer" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuPanel" type="PanelContainer" parent="Overlay/Center"]
+custom_minimum_size = Vector2(210, 188)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="PanelSpriteSlot" type="TextureRect" parent="Overlay/Center/MenuPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Content" type="MarginContainer" parent="Overlay/Center/MenuPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 11
+
+[node name="Layout" type="VBoxContainer" parent="Overlay/Center/MenuPanel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TitleIconSlot" type="TextureRect" parent="Overlay/Center/MenuPanel/Content/Layout"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.95, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "PAUSA"
+horizontal_alignment = 1
+
+[node name="Separator" type="HSeparator" parent="Overlay/Center/MenuPanel/Content/Layout"]
+layout_mode = 2
+
+[node name="MainScreen" type="VBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Overlay/Center/MenuPanel/Content/Layout/MainScreen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../OptionsButton")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "CONTINUAR"
+
+[node name="OptionsButton" type="Button" parent="Overlay/Center/MenuPanel/Content/Layout/MainScreen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "CONFIGURAÇÕES"
+
+[node name="QuitButton" type="Button" parent="Overlay/Center/MenuPanel/Content/Layout/MainScreen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+focus_neighbor_top = NodePath("../OptionsButton")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "SAIR DO JOGO"
+
+[node name="OptionsScreen" type="VBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="OptionsTitle" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.95, 1, 1)
+text = "ÁUDIO E VÍDEO"
+horizontal_alignment = 1
+
+[node name="MasterRow" type="HBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MasterRow"]
+custom_minimum_size = Vector2(43, 0)
+layout_mode = 2
+text = "GERAL"
+
+[node name="MasterSlider" type="HSlider" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MasterRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+step = 1.0
+value = 100.0
+
+[node name="MasterValue" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MasterRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 2
+
+[node name="MusicRow" type="HBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MusicRow"]
+custom_minimum_size = Vector2(43, 0)
+layout_mode = 2
+text = "MÚSICA"
+
+[node name="MusicSlider" type="HSlider" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MusicRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+step = 1.0
+value = 50.0
+
+[node name="MusicValue" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MusicRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+text = "50%"
+horizontal_alignment = 2
+
+[node name="SFXRow" type="HBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/SFXRow"]
+custom_minimum_size = Vector2(43, 0)
+layout_mode = 2
+text = "EFEITOS"
+
+[node name="SFXSlider" type="HSlider" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/SFXRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+step = 1.0
+value = 71.0
+
+[node name="SFXValue" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/SFXRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+text = "71%"
+horizontal_alignment = 2
+
+[node name="FullscreenToggle" type="CheckButton" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+text = "TELA CHEIA"
+
+[node name="BackButton" type="Button" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "VOLTAR"
+
+[connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/MainScreen/ContinueButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/MainScreen/OptionsButton" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/MainScreen/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="value_changed" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MasterRow/MasterSlider" to="." method="_on_master_volume_changed"]
+[connection signal="value_changed" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MusicRow/MusicSlider" to="." method="_on_music_volume_changed"]
+[connection signal="value_changed" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/SFXRow/SFXSlider" to="." method="_on_sfx_volume_changed"]
+[connection signal="toggled" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/FullscreenToggle" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/BackButton" to="." method="_on_back_pressed"]
