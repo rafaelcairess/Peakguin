@@ -172,12 +172,8 @@ JogoPlataforma/
 │   ├── npcs/                   # NPCs, como a sereia
 │   ├── gameplay/               # Checkpoint, câmera, plataformas e saída
 │   └── projectiles/            # Projéteis reutilizáveis
-├── levels/                     # Grassland, Forest, Tropic e Winter
-├── tiles/
-│   ├── terrain/                # TileSet principal dos terrenos
-│   ├── decoration/             # TileSet de árvores, plantas e objetos
-│   ├── environment/            # Água e elementos ambientais
-│   └── hazards/                # Lava e outros terrenos perigosos
+├── scene/                      # Grassland, Forest, Tropic e Winter
+├── tiles/                      # Terrain, Decoration, Water e Lava juntos
 ├── audio/
 │   ├── music/                  # Músicas das fases
 │   └── sfx/                    # Efeitos sonoros do player e do ambiente
@@ -191,10 +187,10 @@ JogoPlataforma/
 ```
 
 Para montar uma fase, as pastas mais importantes no painel **Arquivos** da
-Godot são `entities`, `levels` e `tiles`. As cenas dentro de `entities` podem
-ser arrastadas diretamente para um nível. Os arquivos `terrain.tres` e
-`decoration.tres` continuam separados porque são os dois TileSets usados com
-mais frequência na construção dos mapas.
+Godot são `entities`, `scene` e `tiles`. As cenas dentro de `entities` podem
+ser arrastadas diretamente para um nível. Os arquivos `terrain.tres`,
+`decoration.tres`, `underwater.tres` e `lava.tres` ficam juntos em `tiles`
+para serem encontrados rapidamente durante a construção dos mapas.
 
 ## 🚧 Estado atual
 

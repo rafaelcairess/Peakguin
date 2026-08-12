@@ -9,5 +9,5 @@ func _on_body_entered(_body: Node2D) -> void:
 
 func load_next_scene() -> void:
 	get_tree().change_scene_to_file(
-		"res://levels/" + next_level + ".tscn"
+		"res://scene/" + next_level + ".tscn"
 	)

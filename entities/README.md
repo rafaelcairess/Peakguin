@@ -1,7 +1,7 @@
 # Entities
 
 Esta é a pasta principal para montar as fases. Arraste os arquivos `.tscn`
-para uma cena dentro de `levels`.
+para uma cena dentro de `scene`.
 
 - `player`: personagem jogável.
 - `enemies`: inimigos que podem causar dano.
