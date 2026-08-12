@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=2 format=3]
+[gd_resource type="Theme" format=3 uid="uid://dvsk5usnh0sna"]
 
-[ext_resource type="FontFile" uid="uid://f5yihloe0dmj" path="res://docs/at01.ttf" id="1_at01"]
+[ext_resource type="FontFile" uid="uid://f5yihloe0dmj" path="res://fonts/at01.ttf" id="1_at01"]
 
 [resource]
 default_font = ExtResource("1_at01")

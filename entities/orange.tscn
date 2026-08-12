@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://lhqnb51un1t7"]
+[gd_scene format=3 uid="uid://cbl7isglalovo"]
 
 [ext_resource type="Texture2D" uid="uid://cy8ganm5gk0mr" path="res://sprites/4 - Orange/Squished (32 x 32).png" id="1_re5sg"]
 [ext_resource type="Texture2D" uid="uid://jemthocobgmq" path="res://sprites/4 - Orange/Blink (32 x 32).png" id="2_4oqkd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ban6a6rmybagq" path="res://sprites/4 - Orange/Roll_Stop (32 x 32).png" id="8_s5nkd"]
 [ext_resource type="Texture2D" uid="uid://dbehhqh46fx72" path="res://sprites/4 - Orange/Rolling (32 x 32).png" id="9_r8dp1"]
 [ext_resource type="Texture2D" uid="uid://wwsa3hka0typ" path="res://sprites/4 - Orange/Walking (32 x 32).png" id="10_t06on"]
+[ext_resource type="Script" path="res://scripts/orange.gd" id="11_script"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6dswp"]
 atlas = ExtResource("1_re5sg")
@@ -225,7 +226,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fdynh")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"roll_start",
 "speed": 5.0
 }, {
@@ -239,7 +240,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uwb7e")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"roll_stop",
 "speed": 5.0
 }, {
@@ -291,15 +292,70 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxs8s"]
+radius = 9.0
+height = 18.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=309110489]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_roll_damage"]
+size = Vector2(24, 20)
+
+[node name="Orange" type="CharacterBody2D" unique_id=309110489]
+collision_layer = 4
+script = ExtResource("11_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1729820891]
+position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_ynr55")
 animation = &"walking"
 autoplay = "idle"
 frame_progress = 0.038902536
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1080787873]
-visible = false
 shape = SubResource("CapsuleShape2D_qxs8s")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1012171411 groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1645044488]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="RollDamage" type="Area2D" parent="." unique_id=386767302 groups=["LethalArea"]]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RollDamage" unique_id=845592812]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_roll_damage")
+disabled = true
+
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=349588175]
+position = Vector2(0, 7)
+target_position = Vector2(22, 0)
+
+[node name="GroundDetector" type="RayCast2D" parent="." unique_id=1690612645]
+position = Vector2(11, 7)
+target_position = Vector2(0, 16)
+
+[node name="PlayerDetector" type="RayCast2D" parent="." unique_id=1172622950]
+target_position = Vector2(96, 0)
+collision_mask = 2
+
+[node name="RollDurationTimer" type="Timer" parent="." unique_id=2104203845]
+wait_time = 1.2
+one_shot = true
+
+[node name="RollCooldownTimer" type="Timer" parent="." unique_id=1260201250]
+wait_time = 2.0
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=1956852868]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="RollDurationTimer" to="." method="_on_roll_duration_timer_timeout"]
+[connection signal="timeout" from="RollCooldownTimer" to="." method="_on_roll_cooldown_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

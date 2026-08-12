@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Game"
-run/main_scene="uid://nrsoqne511dm"
+run/main_scene="uid://bkvtdrx02py13"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-CheckpointManager="*res://scripts/checkpoint_manager.gd"
+CheckpointManager="*res://scripts/managers/checkpoint_manager.gd"
+MusicManager="*res://scripts/managers/music_manager.gd"
 
 [display]
 
@@ -38,6 +39,8 @@ Enemies=""
 LethalArea=""
 Water=""
 Checkpoint=""
+GrassSurface=""
+Lava=""
 
 [gui]
 

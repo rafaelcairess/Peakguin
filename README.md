@@ -165,14 +165,36 @@ Não existem dependências externas adicionais no momento.
 
 ```text
 JogoPlataforma/
-├── entities/       # Player, inimigos, NPCs e objetos reutilizáveis
-├── scene/          # Fases do jogo
-├── scripts/        # Scripts em GDScript
-├── sprites/        # Personagens, animações e cenários
-├── tiles/          # Terrenos e elementos dos mapas
-├── docs/           # GIFs e imagens usados no README
+├── entities/                   # Cenas que você arrasta para os níveis
+│   ├── player/                 # Pinguim jogável
+│   ├── enemies/                # Cogumelo, laranja e esqueletos
+│   ├── creatures/              # Animais sem dano, como os caranguejos
+│   ├── npcs/                   # NPCs, como a sereia
+│   ├── gameplay/               # Checkpoint, câmera, plataformas e saída
+│   └── projectiles/            # Projéteis reutilizáveis
+├── levels/                     # Grassland, Forest, Tropic e Winter
+├── tiles/
+│   ├── terrain/                # TileSet principal dos terrenos
+│   ├── decoration/             # TileSet de árvores, plantas e objetos
+│   ├── environment/            # Água e elementos ambientais
+│   └── hazards/                # Lava e outros terrenos perigosos
+├── audio/
+│   ├── music/                  # Músicas das fases
+│   └── sfx/                    # Efeitos sonoros do player e do ambiente
+├── effects/                    # Efeitos visuais, como o splash da água
+├── scripts/                    # Código separado pelas mesmas categorias
+├── sprites/                    # Sprites brutos e pacotes de arte
+├── fonts/                      # Fontes usadas pelo jogo
+├── themes/                     # Temas globais da interface
+├── docs/                       # GIFs e imagens usados no README
 └── project.godot
 ```
+
+Para montar uma fase, as pastas mais importantes no painel **Arquivos** da
+Godot são `entities`, `levels` e `tiles`. As cenas dentro de `entities` podem
+ser arrastadas diretamente para um nível. Os arquivos `terrain.tres` e
+`decoration.tres` continuam separados porque são os dois TileSets usados com
+mais frequência na construção dos mapas.
 
 ## 🚧 Estado atual
 

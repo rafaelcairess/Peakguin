@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dp74ecwa4nc4t"]
+[gd_scene format=3 uid="uid://byb3snfofnjat"]
 
-[ext_resource type="Script" uid="uid://6kjea8fgoitj" path="res://skeleton.gd" id="1_yag7t"]
+[ext_resource type="Script" path="res://skeleton.gd" id="1_yag7t"]
 [ext_resource type="Texture2D" uid="uid://dm7qjohduugoj" path="res://sprites/3 - Skeleton/Bone_Toss (32 x 32).png" id="2_4oc3b"]
 [ext_resource type="Texture2D" uid="uid://bve3v0dv7lp8w" path="res://sprites/3 - Skeleton/Crumbling_Into_Bone_Pile (32 x 32).png" id="2_fpmxe"]
 [ext_resource type="Texture2D" uid="uid://u3mxstxi20o5" path="res://sprites/3 - Skeleton/Limping_Movement (32 x 32).png" id="3_4oc3b"]
@@ -166,12 +166,10 @@ sprite_frames = SubResource("SpriteFrames_qxs8s")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=821002315]
-visible = false
 position = Vector2(2, 4)
 shape = SubResource("CapsuleShape2D_qxs8s")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1514733969 groups=["Enemies"]]
-visible = false
 collision_layer = 4
 collision_mask = 2
 
@@ -196,7 +194,7 @@ collision_mask = 2
 [node name="BoneStartPosition" type="Node2D" parent="." unique_id=47082234]
 position = Vector2(13, 0)
 
-[node name="BurstCooldownTimer" type="Timer" parent="."]
+[node name="BurstCooldownTimer" type="Timer" parent="." unique_id=34759469]
 wait_time = 5.0
 one_shot = true
 

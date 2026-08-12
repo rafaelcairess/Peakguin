@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dp74ecwa4nc4t" path="res://entities/enemies/skeleton.tscn" id="1_skeleton"]
+[ext_resource type="Script" path="res://scripts/enemies/tutorial_skeleton.gd" id="2_tutorial_script"]
+
+[node name="TutorialSkeleton" instance=ExtResource("1_skeleton")]
+script = ExtResource("2_tutorial_script")
+speed = 0.0
+initial_direction = -1
+bones_per_burst = 3
+burst_cooldown_seconds = 5.0
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+flip_h = true
+
+[node name="WallDetector" parent="." index="3"]
+position = Vector2(2, 11)
+target_position = Vector2(-30, 0)
+
+[node name="GroundDetector" parent="." index="4"]
+position = Vector2(-13, 5)
+
+[node name="PlayerDetector" parent="." index="5"]
+position = Vector2(-1, 14)
+target_position = Vector2(-160, 0)
+
+[node name="BoneStartPosition" parent="." index="6"]
+position = Vector2(-13, 0)

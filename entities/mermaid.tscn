@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://3ncxfwvcrk85"]
+[gd_scene format=3 uid="uid://u6tcjvvljxxj"]
 
-[ext_resource type="Script" uid="uid://blhv1qhd4vx82" path="res://scripts/mermaid.gd" id="1_mermaid"]
+[ext_resource type="Script" path="res://scripts/mermaid.gd" id="1_mermaid"]
 [ext_resource type="Texture2D" uid="uid://p30d1m7uttlh" path="res://sprites/npcs/mermaid_blue.png" id="2_xvsjc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvsjc"]

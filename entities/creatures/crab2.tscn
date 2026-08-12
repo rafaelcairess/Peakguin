@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c7inmudgw5f3o"]
+
+[ext_resource type="PackedScene" path="res://entities/creatures/crab_base.tscn" id="1_crab"]
+[ext_resource type="Texture2D" uid="uid://cwvtlxnhuvwvl" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_crab_00003_.png" id="2_orange"]
+
+[node name="crab2" unique_id=858956315 instance=ExtResource("1_crab")]
+initial_direction = -1.0
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, 4)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("2_orange")
+flip_h = true
