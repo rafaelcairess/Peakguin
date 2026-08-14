@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://cax2e2f3v7w0s"]
+
+[ext_resource type="Script" path="res://scripts/ui/dialogue_box.gd" id="1_dialogue"]
+[ext_resource type="Theme" uid="uid://dd8a0b0d3w25d" path="res://themes/game_theme.tres" id="2_theme"]
+
+[node name="DialogueBox" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_dialogue")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_theme")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="BackgroundPanel" type="Panel" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/BackgroundPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BackgroundPanel/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 4
+
+[node name="PortraitRect" type="TextureRect" parent="MarginContainer/BackgroundPanel/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BackgroundPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BackgroundPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+
+[node name="NameLabel" type="Label" parent="MarginContainer/BackgroundPanel/HBoxContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+text = "Personagem"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/BackgroundPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextLabel" type="RichTextLabel" parent="MarginContainer/BackgroundPanel/HBoxContainer/VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Esse e um texto de exemplo para o sistema de dialogo."
+scroll_active = false
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="TypewriterTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="timeout" from="TypewriterTimer" to="." method="_on_typewriter_timer_timeout"]

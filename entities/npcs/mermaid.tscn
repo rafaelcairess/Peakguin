@@ -1,7 +1,11 @@
-﻿[gd_scene format=3 uid="uid://3ncxfwvcrk85"]
+[gd_scene format=3 uid="uid://3ncxfwvcrk85"]
 
 [ext_resource type="Script" uid="uid://blhv1qhd4vx82" path="res://scripts/npcs/mermaid.gd" id="1_mermaid"]
 [ext_resource type="Texture2D" uid="uid://p30d1m7uttlh" path="res://sprites/2 - Mermaid/mermaid_blue.png" id="2_xvsjc"]
+[ext_resource type="Script" path="res://scripts/gameplay/interactable_area.gd" id="3_interact"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 45.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvsjc"]
 atlas = ExtResource("2_xvsjc")
@@ -46,3 +50,11 @@ frame_progress = 0.2343347
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=226958898]
 shape = SubResource("CapsuleShape2D_mermaid")
+
+[node name="InteractableArea" type="Area2D" parent="." unique_id=324792348]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("3_interact")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea" unique_id=342894723]
+shape = SubResource("CircleShape2D_interact")

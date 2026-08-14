@@ -356,9 +356,16 @@ bus = &"PlayerJump"
 [node name="FootstepSFX" type="AudioStreamPlayer" parent="." unique_id=588987163]
 bus = &"PlayerSteps"
 
-[node name="WaterSFX" type="AudioStreamPlayer" parent="." unique_id=393328738]
+[node name="WaterSFX" type="AudioStreamPlayer" parent="." unique_id=2273183574]
 stream = ExtResource("13_water_sfx")
 bus = &"SFX"
+
+[node name="InteractionDetector" type="Area2D" parent="." unique_id=1849502758]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionDetector" unique_id=2749502759]
+shape = SubResource("CapsuleShape2D_qxs8s")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

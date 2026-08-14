@@ -14,7 +14,8 @@ enum PlayerState {
 	victory,
 	slide,
 	wall,
-	dead
+	dead,
+	reading
 }
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -22,6 +23,7 @@ enum PlayerState {
 @onready var hitbox_shape: CollisionShape2D = $Hitbox/CollisionShape2D
 @onready var left_wall_detector: RayCast2D = $LeftWallDetector
 @onready var right_wall_detector: RayCast2D = $RightWallDetector
+@onready var interaction_detector: Area2D = $InteractionDetector
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
 @onready var jump_sfx: AudioStreamPlayer = $JumpSFX
@@ -106,6 +108,10 @@ func _physics_process(delta: float) -> void:
 	if coyote_timer > 0:
 		coyote_timer -= delta
 		
+	if is_on_floor() and jump_buffer_timer > 0.0:
+		_jump()
+
+	_check_interaction()
 	if jump_buffer_timer > 0:
 		jump_buffer_timer -= delta
 		
@@ -145,8 +151,8 @@ func _physics_process(delta: float) -> void:
 		PlayerState.wall:
 			wall_state(delta)
 
-		PlayerState.dead:
-			dead_state(delta)
+		PlayerState.dead: dead_state()
+		PlayerState.reading: reading_state()
 
 	if status != PlayerState.walk and footstep_sfx.playing:
 		footstep_sfx.stop()
@@ -823,3 +829,16 @@ func _on_invulnerability_timer_timeout() -> void:
 
 func _on_reload_timer_timeout() -> void:
 	get_tree().reload_current_scene()
+
+func reading_state() -> void:
+	anim.play("idle")
+	velocity.x = move_toward(velocity.x, 0, deceleration * get_physics_process_delta_time())
+
+func _check_interaction() -> void:
+	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_accept"):
+		var interactables = interaction_detector.get_overlapping_areas()
+		if interactables.size() > 0:
+			var closest = interactables[0]
+			if closest is InteractableArea:
+				closest.interact()
+				change_state(PlayerState.reading)

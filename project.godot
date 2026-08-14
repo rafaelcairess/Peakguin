@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CheckpointManager="*res://scripts/managers/checkpoint_manager.gd"
 CollectiblesManager="*res://scripts/managers/collectibles_manager.gd"
+DialogueManager="*res://scripts/managers/dialogue_manager.gd"
 MusicManager="*res://scripts/managers/music_manager.gd"
 PauseMenu="*res://ui/pause_menu/pause_menu.tscn"
 UIManager="*res://scripts/managers/ui_manager.gd"
