@@ -101,7 +101,8 @@ Até agora o jogo possui:
 * Lava, projéteis e outras áreas letais.
 * Sistema de morte e respawn.
 * Três corações de vida, com dano, cura e breve invulnerabilidade.
-* HUD com vidas, cronômetro da fase em minutos e segundos e contador de moedas.
+* HUD reformulada com fonte clássica em sprites, cronômetro persistente, número de moedas e vidas.
+* Sistema de interação e diálogos estilo Stardew Valley (retratos, textos progressivos e caixas de diálogo dinâmicas).
 * Moedas coletáveis e corações giratórios que recuperam vida.
 * Poeira animada após três segundos de corrida contínua.
 * Checkpoints.
@@ -115,15 +116,15 @@ Também existem algumas animações extras para o pinguim. Se ele ficar parado d
 
 ## NPCs e diálogos
 
-Essa parte ainda está no início.
+A ideia é que durante as fases seja possível encontrar personagens e conversar com eles, trazendo mais vida ao mundo enquanto o foco continua sendo plataforma.
 
-A ideia é que durante as fases seja possível encontrar personagens e conversar com eles, mesmo Peakguin continuando sendo principalmente um jogo de plataforma.
+O sistema de diálogos, inspirado em clássicos de RPG e Stardew Valley, já está funcional. Ele conta com:
+- Detecção de áreas de interação ao redor do pinguim.
+- Caixas de diálogo animadas na parte inferior da tela.
+- Efeito "máquina de escrever" (typewriter) avançando o texto gradualmente.
+- Retratos customizados e o nome de quem está falando.
 
-A primeira personagem desse tipo é uma **sereia localizada na área submersa da fase tropical**.
-
-Atualmente ela já está presente no mapa, mas o sistema de diálogo ainda será desenvolvido.
-
-Pretendo usar esses encontros para colocar pequenas conversas, comentários sobre os lugares, pistas e momentos mais tranquilos entre as partes de plataforma.
+A primeira personagem a utilizar esse sistema é a **sereia localizada na área submersa da fase tropical**. Experimente se aproximar dela e interagir!
 
 ## 🎮 Controles
 
