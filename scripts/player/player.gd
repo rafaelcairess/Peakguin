@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+signal health_changed(current_health: int, maximum_health: int)
+signal coins_changed(total: int)
+
 enum PlayerState {
 	idle,
 	walk,
@@ -20,17 +23,31 @@ enum PlayerState {
 @onready var left_wall_detector: RayCast2D = $LeftWallDetector
 @onready var right_wall_detector: RayCast2D = $RightWallDetector
 @onready var reload_timer: Timer = $ReloadTimer
+@onready var invulnerability_timer: Timer = $InvulnerabilityTimer
 @onready var jump_sfx: AudioStreamPlayer = $JumpSFX
 @onready var footstep_sfx: AudioStreamPlayer = $FootstepSFX
 @onready var water_sfx: AudioStreamPlayer = $WaterSFX
-@onready var lava_sfx: AudioStreamPlayer = $LavaSFX
 
 @export var max_speed: float = 180.0
 @export var acceleration: float = 400.0
 @export var deceleration: float = 400.0
 @export var slide_deceleration: float = 100.0
+@export var slide_boost: float = 1.5
 @export var max_jump_count: int = 2
 @export var idle_to_sit_time: float = 25.0
+
+@export_category("Game Feel")
+@export_range(0.0, 0.5, 0.01) var coyote_time: float = 0.15
+@export_range(0.0, 0.5, 0.01) var jump_buffer_time: float = 0.1
+
+@export_category("Vida e coleta")
+@export_range(1, 3, 1) var max_health: int = 3
+@export_range(0.1, 3.0, 0.1) var invulnerability_seconds: float = 1.0
+
+@export_category("Efeito de corrida")
+@export var run_dust_scene: PackedScene = preload("res://effects/run_dust/run_dust.tscn")
+@export_range(0.0, 10.0, 0.1) var run_dust_delay: float = 2.0
+@export_range(0.05, 1.0, 0.01) var run_dust_interval: float = 0.18
 
 @export var wall_aceleration: float = 40.0
 @export var wall_jump_velocity: float = 240.0
@@ -45,7 +62,7 @@ enum PlayerState {
 	preload("res://audio/sfx/environment/grass/grass_step_02.wav"),
 	preload("res://audio/sfx/environment/grass/grass_step_03.wav")
 ]
-@export_range(0.1, 1.0, 0.01) var grass_footstep_interval: float = 0.28
+@export_range(0.1, 1.0, 0.01) var grass_footstep_interval: float = 0.40
 @export var water_splash_scene: PackedScene = preload("res://effects/water_splash/water_splash.tscn")
 
 const JUMP_VELOCITY: float = -300.0
@@ -56,9 +73,23 @@ var jump_count: int = 0
 var idle_time: float = 0.0
 var grass_footstep_elapsed: float = 0.0
 var water_bodies: Array[Node2D] = []
+var current_health: int = 3
+var coins: int = 0
+var is_invulnerable := false
+var continuous_run_time := 0.0
+var run_dust_elapsed := 0.0
+var damage_tween: Tween
+var coyote_timer: float = 0.0
+var jump_buffer_timer: float = 0.0
 
 
 func _ready() -> void:
+	current_health = max_health
+	health_changed.emit(current_health, max_health)
+	coins_changed.emit(coins)
+	invulnerability_timer.wait_time = invulnerability_seconds
+	reset_run_dust()
+
 	var current_scene := get_tree().current_scene
 
 	if current_scene != null:
@@ -72,6 +103,17 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if coyote_timer > 0:
+		coyote_timer -= delta
+		
+	if jump_buffer_timer > 0:
+		jump_buffer_timer -= delta
+		
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer = jump_buffer_time
+
+	_update_grass_footstep_cutoff()
+
 	match status:
 		PlayerState.idle:
 			idle_state(delta)
@@ -106,7 +148,11 @@ func _physics_process(delta: float) -> void:
 		PlayerState.dead:
 			dead_state(delta)
 
+	if status != PlayerState.walk and footstep_sfx.playing:
+		footstep_sfx.stop()
+
 	move_and_slide()
+	update_run_dust(delta)
 
 
 func go_to_idle_state() -> void:
@@ -118,7 +164,7 @@ func go_to_idle_state() -> void:
 func go_to_walk_state() -> void:
 	status = PlayerState.walk
 	anim.play("walk")
-	grass_footstep_elapsed = grass_footstep_interval
+	grass_footstep_elapsed = 0.0
 
 
 func go_to_jump_state() -> void:
@@ -148,6 +194,11 @@ func go_to_slide_state() -> void:
 	status = PlayerState.slide
 	anim.play("slide")
 	set_small_collider()
+	
+	if direction != 0:
+		velocity.x = (max_speed * slide_boost) * direction
+	elif velocity.x != 0:
+		velocity.x = sign(velocity.x) * (max_speed * slide_boost)
 
 
 func exit_from_slide_state() -> void:
@@ -198,17 +249,22 @@ func go_to_dead_state() -> void:
 		return
 
 	status = PlayerState.dead
+	if current_health != 0:
+		current_health = 0
+		health_changed.emit(current_health, max_health)
 	velocity = Vector2.ZERO
 	anim.play("dead")
 	grass_footstep_elapsed = 0.0
 	reload_timer.start()
+	reset_run_dust()
 
 
 func idle_state(delta: float) -> void:
 	apply_gravity(delta)
 	move(delta)
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") or jump_buffer_timer > 0:
+		jump_buffer_timer = 0.0
 		go_to_jump_state()
 		return
 
@@ -243,7 +299,8 @@ func walk_state(delta: float) -> void:
 		go_to_idle_state()
 		return
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") or jump_buffer_timer > 0:
+		jump_buffer_timer = 0.0
 		go_to_jump_state()
 		return
 
@@ -252,6 +309,7 @@ func walk_state(delta: float) -> void:
 		return
 
 	if not is_on_floor():
+		coyote_timer = coyote_time
 		go_to_fall_state()
 		return
 
@@ -270,7 +328,8 @@ func jump_state(delta: float) -> void:
 	apply_gravity(delta)
 	move(delta)
 
-	if Input.is_action_just_pressed("jump") and can_jump():
+	if (Input.is_action_just_pressed("jump") or jump_buffer_timer > 0) and can_jump():
+		jump_buffer_timer = 0.0
 		go_to_jump_state()
 		return
 
@@ -283,12 +342,25 @@ func fall_state(delta: float) -> void:
 	apply_gravity(delta)
 	move(delta)
 
-	if Input.is_action_just_pressed("jump") and can_jump():
-		go_to_jump_state()
-		return
+	if Input.is_action_just_pressed("jump") or jump_buffer_timer > 0:
+		if coyote_timer > 0:
+			coyote_timer = 0.0
+			jump_buffer_timer = 0.0
+			jump_count = 0
+			go_to_jump_state()
+			return
+		elif can_jump():
+			jump_buffer_timer = 0.0
+			go_to_jump_state()
+			return
 
 	if is_on_floor():
 		jump_count = 0
+		
+		if jump_buffer_timer > 0:
+			jump_buffer_timer = 0.0
+			go_to_jump_state()
+			return
 
 		if velocity.x == 0:
 			go_to_idle_state()
@@ -464,6 +536,51 @@ func can_jump() -> bool:
 	return jump_count < max_jump_count
 
 
+func update_run_dust(delta: float) -> void:
+	var is_running := (
+		status == PlayerState.walk
+		and is_on_floor()
+		and direction != 0.0
+		and absf(velocity.x) >= max_speed * 0.7
+	)
+
+	if not is_running:
+		reset_run_dust()
+		return
+
+	continuous_run_time += delta
+	if continuous_run_time < run_dust_delay:
+		return
+
+	run_dust_elapsed += delta
+	if run_dust_elapsed < run_dust_interval:
+		return
+
+	run_dust_elapsed = 0.0
+	spawn_run_dust()
+
+
+func reset_run_dust() -> void:
+	continuous_run_time = 0.0
+	run_dust_elapsed = run_dust_interval
+
+
+func spawn_run_dust() -> void:
+	if run_dust_scene == null:
+		return
+
+	var dust := run_dust_scene.instantiate() as Node2D
+	if dust == null:
+		return
+
+	var scene_root := get_tree().current_scene
+	var dust_parent: Node = scene_root if scene_root != null else get_parent()
+	dust_parent.add_child(dust)
+	dust.global_position = global_position + Vector2(-direction * 6.0, 2.0)
+	if dust.has_method("set_direction"):
+		dust.set_direction(direction)
+
+
 func update_grass_footsteps(delta: float) -> void:
 	if not is_on_grass_surface() or grass_footstep_sounds.is_empty():
 		grass_footstep_elapsed = grass_footstep_interval
@@ -471,13 +588,21 @@ func update_grass_footsteps(delta: float) -> void:
 
 	grass_footstep_elapsed += delta
 
-	if grass_footstep_elapsed < grass_footstep_interval:
+	if grass_footstep_elapsed < grass_footstep_interval or footstep_sfx.playing:
 		return
 
 	grass_footstep_elapsed = 0.0
 	footstep_sfx.stream = grass_footstep_sounds.pick_random()
-	footstep_sfx.pitch_scale = randf_range(0.92, 1.08)
+	footstep_sfx.pitch_scale = randf_range(0.98, 1.02)
 	footstep_sfx.play()
+
+
+func _update_grass_footstep_cutoff() -> void:
+	if not footstep_sfx.playing:
+		return
+
+	if footstep_sfx.get_playback_position() >= PauseMenu.get_footstep_cutoff_seconds():
+		footstep_sfx.stop()
 
 
 func is_on_grass_surface() -> bool:
@@ -626,20 +751,74 @@ func _on_hitbox_body_exited(body: Node2D) -> void:
 			go_to_jump_state()
 
 
+func apply_screen_shake(intensity: float, duration: float) -> void:
+	var cam = get_viewport().get_camera_2d()
+	if cam != null and cam.has_method("apply_shake"):
+		cam.apply_shake(intensity, duration)
+
+
 func hit_enemy(area: Area2D) -> void:
 	if velocity.y > 0:
-		area.get_parent().take_damage()
+		var enemy := area.get_parent()
+		if enemy.has_method("take_damage"):
+			enemy.take_damage()
+		apply_screen_shake(3.0, 0.15)
 		go_to_jump_state()
 
 	else:
-		go_to_dead_state()
+		take_damage()
 
 
 func hit_lethal_area(source: Node) -> void:
-	if source.is_in_group("Lava"):
-		lava_sfx.play()
+	if source.is_in_group("Lava") or source.is_in_group("InstantDeath"):
+		go_to_dead_state()
+		return
 
-	go_to_dead_state()
+	take_damage()
+
+
+func take_damage(amount: int = 1) -> void:
+	if status == PlayerState.dead or is_invulnerable:
+		return
+
+	current_health = maxi(current_health - maxi(amount, 1), 0)
+	health_changed.emit(current_health, max_health)
+	if current_health <= 0:
+		go_to_dead_state()
+		return
+
+	is_invulnerable = true
+	invulnerability_timer.start(invulnerability_seconds)
+	play_damage_flash()
+	apply_screen_shake(8.0, 0.3)
+
+
+func play_damage_flash() -> void:
+	if damage_tween != null and damage_tween.is_valid():
+		damage_tween.kill()
+
+	anim.modulate = Color(1.0, 0.35, 0.35, 1.0)
+	damage_tween = create_tween()
+	damage_tween.tween_property(anim, "modulate", Color.WHITE, 0.25)
+
+
+func collect_coin(amount: int = 1) -> void:
+	coins += maxi(amount, 1)
+	coins_changed.emit(coins)
+
+
+func collect_heart(amount: int = 1) -> bool:
+	if status == PlayerState.dead or current_health >= max_health:
+		return false
+
+	current_health = mini(current_health + maxi(amount, 1), max_health)
+	health_changed.emit(current_health, max_health)
+	return true
+
+
+func _on_invulnerability_timer_timeout() -> void:
+	is_invulnerable = false
+	anim.modulate = Color.WHITE
 
 
 func _on_reload_timer_timeout() -> void:

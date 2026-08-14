@@ -4,6 +4,7 @@ extends StaticBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var broken_timer: Timer = $BrokenTimer
 @onready var reset_timer: Timer = $ResetTimer
+@onready var break_sfx: AudioStreamPlayer2D = $BreakSFX
 
 var start_position: Vector2
 var is_broken = false
@@ -25,6 +26,7 @@ func _process(_delta: float) -> void:
 		if player.is_on_floor():
 			is_broken = true
 			anim.play("broken")
+			break_sfx.play()
 			broken_timer.start()
 
 

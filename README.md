@@ -100,9 +100,15 @@ Até agora o jogo possui:
 * Caranguejos que detectam paredes e bordas.
 * Lava, projéteis e outras áreas letais.
 * Sistema de morte e respawn.
+* Três corações de vida, com dano, cura e breve invulnerabilidade.
+* HUD com vidas, cronômetro da fase em minutos e segundos e contador de moedas.
+* Moedas coletáveis e corações giratórios que recuperam vida.
+* Poeira animada após três segundos de corrida contínua.
 * Checkpoints.
 * Transição entre fases.
 * Cenários com paralaxe.
+* Tela inicial com seletor de fases, configurações e créditos.
+* Cursores pixel art para o mouse e para botões da interface.
 * NPCs, ainda em fase inicial de implementação.
 
 Também existem algumas animações extras para o pinguim. Se ele ficar parado durante algum tempo, por exemplo, acaba sentando sozinho.
@@ -170,6 +176,7 @@ JogoPlataforma/
 │   ├── enemies/                # Cogumelo, laranja e esqueletos
 │   ├── creatures/              # Animais sem dano, como os caranguejos
 │   ├── npcs/                   # NPCs, como a sereia
+│   ├── pickups/                # Moedas e corações prontos para arrastar
 │   ├── gameplay/               # Checkpoint, câmera, plataformas e saída
 │   └── projectiles/            # Projéteis reutilizáveis
 ├── scene/                      # Grassland, Forest, Tropic e Winter
@@ -177,11 +184,12 @@ JogoPlataforma/
 ├── audio/
 │   ├── music/                  # Músicas das fases
 │   └── sfx/                    # Efeitos sonoros do player e do ambiente
-├── effects/                    # Efeitos visuais, como o splash da água
+├── effects/                    # Splash da água e poeira de corrida
 ├── scripts/                    # Código separado pelas mesmas categorias
 ├── sprites/                    # Sprites brutos e pacotes de arte
 ├── fonts/                      # Fontes usadas pelo jogo
 ├── themes/                     # Temas globais da interface
+├── ui/                         # HUD, menu principal e menu de pausa
 ├── docs/                       # GIFs e imagens usados no README
 └── project.godot
 ```
@@ -191,6 +199,13 @@ Godot são `entities`, `scene` e `tiles`. As cenas dentro de `entities` podem
 ser arrastadas diretamente para um nível. Os arquivos `terrain.tres`,
 `decoration.tres`, `underwater.tres` e `lava.tres` ficam juntos em `tiles`
 para serem encontrados rapidamente durante a construção dos mapas.
+
+As cenas `entities/pickups/coin/coin.tscn` e
+`entities/pickups/heart/heart.tscn` também podem ser arrastadas diretamente
+para qualquer fase. A cena `ui/game_hud/game_hud.tscn` concentra a montagem
+visual do HUD. No Player, as propriedades **Vida e coleta** e **Efeito de
+corrida** permitem ajustar a vida máxima, o tempo de invulnerabilidade, os
+três segundos de espera e o intervalo entre as partículas de poeira.
 
 ## 🚧 Estado atual
 
@@ -223,6 +238,12 @@ Os assets de pixel art utilizados no projeto são de **GrafxKid** e foram dispon
 A licença pode ser encontrada em:
 
 [`sprites/Seasonal Tilesets/LICENSE.txt`](sprites/Seasonal%20Tilesets/LICENSE.txt)
+
+A fonte pixel **at01**, também criada por GrafxKid e disponibilizada sob
+**CC0 1.0**, é utilizada nos textos. O projeto inclui uma variante própria com
+os glifos necessários ao português.
+
+[`fonts/at01_pt_br/README.md`](fonts/at01_pt_br/README.md)
 
 A programação, montagem das fases, implementação das mecânicas e desenvolvimento geral de Peakguin são feitos por mim.
 

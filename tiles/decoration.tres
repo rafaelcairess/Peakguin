@@ -9,10 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://bsw6utwg4xolc" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Autumn_entities (16 x 16).png" id="4_lb8v8"]
 [ext_resource type="Texture2D" uid="uid://chon20kkhhekr" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="5_3sstm"]
 [ext_resource type="Texture2D" uid="uid://2tgvd17uki6j" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_starfish_00002_.png" id="5_gv215"]
+[ext_resource type="Texture2D" uid="uid://c6sxdhrxklirs" path="res://sprites/Mini FX, Items & UI/Common Pick-ups/Wrapped_Presents (16 x 16).png" id="5_kbqlo"]
 [ext_resource type="Texture2D" uid="uid://bmci1pq63tucm" path="res://sprites/Seasonal Tilesets/4 - Winter World/Winter_entities (16 x 16).png" id="6_3sstm"]
 [ext_resource type="Texture2D" uid="uid://yqby8e3cke4m" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_treasure_chests_00003_.png" id="6_o45bs"]
 [ext_resource type="Texture2D" uid="uid://cjadi85x4a6vl" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_corals_00003_.png" id="10_q3okc"]
 [ext_resource type="Texture2D" uid="uid://dyv4q0aus7lom" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/Water_frames (16 x 32).png" id="13_o45bs"]
+[ext_resource type="Texture2D" uid="uid://df1gk2v8rwr55" path="res://sprites/Mini FX, Items & UI/Common Pick-ups/Treasure_Chest (32 x 16).png" id="15_g7ieo"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_hjahj"]
 tile_data = PackedInt32Array(0, 589824, 1, 65537, 1, 0)
@@ -91,6 +93,12 @@ texture = ExtResource("10_q3okc")
 2:3/0 = 0
 3:3/0 = 0
 0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_comhd"]
+texture = ExtResource("5_kbqlo")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kbqlo"]
 texture = ExtResource("5_gv215")
@@ -369,6 +377,15 @@ texture = ExtResource("13_o45bs")
 0:1/0 = 0
 1:1/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5xof"]
+texture = ExtResource("15_g7ieo")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_xwcet")
 sources/1 = SubResource("TileSetAtlasSource_qpk70")
@@ -383,4 +400,6 @@ sources/11 = SubResource("TileSetAtlasSource_day2t")
 sources/13 = SubResource("TileSetAtlasSource_kbqlo")
 sources/14 = SubResource("TileSetAtlasSource_g7ieo")
 sources/8 = SubResource("TileSetAtlasSource_cujei")
+sources/9 = SubResource("TileSetAtlasSource_x5xof")
+sources/12 = SubResource("TileSetAtlasSource_comhd")
 pattern_0 = SubResource("TileMapPattern_hjahj")

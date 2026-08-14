@@ -24,6 +24,8 @@ enum OrangeState {
 @export_range(-1, 1, 2) var initial_direction: int = 1
 @export_range(0.1, 10.0, 0.1) var roll_duration_seconds: float = 1.2
 @export_range(0.1, 10.0, 0.1) var roll_cooldown_seconds: float = 2.0
+@export_range(16.0, 500.0, 8.0) var forget_distance: float = 400.0
+@export_range(1.0, 30.0, 1.0) var forget_time: float = 8.0
 
 const WALL_DETECTOR_OFFSET_X: float = 8.0
 const WALL_DETECTOR_LENGTH: float = 14.0
@@ -34,6 +36,8 @@ const PLAYER_DETECTOR_LENGTH: float = 88.0
 var status: OrangeState = OrangeState.walk
 var direction: int = 1
 var can_roll: bool = true
+var _aggro_time_left: float = 0.0
+var player: Node2D
 
 
 func _ready() -> void:
@@ -123,8 +127,37 @@ func go_to_dead_state() -> void:
 	death_timer.start()
 
 
+func find_player() -> void:
+	var players = get_tree().get_nodes_in_group("Player")
+	if players.size() > 0:
+		player = players[0]
+
+
 func walk_state() -> void:
 	velocity.x = speed * direction
+
+	if not is_instance_valid(player):
+		find_player()
+
+	var sees_player = player_detector.is_colliding()
+
+	if sees_player or (_aggro_time_left > 0.0 and is_instance_valid(player)):
+		var distance_to_player = 0.0
+		if is_instance_valid(player):
+			distance_to_player = global_position.distance_to(player.global_position)
+
+		if sees_player or distance_to_player <= forget_distance:
+			_aggro_time_left = forget_time
+		else:
+			_aggro_time_left -= get_physics_process_delta_time()
+
+		if _aggro_time_left > 0.0 and is_instance_valid(player):
+			var player_direction = signi(roundi(player.global_position.x - global_position.x))
+			if player_direction != 0 and player_direction != direction:
+				direction = player_direction
+				update_direction()
+				update_detectors_immediately()
+				velocity.x = speed * direction
 
 	if is_on_floor() and (
 		wall_detector.is_colliding()
@@ -133,7 +166,7 @@ func walk_state() -> void:
 		turn_around()
 		return
 
-	if can_roll and player_detector.is_colliding():
+	if can_roll and (sees_player or _aggro_time_left > 0.0):
 		go_to_roll_start_state()
 
 

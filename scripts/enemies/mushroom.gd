@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 enum CogumeloState {
+	idle,
 	patrol,
 	chase,
+	pre_attack,
 	attack,
 	dead
 }
@@ -23,9 +25,11 @@ enum CogumeloState {
 
 @export_category("Perseguição")
 @export var chase_speed: float = 45.0
-@export_range(16.0, 320.0, 8.0) var chase_distance: float = 160.0
-@export_range(16.0, 400.0, 8.0) var forget_distance: float = 208.0
-@export_range(8.0, 128.0, 8.0) var chase_vertical_tolerance: float = 48.0
+@export_range(16.0, 400.0, 8.0) var chase_distance: float = 240.0
+@export_range(16.0, 500.0, 8.0) var forget_distance: float = 400.0
+@export_range(1.0, 30.0, 1.0) var forget_time: float = 8.0
+var _aggro_time_left: float = 8.0
+@export_range(8.0, 320.0, 8.0) var chase_vertical_tolerance: float = 160.0
 
 const WALL_DETECTOR_OFFSET_X: float = 10.0
 const WALL_DETECTOR_LENGTH: float = 16.0
@@ -35,6 +39,8 @@ const PLAYER_DETECTOR_LENGTH: float = 20.0
 const ATTACK_DAMAGE_OFFSET_X: float = 11.0
 const ATTACK_DAMAGE_START_FRAME: int = 4
 const ATTACK_DAMAGE_END_FRAME: int = 9
+
+const JUMP_VELOCITY: float = -300.0
 
 var status: CogumeloState = CogumeloState.patrol
 var direction: int = 1
@@ -59,11 +65,17 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	match status:
+		CogumeloState.idle:
+			idle_state()
+
 		CogumeloState.patrol:
 			patrol_state()
 
 		CogumeloState.chase:
 			chase_state()
+
+		CogumeloState.pre_attack:
+			pre_attack_state()
 
 		CogumeloState.attack:
 			attack_state()
@@ -72,6 +84,13 @@ func _physics_process(delta: float) -> void:
 			dead_state()
 
 	move_and_slide()
+
+
+func go_to_idle_state() -> void:
+	status = CogumeloState.idle
+	velocity.x = 0.0
+	set_attack_damage_active(false)
+	anim.play("idle")
 
 
 func go_to_patrol_state() -> void:
@@ -86,11 +105,23 @@ func go_to_chase_state() -> void:
 	anim.play("run")
 
 
-func go_to_attack_state() -> void:
+func go_to_pre_attack_state() -> void:
 	if not can_attack or status == CogumeloState.dead:
 		return
+		
+	status = CogumeloState.pre_attack
+	velocity.x = 0.0
+	anim.play("idle")
+	anim.modulate = Color(1.5, 0.5, 0.5) # Telegrafia visual (vermelho)
+	
+	await get_tree().create_timer(0.3).timeout
+	if status == CogumeloState.pre_attack:
+		go_to_attack_state()
 
+
+func go_to_attack_state() -> void:
 	status = CogumeloState.attack
+	anim.modulate = Color.WHITE
 	velocity.x = 0.0
 	can_attack = false
 	set_attack_damage_active(false)
@@ -107,6 +138,29 @@ func go_to_dead_state() -> void:
 	set_attack_damage_active(false)
 	collision_shape.set_deferred("disabled", true)
 	hitbox_shape.set_deferred("disabled", true)
+
+func pre_attack_state() -> void:
+	velocity.x = 0.0
+
+
+func idle_state() -> void:
+	if not can_continue_chasing():
+		go_to_patrol_state()
+		return
+
+	# Vira-se para encarar o player
+	var player_direction := signi(roundi(player.global_position.x - global_position.x))
+	if player_direction != 0 and player_direction != direction:
+		direction = player_direction
+		update_direction()
+		update_detectors_immediately()
+
+	# Se o caminho ficar livre na direção do player, volta a correr
+	if is_on_floor() and not wall_detector.is_colliding() and ground_detector.is_colliding():
+		go_to_chase_state()
+		return
+
+	try_to_attack_player()
 
 
 func patrol_state() -> void:
@@ -131,20 +185,50 @@ func chase_state() -> void:
 		go_to_patrol_state()
 		return
 
-	var player_direction := signi(player.global_position.x - global_position.x)
+	var player_direction := signi(roundi(player.global_position.x - global_position.x))
 
 	if player_direction != 0 and player_direction != direction:
 		direction = player_direction
 		update_direction()
 		update_detectors_immediately()
 
-	# O cogumelo não se joga de plataformas para alcançar o player.
-	# Se houver parede ou precipício, ele espera na borda enquanto mantém o alvo.
-	if is_on_floor() and (
-		wall_detector.is_colliding()
-		or not ground_detector.is_colliding()
-	):
-		velocity.x = 0.0
+	var blocked_by_wall = wall_detector.is_colliding()
+	var edge_reached = not ground_detector.is_colliding()
+
+	var distance_y = player.global_position.y - global_position.y
+	var distance_x = absf(player.global_position.x - global_position.x)
+	var player_in_direction = signi(roundi(player.global_position.x - global_position.x)) == direction
+
+	if is_on_floor():
+		# Pula se tiver parede, se tiver abismo, ou se estiver bem embaixo do player (floating platforms)
+		if blocked_by_wall or edge_reached or (distance_y < -20.0 and distance_x < 30.0):
+			
+			var can_jump_wall = false
+			var can_jump_gap = false
+			
+			if blocked_by_wall:
+				can_jump_wall = _is_wall_jumpable(direction)
+			if edge_reached:
+				can_jump_gap = _is_gap_jumpable(direction)
+				
+			# Se a parede for alta demais ou não houver chão do outro lado do buraco,
+			# desiste de seguir e volta a patrulhar (padrão Hollow Knight)
+			if (blocked_by_wall and not can_jump_wall) or (edge_reached and not can_jump_gap):
+				go_to_idle_state()
+				return
+			
+			if distance_y < 16.0 and player_in_direction:
+				# Player está acima ou no mesmo nível: PULA
+				velocity.y = JUMP_VELOCITY
+				velocity.x = chase_speed * direction
+			elif edge_reached and distance_y >= 16.0:
+				# Player está abaixo e tem abismo: SE JOGA (Desce) se for seguro
+				velocity.x = chase_speed * direction
+			else:
+				go_to_idle_state()
+				return
+		else:
+			velocity.x = chase_speed * direction
 	else:
 		velocity.x = chase_speed * direction
 
@@ -157,7 +241,7 @@ func try_to_attack_player() -> void:
 		and player_detector.is_colliding()
 		and player_detector.get_collider() == player
 	):
-		go_to_attack_state()
+		go_to_pre_attack_state()
 
 
 func attack_state() -> void:
@@ -170,6 +254,24 @@ func attack_state() -> void:
 
 func dead_state() -> void:
 	velocity = Vector2.ZERO
+
+func _is_wall_jumpable(dir: int) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var origin = global_position + Vector2(0, -32.0)
+	var target = origin + Vector2(WALL_DETECTOR_LENGTH * dir, 0)
+	var query = PhysicsRayQueryParameters2D.create(origin, target)
+	query.exclude = [self]
+	query.collision_mask = wall_detector.collision_mask
+	return space_state.intersect_ray(query).is_empty()
+
+func _is_gap_jumpable(dir: int) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var origin = global_position + Vector2(40.0 * dir, 10.0)
+	var target = origin + Vector2(0, 30.0)
+	var query = PhysicsRayQueryParameters2D.create(origin, target)
+	query.exclude = [self]
+	query.collision_mask = ground_detector.collision_mask
+	return not space_state.intersect_ray(query).is_empty()
 
 
 func turn_around() -> void:
@@ -205,10 +307,14 @@ func can_continue_chasing() -> bool:
 		return false
 
 	var distance_to_player := player.global_position - global_position
-	return (
-		absf(distance_to_player.x) <= forget_distance
-		and absf(distance_to_player.y) <= chase_vertical_tolerance
-	)
+	if absf(distance_to_player.x) <= forget_distance and absf(distance_to_player.y) <= chase_vertical_tolerance:
+		_aggro_time_left = forget_time
+	else:
+		_aggro_time_left -= get_physics_process_delta_time()
+		if _aggro_time_left <= 0.0:
+			return false
+
+	return true
 
 
 func update_direction() -> void:

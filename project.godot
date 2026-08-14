@@ -11,15 +11,18 @@ config_version=5
 [application]
 
 config/name="Game"
-run/main_scene="res://scene/forest.tscn"
+run/main_scene="res://ui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 CheckpointManager="*res://scripts/managers/checkpoint_manager.gd"
+CollectiblesManager="*res://scripts/managers/collectibles_manager.gd"
 MusicManager="*res://scripts/managers/music_manager.gd"
 PauseMenu="*res://ui/pause_menu/pause_menu.tscn"
+UIManager="*res://scripts/managers/ui_manager.gd"
+RunTimer="*uid://cgb742cqpxu3h"
 
 [display]
 
@@ -42,6 +45,8 @@ Water=""
 Checkpoint=""
 GrassSurface=""
 Lava=""
+InstantDeath=""
+Pickups=""
 
 [gui]
 
