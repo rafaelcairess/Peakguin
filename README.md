@@ -140,9 +140,9 @@ Quando o jogador ativa um checkpoint, a placa muda de aparência. Se o pinguim m
 
 Requer **Godot 4.7.1**.
 
-\`\`\`bash
+```bash
 git clone https://github.com/rafaelcairess/JogoPlataforma.git
-\`\`\`
+```
 
 1. Abra a Godot
 2. Clique em **Importar**
@@ -156,7 +156,7 @@ Não há dependências externas adicionais no momento.
 
 ## 📁 Estrutura do projeto
 
-\`\`\`text
+```text
 JogoPlataforma/
 ├── entities/                   # Cenas que você arrasta para os níveis
 │   ├── player/                 # Pinguim jogável
@@ -179,7 +179,7 @@ JogoPlataforma/
 ├── ui/                          # HUD, menu principal e menu de pausa
 ├── docs/                        # GIFs e imagens usados no README
 └── project.godot
-\`\`\`
+```
 
 ---
 
