@@ -7,6 +7,7 @@ para uma cena dentro de `scene`.
 - `enemies`: inimigos que podem causar dano.
 - `creatures`: criaturas de cenário sem dano ao jogador.
 - `npcs`: personagens preparados para interação e diálogo.
+- `pickups`: moedas e corações coletáveis.
 - `gameplay`: checkpoint, câmera, plataformas, blocos e fim de fase.
 - `projectiles`: projéteis compartilhados pelos inimigos.
 

@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://dhck138vptfxt" path="res://entities/creatures/crab1.tscn" id="15_crab1"]
 [ext_resource type="PackedScene" uid="uid://c7inmudgw5f3o" path="res://entities/creatures/crab2.tscn" id="16_crab2"]
 [ext_resource type="Script" uid="uid://djjyomal58ypm" path="res://scripts/audio/level_music.gd" id="17_level_music"]
-[ext_resource type="AudioStream" uid="uid://b3dcgwa6mwyvn" path="res://audio/music/minuet_slower.ogg" id="18_tropic_music"]
+[ext_resource type="AudioStream" uid="uid://nmy3pyecrscj" path="res://audio/music/save_point_at_sunset.mp3" id="18_tropic_music"]
+[ext_resource type="PackedScene" uid="uid://lhqnb51un1t7" path="res://entities/enemies/orange.tscn" id="20_kajwn"]
+[ext_resource type="PackedScene" uid="uid://dp74ecwa4nc4t" path="res://entities/enemies/skeleton.tscn" id="21_uehjn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytc0w"]
 texture = ExtResource("3_ei81g")
@@ -178,6 +180,15 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limit" unique_id=49173874]
 position = Vector2(-10, 96)
 shape = SubResource("RectangleShape2D_ytc0w")
+
+[node name="Orange" parent="." unique_id=309110489 instance=ExtResource("20_kajwn")]
+position = Vector2(458, 146)
+
+[node name="Orange2" parent="." unique_id=908176712 instance=ExtResource("20_kajwn")]
+position = Vector2(569, 144)
+
+[node name="Skeleton" parent="." unique_id=1036719238 instance=ExtResource("21_uehjn")]
+position = Vector2(580, 176)
 
 [editable path="crab2"]
 [editable path="MovingPlataform"]

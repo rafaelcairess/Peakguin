@@ -17,11 +17,9 @@ func activate_checkpoint(scene_path: String, respawn_position: Vector2) -> void:
 func get_respawn_position(scene_path: String, default_position: Vector2) -> Vector2:
 	if not has_active_checkpoint:
 		return default_position
-
 	if active_scene_path != scene_path:
 		clear_checkpoint()
 		return default_position
-
 	return active_respawn_position
 
 

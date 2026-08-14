@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://20c47yswjisn" path="res://entities/gameplay/broken_block.tscn" id="7_t555a"]
 [ext_resource type="PackedScene" uid="uid://cgu14otkjsei" path="res://entities/gameplay/camera_2d.tscn" id="8_a43nj"]
 [ext_resource type="Script" path="res://scripts/audio/level_music.gd" id="9_level_music"]
-[ext_resource type="AudioStream" path="res://audio/music/gymnopedie_no_1.ogg" id="10_winter_music"]
+[ext_resource type="AudioStream" uid="uid://d4ee0ijll2ett" path="res://audio/music/snowfall_on_the_ridge.mp3" id="10_winter_music"]
 [ext_resource type="PackedScene" uid="uid://c8b61ndwhfjly" path="res://entities/gameplay/moving_platform.tscn" id="11_moving_platform"]
 [ext_resource type="PackedScene" path="res://entities/gameplay/checkpoint.tscn" id="12_checkpoint"]
 [ext_resource type="PackedScene" uid="uid://dp74ecwa4nc4t" path="res://entities/enemies/skeleton.tscn" id="13_skeleton"]

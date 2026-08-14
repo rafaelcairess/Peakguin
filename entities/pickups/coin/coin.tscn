@@ -1,0 +1,64 @@
+﻿[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/pickups/coin.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://6ixfpqinfeec" path="res://sprites/Mini FX, Items & UI/Common Pick-ups/Coin (16 x 16).png" id="2_coin"]
+[ext_resource type="AudioStream" path="res://audio/sfx/pickups/coin_collect.wav" id="3_pickup_sfx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0"]
+atlas = ExtResource("2_coin")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("2_coin")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = ExtResource("2_coin")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = ExtResource("2_coin")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_coin"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_coin"]
+radius = 6.0
+
+[node name="Coin" type="Area2D" groups=["Pickups"]]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_script")
+pickup_sound = ExtResource("3_pickup_sfx")
+editor_description = "Moeda reutilizável. Arraste esta cena para qualquer fase e altere Value no Inspector."
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_coin")
+animation = &"spin"
+autoplay = "spin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_coin")
+
+[node name="PickupSFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

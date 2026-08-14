@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://b8f700i8vf1vl" path="res://sprites/1 - Penguin/Wall_Slide (16x16).png" id="11_x08pd"]
 [ext_resource type="AudioStream" uid="uid://bxcdn1ipny12a" path="res://audio/sfx/player/jump.wav" id="12_jump_sfx"]
 [ext_resource type="AudioStream" uid="uid://cg2yifuffp7e3" path="res://audio/sfx/environment/water/water_splash.wav" id="13_water_sfx"]
-[ext_resource type="AudioStream" uid="uid://bci0nysp4mvgf" path="res://audio/sfx/environment/lava/lava_rumble.wav" id="14_lava_sfx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxs8s"]
 radius = 6.0
@@ -322,10 +321,9 @@ shape = SubResource("CapsuleShape2D_qxs8s")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406390326]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_qxs8s")
-animation = &"dead"
+animation = &"sit"
 autoplay = "idle"
-frame = 1
-frame_progress = 1.0
+frame_progress = 0.62076193
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=2060798186]
 visible = false
@@ -340,6 +338,9 @@ debug_color = Color(0.9372584, 0.24032646, 0.1981436, 0.41960785)
 [node name="ReloadTimer" type="Timer" parent="." unique_id=1245121256]
 one_shot = true
 
+[node name="InvulnerabilityTimer" type="Timer" parent="." unique_id=1760650897]
+one_shot = true
+
 [node name="LeftWallDetector" type="RayCast2D" parent="." unique_id=194504206]
 position = Vector2(1, 1)
 target_position = Vector2(-7, 0)
@@ -348,25 +349,19 @@ target_position = Vector2(-7, 0)
 position = Vector2(5, 1)
 target_position = Vector2(3, 0)
 
-[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+[node name="JumpSFX" type="AudioStreamPlayer" parent="." unique_id=642666195]
 stream = ExtResource("12_jump_sfx")
-volume_db = -4.0
-bus = &"SFX"
+bus = &"PlayerJump"
 
-[node name="FootstepSFX" type="AudioStreamPlayer" parent="."]
-volume_db = -7.0
-bus = &"SFX"
+[node name="FootstepSFX" type="AudioStreamPlayer" parent="." unique_id=588987163]
+bus = &"PlayerSteps"
 
-[node name="WaterSFX" type="AudioStreamPlayer" parent="."]
+[node name="WaterSFX" type="AudioStreamPlayer" parent="." unique_id=393328738]
 stream = ExtResource("13_water_sfx")
-bus = &"SFX"
-
-[node name="LavaSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_lava_sfx")
-volume_db = -6.0
 bus = &"SFX"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
