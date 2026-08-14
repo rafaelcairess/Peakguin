@@ -13,7 +13,6 @@
 </p>
 
 <p align="center">
-  <sub>Até os pinguins precisam descansar de vez em quando.</sub>
 </p>
 
 ## 🐧 Sobre
