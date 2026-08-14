@@ -1,0 +1,708 @@
+[gd_scene format=3 uid="uid://bs0x58sqfp4v3"]
+
+[ext_resource type="Script" uid="uid://brn23x3nfa4iu" path="res://scripts/ui/main_menu.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://dhh78k34kbkmc" path="res://scene/grassland.tscn" id="2_grassland"]
+[ext_resource type="PackedScene" uid="uid://3vc0ydot6plt" path="res://scene/winter.tscn" id="3_winter"]
+[ext_resource type="PackedScene" uid="uid://bkvtdrx02py13" path="res://scene/forest.tscn" id="4_forest"]
+[ext_resource type="PackedScene" uid="uid://nrsoqne511dm" path="res://scene/tropic.tscn" id="5_tropic"]
+[ext_resource type="Texture2D" uid="uid://dwhml7ffpfwv6" path="res://sprites/Seasonal Tilesets/1 - Grassland/Background parts/_Complete_static_BG_(288 x 208).png" id="7_grassland_bg"]
+[ext_resource type="Texture2D" uid="uid://bf4c4088mqnaf" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/_Complete_static_BG_(288 x 208).png" id="8_forest_bg"]
+[ext_resource type="Texture2D" uid="uid://bhuuy75qvut05" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/_Complete_static_BG_(288 x 208).png" id="9_tropics_bg"]
+[ext_resource type="Texture2D" uid="uid://dg7rchbpa24yp" path="res://sprites/Seasonal Tilesets/4 - Winter World/Background parts/_Complete_static_BG_(288 x 208).png" id="10_winter_bg"]
+[ext_resource type="AudioStream" uid="uid://d4ee0ijll2ett" path="res://audio/music/snowfall_on_the_ridge.mp3" id="11_menu_music"]
+[ext_resource type="SpriteFrames" uid="uid://ceu1qakumjfo4" path="res://ui/main_menu/penguin_menu_frames.tres" id="12_penguin_frames"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+content_margin_left = 6.0
+content_margin_top = 3.0
+content_margin_right = 6.0
+content_margin_bottom = 3.0
+bg_color = Color(0.96, 0.93, 0.84, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.35, 0.22, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+bg_color = Color(0.88, 0.84, 0.74, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.42, 0.18, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 0.97, 0.88, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.47, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_subpanel"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.96, 0.93, 0.84, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.35, 0.22, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider"]
+bg_color = Color(0.25, 0.18, 0.1, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.25, 0.12, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grabber"]
+bg_color = Color(0.85, 0.65, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.38, 0.12, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="MainMenu" type="Control" unique_id=1001069026]
+editor_description = "Selecione este nó para trocar fases, fundo, logo, botões, ícones, música e as animações do pinguim pelo Inspector."
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+default_level = ExtResource("2_grassland")
+grassland_level = ExtResource("2_grassland")
+winter_level = ExtResource("3_winter")
+forest_level = ExtResource("4_forest")
+tropic_level = ExtResource("5_tropic")
+background_color = Color(0.34, 0.14, 0.17, 1)
+bg_textures = Array[Texture2D]([ExtResource("7_grassland_bg"), ExtResource("8_forest_bg"), ExtResource("9_tropics_bg"), ExtResource("10_winter_bg")])
+
+[node name="BgScroller" type="Node2D" parent="." unique_id=1678611800]
+unique_name_in_owner = true
+
+[node name="BgTile0" type="Sprite2D" parent="BgScroller" unique_id=1678611850]
+unique_name_in_owner = true
+texture = ExtResource("7_grassland_bg")
+centered = false
+
+[node name="BgTile1" type="Sprite2D" parent="BgScroller" unique_id=1678611860]
+unique_name_in_owner = true
+position = Vector2(288, 0)
+texture = ExtResource("7_grassland_bg")
+centered = false
+
+[node name="BgTile2" type="Sprite2D" parent="BgScroller" unique_id=1678611865]
+unique_name_in_owner = true
+position = Vector2(576, 0)
+texture = ExtResource("7_grassland_bg")
+centered = false
+
+[node name="BgFade" type="ColorRect" parent="." unique_id=1678611870]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="BackgroundSlot" type="TextureRect" parent="." unique_id=115681565]
+unique_name_in_owner = true
+editor_description = "Arraste aqui a imagem de fundo quando quiser vê-la e posicioná-la diretamente no editor."
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="." unique_id=1780456335]
+unique_name_in_owner = true
+editor_description = "Arraste a música do menu para a propriedade Stream. Ela será tocada pelo MusicManager usando o bus Music."
+stream = ExtResource("11_menu_music")
+bus = &"Music"
+
+[node name="TitleLabel" type="Label" parent="." unique_id=667454776]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 14.0
+offset_right = 120.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.96, 0.93, 0.84, 1)
+theme_override_colors/font_shadow_color = Color(0.1, 0.06, 0.02, 0.7)
+theme_override_colors/font_outline_color = Color(0.18, 0.12, 0.06, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 27
+text = "PEAKGUIN"
+horizontal_alignment = 1
+
+[node name="LogoSlot" type="TextureRect" parent="." unique_id=2125922745]
+unique_name_in_owner = true
+editor_description = "Arraste uma textura em Texture e ative Visible para usar um logo no lugar do texto."
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_top = 8.0
+offset_right = 105.0
+offset_bottom = 55.0
+grow_horizontal = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MainScreen" type="VBoxContainer" parent="." unique_id=1719220933]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.0
+offset_top = 68.0
+offset_right = 52.0
+offset_bottom = 198.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="MainScreen" unique_id=252692300]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(104, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Jogar"
+
+[node name="NewGameButton" type="Button" parent="MainScreen" unique_id=252692315]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Novo Jogo"
+
+[node name="LevelsButton" type="Button" parent="MainScreen" unique_id=1951620212]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Levels"
+
+[node name="SettingsButton" type="Button" parent="MainScreen" unique_id=1114150658]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Configurações"
+
+[node name="CreditsButton" type="Button" parent="MainScreen" unique_id=555932511]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Créditos"
+
+[node name="QuitButton" type="Button" parent="MainScreen" unique_id=1723903727]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Sair"
+
+[node name="LevelsScreen" type="PanelContainer" parent="." unique_id=624414232]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -60.0
+offset_right = 82.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_subpanel")
+
+[node name="Layout" type="VBoxContainer" parent="LevelsScreen" unique_id=1178799501]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Heading" type="Label" parent="LevelsScreen/Layout" unique_id=543982353]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_font_sizes/font_size = 12
+text = "Selecione uma Fase"
+horizontal_alignment = 1
+
+[node name="Sep" type="HSeparator" parent="LevelsScreen/Layout" unique_id=1101411032]
+layout_mode = 2
+
+[node name="GrasslandButton" type="Button" parent="LevelsScreen/Layout" unique_id=1576175133]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Pradaria"
+
+[node name="WinterButton" type="Button" parent="LevelsScreen/Layout" unique_id=1674379032]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Inverno"
+
+[node name="ForestButton" type="Button" parent="LevelsScreen/Layout" unique_id=738172786]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Floresta"
+
+[node name="TropicButton" type="Button" parent="LevelsScreen/Layout" unique_id=1066560772]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Trópicos"
+
+[node name="LevelsBackButton" type="Button" parent="LevelsScreen/Layout" unique_id=788862194]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Voltar"
+
+[node name="SettingsScreen" type="PanelContainer" parent="." unique_id=50947889]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_subpanel")
+
+[node name="Layout" type="VBoxContainer" parent="SettingsScreen" unique_id=467287944]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Heading" type="Label" parent="SettingsScreen/Layout" unique_id=1283147368]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_font_sizes/font_size = 12
+text = "Configurações"
+horizontal_alignment = 1
+
+[node name="Sep" type="HSeparator" parent="SettingsScreen/Layout" unique_id=1070248875]
+layout_mode = 2
+
+[node name="MasterRow" type="HBoxContainer" parent="SettingsScreen/Layout" unique_id=1314913165]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="SettingsScreen/Layout/MasterRow" unique_id=548898431]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+text = "Geral"
+
+[node name="MasterSlider" type="HSlider" parent="SettingsScreen/Layout/MasterRow" unique_id=1828745782]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_grabber")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_grabber")
+value = 100.0
+
+[node name="MasterValue" type="Label" parent="SettingsScreen/Layout/MasterRow" unique_id=1197630182]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+text = "100%"
+horizontal_alignment = 2
+
+[node name="MusicRow" type="HBoxContainer" parent="SettingsScreen/Layout" unique_id=2035238107]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="SettingsScreen/Layout/MusicRow" unique_id=931407242]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+text = "Música"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsScreen/Layout/MusicRow" unique_id=1402214809]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_grabber")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_grabber")
+value = 70.0
+
+[node name="MusicValue" type="Label" parent="SettingsScreen/Layout/MusicRow" unique_id=1229844352]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+text = "70%"
+horizontal_alignment = 2
+
+[node name="SFXRow" type="HBoxContainer" parent="SettingsScreen/Layout" unique_id=388165204]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="SettingsScreen/Layout/SFXRow" unique_id=1363800219]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+text = "Efeitos"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsScreen/Layout/SFXRow" unique_id=1294805911]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_grabber")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_grabber")
+value = 75.0
+
+[node name="SFXValue" type="Label" parent="SettingsScreen/Layout/SFXRow" unique_id=445847172]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+text = "75%"
+horizontal_alignment = 2
+
+[node name="FullscreenToggle" type="CheckButton" parent="SettingsScreen/Layout" unique_id=1418729682]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+text = "Tela Cheia"
+
+[node name="SettingsBackButton" type="Button" parent="SettingsScreen/Layout" unique_id=17988976]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Voltar"
+
+[node name="CreditsScreen" type="PanelContainer" parent="." unique_id=1939937727]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -60.0
+offset_right = 90.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_subpanel")
+
+[node name="Layout" type="VBoxContainer" parent="CreditsScreen" unique_id=1795913606]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Heading" type="Label" parent="CreditsScreen/Layout" unique_id=785628038]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_font_sizes/font_size = 12
+text = "Créditos"
+horizontal_alignment = 1
+
+[node name="Sep" type="HSeparator" parent="CreditsScreen/Layout" unique_id=2068397191]
+layout_mode = 2
+
+[node name="Body" type="Label" parent="CreditsScreen/Layout" unique_id=774708176]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.32, 0.24, 0.14, 1)
+theme_override_font_sizes/font_size = 9
+text = "Desenvolvimento
+Rafael Caires
+
+Pixel Art e Fonte
+GrafxKid · CC0
+
+Engine
+Godot 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsBackButton" type="Button" parent="CreditsScreen/Layout" unique_id=879964542]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Voltar"
+
+[node name="PenguinWalkAnchor" type="Control" parent="." unique_id=1330229405]
+editor_description = "Pinguim andando — lado esquerdo."
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -27.0
+offset_right = -175.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="PenguinPreview" type="AnimatedSprite2D" parent="PenguinWalkAnchor" unique_id=2124891458]
+unique_name_in_owner = true
+editor_description = "Pinguim andando."
+position = Vector2(7, -5)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("12_penguin_frames")
+animation = &"sit"
+frame = 1
+frame_progress = 1.0
+
+[node name="PenguinSitAnchor" type="Control" parent="." unique_id=1330229500]
+editor_description = "Pinguim sentado — lado direito."
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = -21.0
+offset_right = 160.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="PenguinSitting" type="AnimatedSprite2D" parent="PenguinSitAnchor" unique_id=2124891500]
+unique_name_in_owner = true
+editor_description = "Pinguim sentado."
+position = Vector2(6, -11)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("12_penguin_frames")
+animation = &"walk"
+frame_progress = 0.77485454
+flip_h = true
+
+[node name="VersionLabel" type="Label" parent="." unique_id=100100001]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -14.0
+offset_right = 60.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.96, 0.93, 0.84, 0.75)
+theme_override_colors/font_outline_color = Color(0.1, 0.06, 0.02, 0.8)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 8
+text = "v0.1 Pre Alpha"
+
+[node name="CopyrightLabel" type="Label" parent="." unique_id=100100002]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -14.0
+offset_right = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.96, 0.93, 0.84, 0.75)
+theme_override_colors/font_outline_color = Color(0.1, 0.06, 0.02, 0.8)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 8
+text = "© 2026 Rafael Caires"
+horizontal_alignment = 2
+
+[node name="Transition" type="ColorRect" parent="." unique_id=742735930]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.04, 0.07, 0)

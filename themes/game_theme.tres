@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://dvsk5usnh0sna"]
 
-[ext_resource type="FontFile" uid="uid://f5yihloe0dmj" path="res://fonts/at01.ttf" id="1_at01"]
+[ext_resource type="FontFile" uid="uid://qn6x3wjlw3nl" path="res://fonts/at01_pt_br/at01_pt_br.ttf" id="1_at01_pt_br"]
 
 [resource]
-default_font = ExtResource("1_at01")
+default_font = ExtResource("1_at01_pt_br")
 default_font_size = 10

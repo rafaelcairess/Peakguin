@@ -1,0 +1,114 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://ceu1qakumjfo4"]
+
+[ext_resource type="Texture2D" uid="uid://c62btjdoop4gb" path="res://sprites/1 - Penguin/Victory_Dance (16 x 16).png" id="1_ob2ec"]
+[ext_resource type="Texture2D" uid="uid://b2gnfknjyc0un" path="res://sprites/1 - Penguin/Waddling (16 x 16).png" id="1_penguin"]
+[ext_resource type="Texture2D" uid="uid://bmga7vqj5yhv3" path="res://sprites/1 - Penguin/Sitting (16 x 16).png" id="2_sitting"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn362"]
+atlas = ExtResource("1_ob2ec")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sgbd"]
+atlas = ExtResource("1_ob2ec")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_necq0"]
+atlas = ExtResource("1_ob2ec")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j31xs"]
+atlas = ExtResource("1_ob2ec")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xhwd"]
+atlas = ExtResource("1_ob2ec")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sit_0"]
+atlas = ExtResource("2_sitting")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sit_1"]
+atlas = ExtResource("2_sitting")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk_0"]
+atlas = ExtResource("1_penguin")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk_1"]
+atlas = ExtResource("1_penguin")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk_2"]
+atlas = ExtResource("1_penguin")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk_3"]
+atlas = ExtResource("1_penguin")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk_4"]
+atlas = ExtResource("1_penguin")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk_5"]
+atlas = ExtResource("1_penguin")
+region = Rect2(80, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn362")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sgbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_necq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j31xs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xhwd")
+}],
+"loop": 1,
+"name": &"dance",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sit_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sit_1")
+}],
+"loop": 1,
+"name": &"sit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk_5")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 10.0
+}]

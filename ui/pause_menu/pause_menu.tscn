@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_script"]
 [ext_resource type="Shader" path="res://shaders/ui/pause_blur.gdshader" id="2_blur"]
+[ext_resource type="AudioStream" uid="uid://bxcdn1ipny12a" path="res://audio/sfx/player/jump.wav" id="3_jump"]
+[ext_resource type="AudioStream" uid="uid://bdjfedibmop04" path="res://audio/sfx/environment/grass/grass_step_01.wav" id="4_steps"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
 shader = ExtResource("2_blur")
@@ -181,7 +183,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
-text = "SAIR DO JOGO"
+text = "MENU PRINCIPAL"
 
 [node name="OptionsScreen" type="VBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout"]
 unique_name_in_owner = true
@@ -268,11 +270,27 @@ layout_mode = 2
 text = "71%"
 horizontal_alignment = 2
 
-[node name="FullscreenToggle" type="CheckButton" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen"]
+[node name="UtilityRow" type="HBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="FullscreenToggle" type="CheckButton" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/UtilityRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "TELA CHEIA"
+
+[node name="AudioDebugButton" type="Button" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/UtilityRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 22)
+layout_mode = 2
+tooltip_text = "Regular e ouvir pulo e passos"
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "TESTAR SONS"
 
 [node name="BackButton" type="Button" parent="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen"]
 unique_name_in_owner = true
@@ -284,11 +302,143 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
 text = "VOLTAR"
 
+[node name="AudioDebugScreen" type="VBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="DebugTitle" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.95, 1, 1)
+text = "TESTE DE SONS"
+horizontal_alignment = 1
+
+[node name="JumpRow" type="HBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/JumpRow"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "PULO"
+
+[node name="JumpSlider" type="HSlider" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/JumpRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+step = 1.0
+value = 63.0
+
+[node name="JumpValue" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/JumpRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+text = "63%"
+horizontal_alignment = 2
+
+[node name="JumpPreviewButton" type="Button" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "OUVIR PULO"
+
+[node name="StepsRow" type="HBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/StepsRow"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "PASSO"
+
+[node name="StepsSlider" type="HSlider" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/StepsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+step = 1.0
+value = 16.0
+
+[node name="StepsValue" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/StepsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+text = "16%"
+horizontal_alignment = 2
+
+[node name="FootstepCutoffRow" type="HBoxContainer" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/FootstepCutoffRow"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "CORTE"
+
+[node name="FootstepCutoffSlider" type="HSlider" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/FootstepCutoffRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.03
+max_value = 2.02
+step = 0.01
+value = 0.12
+
+[node name="FootstepCutoffValue" type="Label" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/FootstepCutoffRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "0.12s"
+horizontal_alignment = 2
+
+[node name="StepsPreviewButton" type="Button" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "OUVIR PASSO"
+
+[node name="AudioDebugBackButton" type="Button" parent="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "VOLTAR"
+
+[node name="JumpPreview" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_jump")
+bus = &"PlayerJump"
+
+[node name="StepsPreview" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_steps")
+bus = &"PlayerSteps"
+
 [connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/MainScreen/ContinueButton" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/MainScreen/OptionsButton" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/MainScreen/QuitButton" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MasterRow/MasterSlider" to="." method="_on_master_volume_changed"]
 [connection signal="value_changed" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/MusicRow/MusicSlider" to="." method="_on_music_volume_changed"]
 [connection signal="value_changed" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/SFXRow/SFXSlider" to="." method="_on_sfx_volume_changed"]
-[connection signal="toggled" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/FullscreenToggle" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/UtilityRow/FullscreenToggle" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/UtilityRow/AudioDebugButton" to="." method="_on_audio_debug_pressed"]
 [connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/OptionsScreen/BackButton" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/JumpRow/JumpSlider" to="." method="_on_jump_volume_changed"]
+[connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/JumpPreviewButton" to="." method="_on_jump_preview_pressed"]
+[connection signal="value_changed" from="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/StepsRow/StepsSlider" to="." method="_on_steps_volume_changed"]
+[connection signal="value_changed" from="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/FootstepCutoffRow/FootstepCutoffSlider" to="." method="_on_footstep_cutoff_changed"]
+[connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/StepsPreviewButton" to="." method="_on_steps_preview_pressed"]
+[connection signal="pressed" from="Overlay/Center/MenuPanel/Content/Layout/AudioDebugScreen/AudioDebugBackButton" to="." method="_on_audio_debug_back_pressed"]

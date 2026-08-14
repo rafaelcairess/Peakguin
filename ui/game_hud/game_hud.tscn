@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://bm83pj4r4kc0t"]
+
+[ext_resource type="Script" uid="uid://2fqo2jl26ndt" path="res://scripts/ui/game_hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" uid="uid://c3pdha0r2xart" path="res://sprites/Mini FX, Items & UI/Mini UI/Timer_Coin_Numbers_Drop-shadowed (8 x 8).png" id="2_numbers"]
+[ext_resource type="Texture2D" uid="uid://d0ti0xxe3iorv" path="res://sprites/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="3_health"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heart"]
+atlas = ExtResource("3_health")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_timer"]
+atlas = ExtResource("2_numbers")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_zero"]
+atlas = ExtResource("2_numbers")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
+atlas = ExtResource("2_numbers")
+region = Rect2(0, 8, 8, 8)
+
+[node name="GameHUD" type="CanvasLayer" unique_id=841021954]
+editor_description = "HUD do jogador. Mostra três vidas, tempo da fase e moedas no canto superior direito."
+layer = 50
+script = ExtResource("1_hud")
+
+[node name="TopRight" type="MarginContainer" parent="." unique_id=882624125]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 25.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="Layout" type="VBoxContainer" parent="TopRight" unique_id=1481543176]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="HealthRow" type="HBoxContainer" parent="TopRight/Layout" unique_id=165933081]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Heart1" type="TextureRect" parent="TopRight/Layout/HealthRow" unique_id=262456322]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="TopRight/Layout/HealthRow" unique_id=1757778181]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="TopRight/Layout/HealthRow" unique_id=226206040]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatsRow" type="HBoxContainer" parent="TopRight/Layout" unique_id=1152803997]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="TimerGroup" type="HBoxContainer" parent="TopRight/Layout/StatsRow" unique_id=1071122626]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Icon" type="TextureRect" parent="TopRight/Layout/StatsRow/TimerGroup" unique_id=28202436]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_timer")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TimeDigits" type="HBoxContainer" parent="TopRight/Layout/StatsRow/TimerGroup" unique_id=1887178575]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Digit1" type="TextureRect" parent="TopRight/Layout/StatsRow/TimerGroup/TimeDigits" unique_id=79424694]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_zero")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Digit2" type="TextureRect" parent="TopRight/Layout/StatsRow/TimerGroup/TimeDigits" unique_id=723032608]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_zero")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Digit3" type="TextureRect" parent="TopRight/Layout/StatsRow/TimerGroup/TimeDigits" unique_id=723032609]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_zero")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinGroup" type="HBoxContainer" parent="TopRight/Layout/StatsRow" unique_id=1593291426]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Icon" type="TextureRect" parent="TopRight/Layout/StatsRow/CoinGroup" unique_id=1866819433]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinDigits" type="HBoxContainer" parent="TopRight/Layout/StatsRow/CoinGroup" unique_id=972189562]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Digit1" type="TextureRect" parent="TopRight/Layout/StatsRow/CoinGroup/CoinDigits" unique_id=828718804]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_zero")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Digit2" type="TextureRect" parent="TopRight/Layout/StatsRow/CoinGroup/CoinDigits" unique_id=1405991479]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_zero")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Digit3" type="TextureRect" parent="TopRight/Layout/StatsRow/CoinGroup/CoinDigits" unique_id=577248298]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_zero")
+expand_mode = 1
+stretch_mode = 5
