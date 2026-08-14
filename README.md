@@ -102,7 +102,7 @@ Até agora o jogo possui:
 * Sistema de morte e respawn.
 * Três corações de vida, com dano, cura e breve invulnerabilidade.
 * HUD reformulada com fonte clássica em sprites, cronômetro persistente, número de moedas e vidas.
-* Sistema de interação e diálogos estilo Stardew Valley (retratos, textos progressivos e caixas de diálogo dinâmicas).
+* Sistema de interação e diálogos(retratos, textos progressivos e caixas de diálogo dinâmicas).
 * Moedas coletáveis e corações giratórios que recuperam vida.
 * Poeira animada após três segundos de corrida contínua.
 * Checkpoints.
@@ -194,20 +194,6 @@ JogoPlataforma/
 ├── docs/                       # GIFs e imagens usados no README
 └── project.godot
 ```
-
-Para montar uma fase, as pastas mais importantes no painel **Arquivos** da
-Godot são `entities`, `scene` e `tiles`. As cenas dentro de `entities` podem
-ser arrastadas diretamente para um nível. Os arquivos `terrain.tres`,
-`decoration.tres`, `underwater.tres` e `lava.tres` ficam juntos em `tiles`
-para serem encontrados rapidamente durante a construção dos mapas.
-
-As cenas `entities/pickups/coin/coin.tscn` e
-`entities/pickups/heart/heart.tscn` também podem ser arrastadas diretamente
-para qualquer fase. A cena `ui/game_hud/game_hud.tscn` concentra a montagem
-visual do HUD. No Player, as propriedades **Vida e coleta** e **Efeito de
-corrida** permitem ajustar a vida máxima, o tempo de invulnerabilidade, os
-três segundos de espera e o intervalo entre as partículas de poeira.
-
 ## 🚧 Estado atual
 
 Peakguin ainda está **bem no começo do desenvolvimento**.
@@ -237,14 +223,7 @@ A prioridade é continuar aprendendo e melhorar o projeto aos poucos.
 Os assets de pixel art utilizados no projeto são de **GrafxKid** e foram disponibilizados sob a licença **CC0 1.0 Universal**.
 
 A licença pode ser encontrada em:
-
 [`sprites/Seasonal Tilesets/LICENSE.txt`](sprites/Seasonal%20Tilesets/LICENSE.txt)
-
-A fonte pixel **at01**, também criada por GrafxKid e disponibilizada sob
-**CC0 1.0**, é utilizada nos textos. O projeto inclui uma variante própria com
-os glifos necessários ao português.
-
-[`fonts/at01_pt_br/README.md`](fonts/at01_pt_br/README.md)
 
 A programação, montagem das fases, implementação das mecânicas e desenvolvimento geral de Peakguin são feitos por mim.
 
