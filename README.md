@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <code>Godot 4.7.1</code> · <code>GDScript</code> · <code>Em desenvolvimento</code>
+  <code>Godot 4.7.1</code> · <code>GDScript</code> · <code>v0.02 Pre-Alpha</code>
 </p>
 
 <p align="center">
@@ -149,6 +149,17 @@ Se nenhum checkpoint tiver sido ativado, ele volta para o começo da fase.
 Ao avançar para outra fase, o checkpoint anterior é descartado.
 
 ## Como executar
+
+### Executável para Windows
+
+Para jogar sem instalar a Godot, baixe e execute:
+
+**[Peakguin v0.02 Pre-Alpha para Windows](downloads/Peakguin-v0.02-pre-alpha.exe)**
+
+O executável é uma versão **Pre-Alpha** para Windows 64 bits. Como ainda não
+possui assinatura digital, o Windows pode pedir confirmação antes de abri-lo.
+
+### Executar pelo projeto
 
 O projeto utiliza **Godot 4.7.1**.
 

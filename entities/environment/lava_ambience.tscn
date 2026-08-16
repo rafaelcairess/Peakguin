@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/environment/lava_ambience.gd" id="1_script"]
-[ext_resource type="AudioStream" uid="uid://bci0nysp4mvgf" path="res://audio/sfx/environment/lava/lava_rumble.wav" id="2_lava"]
+[ext_resource type="AudioStream" path="res://audio/sfx/environment/lava/lava_rumble.wav" id="2_lava"]
 
 [node name="LavaAmbience" type="Node2D"]
 script = ExtResource("1_script")

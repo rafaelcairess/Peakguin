@@ -1,25 +1,25 @@
-[gd_scene format=4 uid="uid://bkvtdrx02py13"]
+[gd_scene format=4 uid="uid://wg04dmy5ji8w"]
 
-[ext_resource type="PackedScene" uid="uid://b1mcpjmilt0gt" path="res://entities/player/player.tscn" id="1_e2knd"]
-[ext_resource type="TileSet" uid="uid://brp8q5c2tejwt" path="res://tiles/terrain.tres" id="2_2xpkg"]
-[ext_resource type="TileSet" uid="uid://bs8dl8jwcrqhj" path="res://tiles/decoration.tres" id="2_jxvlp"]
+[ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_e2knd"]
+[ext_resource type="TileSet" uid="uid://bw0riel3o8qhv" path="res://tiles/terrain.tres" id="2_2xpkg"]
+[ext_resource type="TileSet" uid="uid://qhv8bse3ccb8" path="res://tiles/decoration.tres" id="2_jxvlp"]
 [ext_resource type="AudioStream" uid="uid://mtaet8qxdfs2" path="res://audio/music/Gold_Canopy_Trail.mp3" id="2_ysu3w"]
 [ext_resource type="Texture2D" uid="uid://cs8kbes714m1o" path="res://sprites/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="3_64es3"]
 [ext_resource type="Texture2D" uid="uid://b7gc037bk0bu0" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/6 - Distant_trees.png" id="3_gbfvw"]
 [ext_resource type="Texture2D" uid="uid://jgwyyyaq5r88" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Terrain (16 x 16).png" id="4_kmspj"]
 [ext_resource type="Texture2D" uid="uid://b2lu3j33p5w3j" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/5 - Tree_row_BG_2.png" id="4_qxlj4"]
-[ext_resource type="TileSet" uid="uid://c8ibvnewiey3v" path="res://tiles/lava.tres" id="5_boiax"]
+[ext_resource type="TileSet" uid="uid://dr41dnfy4f2yq" path="res://tiles/lava.tres" id="5_boiax"]
 [ext_resource type="Texture2D" uid="uid://clfulxqj85ib" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/4 - Tree_row_BG_1.png" id="5_jo4av"]
 [ext_resource type="Texture2D" uid="uid://hmgxomfbo71f" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/3 - Bottom_leaf_piles.png" id="6_jxvlp"]
 [ext_resource type="Texture2D" uid="uid://dqp5stui8trl1" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/2 - Trees.png" id="7_gwku7"]
 [ext_resource type="Texture2D" uid="uid://dmvnm7biwg83u" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/1 - Leaf_top.png" id="8_64es3"]
-[ext_resource type="PackedScene" uid="uid://cgu14otkjsei" path="res://entities/gameplay/camera_2d.tscn" id="9_jo4av"]
-[ext_resource type="PackedScene" uid="uid://cwlvyoug4fke4" path="res://entities/gameplay/level_end.tscn" id="13_kmspj"]
+[ext_resource type="PackedScene" path="res://entities/gameplay/camera_2d.tscn" id="9_jo4av"]
+[ext_resource type="PackedScene" path="res://entities/gameplay/level_end.tscn" id="13_kmspj"]
 [ext_resource type="Script" uid="uid://djjyomal58ypm" path="res://scripts/audio/level_music.gd" id="17_level_music"]
-[ext_resource type="PackedScene" uid="uid://dxstmt45gxa1u" path="res://entities/enemies/mushroom.tscn" id="18_cwbpd"]
+[ext_resource type="PackedScene" path="res://entities/enemies/mushroom.tscn" id="18_cwbpd"]
 [ext_resource type="PackedScene" path="res://entities/environment/lava_ambience.tscn" id="18_lava_ambience"]
-[ext_resource type="PackedScene" uid="uid://dp74ecwa4nc4t" path="res://entities/enemies/skeleton.tscn" id="19_cvgm6"]
-[ext_resource type="PackedScene" uid="uid://20c47yswjisn" path="res://entities/gameplay/broken_block.tscn" id="20_kuygm"]
+[ext_resource type="PackedScene" uid="uid://jcodl5g2dsi3" path="res://entities/enemies/skeleton.tscn" id="19_cvgm6"]
+[ext_resource type="PackedScene" path="res://entities/gameplay/broken_block.tscn" id="20_kuygm"]
 [ext_resource type="PackedScene" path="res://entities/enemies/orange.tscn" id="21_xw4on"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja8kk"]
@@ -200,9 +200,8 @@ texture = ExtResource("8_64es3")
 centered = false
 
 [node name="Player" parent="." unique_id=1696542837 instance=ExtResource("1_e2knd")]
-position = Vector2(79, 174)
+position = Vector2(15, 175)
 max_speed = 80.0
-max_jump_count = 60
 
 [node name="Camera2D" parent="." unique_id=1596842023 instance=ExtResource("9_jo4av")]
 position = Vector2(93, 175)
@@ -221,13 +220,13 @@ position = Vector2(-10, 96)
 shape = SubResource("RectangleShape2D_qxs8s")
 
 [node name="Cogumelo" parent="." unique_id=309110489 instance=ExtResource("18_cwbpd")]
-position = Vector2(409, 146)
+position = Vector2(418, 145)
 
 [node name="Cogumelo3" parent="." unique_id=277861228 instance=ExtResource("18_cwbpd")]
-position = Vector2(160, 166)
+position = Vector2(279, 130)
 
 [node name="Cogumelo2" parent="." unique_id=1838214017 instance=ExtResource("18_cwbpd")]
-position = Vector2(349, 106)
+position = Vector2(360, 115)
 
 [node name="Skeleton" parent="." unique_id=1036719238 instance=ExtResource("19_cvgm6")]
 position = Vector2(469, 144)

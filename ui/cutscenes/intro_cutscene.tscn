@@ -1,0 +1,144 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/intro_cutscene.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scene/grassland.tscn" id="2_grassland"]
+[ext_resource type="Theme" path="res://themes/game_theme.tres" id="3_theme"]
+[ext_resource type="Texture2D" path="res://ui/cutscenes/cena1.png" id="4_preview"]
+[ext_resource type="AudioStream" path="res://audio/music/Snow_Outside_the_Frame.mp3" id="5_cutscene_music"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frame"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="IntroCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("3_theme")
+script = ExtResource("1_script")
+next_scene = ExtResource("2_grassland")
+cutscene_music = ExtResource("5_cutscene_music")
+
+[node name="BlackBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SceneFrame" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 40.0
+offset_top = 8.0
+offset_right = -40.0
+offset_bottom = 162.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_frame")
+
+[node name="SceneImage" type="TextureRect" parent="SceneFrame"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_preview")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Subtitle" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -46.0
+offset_right = -14.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.94, 0.96, 1, 1)
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "Pinguins são animais sociais."
+fit_content = false
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+
+[node name="ContinueLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -59.0
+offset_top = -12.0
+offset_right = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.72, 0.79, 0.88, 0.9)
+theme_override_font_sizes/font_size = 7
+text = "ENTER  ▼"
+horizontal_alignment = 2
+
+[node name="SkipLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -12.0
+offset_right = 58.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.5, 0.55, 0.62, 0.65)
+theme_override_font_sizes/font_size = 7
+text = "ESC: PULAR"
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TypewriterTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.035
+
+[connection signal="timeout" from="TypewriterTimer" to="." method="_on_typewriter_timer_timeout"]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://20c47yswjisn"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Texture2D" uid="uid://chon20kkhhekr" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="1_bypwj"]
-[ext_resource type="Script" uid="uid://dus7idqh5a4q6" path="res://scripts/gameplay/broken_block.gd" id="1_e12t1"]
-[ext_resource type="AudioStream" uid="uid://nk8p66wows5o" path="res://audio/sfx/environment/blocks/block_break.wav" id="3_break_sfx"]
+[ext_resource type="Texture2D" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="1_bypwj"]
+[ext_resource type="Script" path="res://scripts/gameplay/broken_block.gd" id="1_e12t1"]
+[ext_resource type="AudioStream" path="res://audio/sfx/environment/blocks/block_break.wav" id="3_break_sfx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxs8s"]
 size = Vector2(16, 16)

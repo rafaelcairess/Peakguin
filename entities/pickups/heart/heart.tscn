@@ -1,8 +1,8 @@
-﻿[gd_scene format=3 uid="uid://d1ivtba4psgke"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://cniw2mb3s0ve7" path="res://scripts/pickups/heart.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://c7b4bqkcf7co1" path="res://sprites/Mini FX, Items & UI/Common Pick-ups/Heart_Spin (16 x 16).png" id="2_heart"]
-[ext_resource type="AudioStream" uid="uid://clpaf2qk2u3kn" path="res://audio/sfx/pickups/heart_collect.wav" id="3_pickup_sfx"]
+[ext_resource type="Script" path="res://scripts/pickups/heart.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://sprites/Mini FX, Items & UI/Common Pick-ups/Heart_Spin (16 x 16).png" id="2_heart"]
+[ext_resource type="AudioStream" path="res://audio/sfx/pickups/heart_collect.wav" id="3_pickup_sfx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0"]
 atlas = ExtResource("2_heart")

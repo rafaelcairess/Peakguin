@@ -1,16 +1,29 @@
 [gd_scene format=3 uid="uid://bs0x58sqfp4v3"]
 
 [ext_resource type="Script" uid="uid://brn23x3nfa4iu" path="res://scripts/ui/main_menu.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://dhh78k34kbkmc" path="res://scene/grassland.tscn" id="2_grassland"]
-[ext_resource type="PackedScene" uid="uid://3vc0ydot6plt" path="res://scene/winter.tscn" id="3_winter"]
-[ext_resource type="PackedScene" uid="uid://bkvtdrx02py13" path="res://scene/forest.tscn" id="4_forest"]
-[ext_resource type="PackedScene" uid="uid://nrsoqne511dm" path="res://scene/tropic.tscn" id="5_tropic"]
+[ext_resource type="PackedScene" uid="uid://c30u6m4b450or" path="res://scene/grassland.tscn" id="2_grassland"]
+[ext_resource type="PackedScene" uid="uid://b430xh2dosi8s" path="res://scene/winter.tscn" id="3_winter"]
+[ext_resource type="PackedScene" uid="uid://wg04dmy5ji8w" path="res://scene/forest.tscn" id="4_forest"]
+[ext_resource type="PackedScene" uid="uid://br2xk6o3tiluy" path="res://scene/tropic.tscn" id="5_tropic"]
 [ext_resource type="Texture2D" uid="uid://dwhml7ffpfwv6" path="res://sprites/Seasonal Tilesets/1 - Grassland/Background parts/_Complete_static_BG_(288 x 208).png" id="7_grassland_bg"]
 [ext_resource type="Texture2D" uid="uid://bf4c4088mqnaf" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/_Complete_static_BG_(288 x 208).png" id="8_forest_bg"]
 [ext_resource type="Texture2D" uid="uid://bhuuy75qvut05" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/_Complete_static_BG_(288 x 208).png" id="9_tropics_bg"]
 [ext_resource type="Texture2D" uid="uid://dg7rchbpa24yp" path="res://sprites/Seasonal Tilesets/4 - Winter World/Background parts/_Complete_static_BG_(288 x 208).png" id="10_winter_bg"]
 [ext_resource type="AudioStream" uid="uid://d4ee0ijll2ett" path="res://audio/music/snowfall_on_the_ridge.mp3" id="11_menu_music"]
-[ext_resource type="SpriteFrames" uid="uid://ceu1qakumjfo4" path="res://ui/main_menu/penguin_menu_frames.tres" id="12_penguin_frames"]
+[ext_resource type="SpriteFrames" uid="uid://c17q68e2ilfvm" path="res://ui/main_menu/penguin_menu_frames.tres" id="12_penguin_frames"]
+[ext_resource type="Texture2D" path="res://ui/main_menu_selection.png" id="13_menu_selection"]
+[ext_resource type="Texture2D" path="res://ui/main_menu_selected.png" id="14_menu_selected"]
+[ext_resource type="PackedScene" path="res://ui/cutscenes/intro_cutscene.tscn" id="15_intro"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_menu_selection"]
+atlas = ExtResource("13_menu_selection")
+region = Rect2(104, 300, 1328, 380)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_menu_selected"]
+atlas = ExtResource("14_menu_selected")
+region = Rect2(104, 300, 1328, 380)
+filter_clip = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
 content_margin_left = 6.0
@@ -110,11 +123,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 default_level = ExtResource("2_grassland")
+intro_scene = ExtResource("15_intro")
 grassland_level = ExtResource("2_grassland")
 winter_level = ExtResource("3_winter")
 forest_level = ExtResource("4_forest")
 tropic_level = ExtResource("5_tropic")
 background_color = Color(0.34, 0.14, 0.17, 1)
+button_texture = SubResource("AtlasTexture_menu_selection")
+button_hover_texture = SubResource("AtlasTexture_menu_selected")
 bg_textures = Array[Texture2D]([ExtResource("7_grassland_bg"), ExtResource("8_forest_bg"), ExtResource("9_tropics_bg"), ExtResource("10_winter_bg")])
 
 [node name="BgScroller" type="Node2D" parent="." unique_id=1678611800]
@@ -355,7 +371,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
-text = "Pradaria"
+text = "Tutorial "
 
 [node name="WinterButton" type="Button" parent="LevelsScreen/Layout" unique_id=1674379032]
 unique_name_in_owner = true
@@ -369,7 +385,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
-text = "Inverno"
+text = "Inverno - Em desenvolvimento"
 
 [node name="ForestButton" type="Button" parent="LevelsScreen/Layout" unique_id=738172786]
 unique_name_in_owner = true
@@ -383,7 +399,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
-text = "Floresta"
+text = "Floresta - Em desenvolvimento"
 
 [node name="TropicButton" type="Button" parent="LevelsScreen/Layout" unique_id=1066560772]
 unique_name_in_owner = true
@@ -397,7 +413,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
-text = "Trópicos"
+text = "Trópicos - Em desenvolvimento"
 
 [node name="LevelsBackButton" type="Button" parent="LevelsScreen/Layout" unique_id=788862194]
 unique_name_in_owner = true
@@ -423,9 +439,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -100.0
-offset_top = -60.0
+offset_top = -70.0
 offset_right = 100.0
-offset_bottom = 60.0
+offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_subpanel")
@@ -526,6 +542,35 @@ theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
 text = "75%"
 horizontal_alignment = 2
 
+[node name="ResolutionRow" type="HBoxContainer" parent="SettingsScreen/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="SettingsScreen/Layout/ResolutionRow"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+text = "Resolução"
+
+[node name="ResolutionOption" type="OptionButton" parent="SettingsScreen/Layout/ResolutionRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+item_count = 1
+selected = 0
+popup/item_0/text = "1280 x 720"
+popup/item_0/id = 0
+
 [node name="FullscreenToggle" type="CheckButton" parent="SettingsScreen/Layout" unique_id=1418729682]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 18)
@@ -533,10 +578,30 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
 text = "Tela Cheia"
 
-[node name="SettingsBackButton" type="Button" parent="SettingsScreen/Layout" unique_id=17988976]
+[node name="ActionsRow" type="HBoxContainer" parent="SettingsScreen/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ApplyVideoButton" type="Button" parent="SettingsScreen/Layout/ActionsRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Aplicar"
+
+[node name="SettingsBackButton" type="Button" parent="SettingsScreen/Layout/ActionsRow" unique_id=17988976]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
 theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
 theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
@@ -674,7 +739,7 @@ theme_override_colors/font_color = Color(0.96, 0.93, 0.84, 0.75)
 theme_override_colors/font_outline_color = Color(0.1, 0.06, 0.02, 0.8)
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 8
-text = "v0.1 Pre Alpha"
+text = "v0.02 Pre-Alpha"
 
 [node name="CopyrightLabel" type="Label" parent="." unique_id=100100002]
 unique_name_in_owner = true

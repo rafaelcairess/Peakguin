@@ -6,7 +6,8 @@ enum SkeletonState {
 	chase,
 	pre_attack,
 	attack,
-	dead
+	dead,
+	reviving
 }
 
 ## Monitoramento: patrulha e ataca ao detectar o player via RayCast.
@@ -16,7 +17,7 @@ enum SkeletonMode {
 	turret
 }
 
-const SPINNING_BONE = preload("uid://bql71380nqtcg")
+const SPINNING_BONE = preload("res://entities/projectiles/spinning_bone.tscn")
 
 const WALL_DETECTOR_OFFSET_X: float = -2.0
 const WALL_DETECTOR_LENGTH: float = 30.0
@@ -32,6 +33,7 @@ const JUMP_VELOCITY: float = -300.0
 @onready var player_detector: RayCast2D = $PlayerDetector
 @onready var bone_start_position: Node2D = $BoneStartPosition
 @onready var burst_cooldown_timer: Timer = $BurstCooldownTimer
+@onready var revive_timer: Timer = $ReviveTimer
 
 @export var mode: SkeletonMode = SkeletonMode.monitoring
 @export var speed: float = 7.0
@@ -42,6 +44,7 @@ const JUMP_VELOCITY: float = -300.0
 @export_range(0.1, 30.0, 0.1) var burst_cooldown_seconds: float = 5.0
 @export_range(16.0, 500.0, 8.0) var forget_distance: float = 400.0
 @export_range(1.0, 30.0, 1.0) var forget_time: float = 8.0
+@export_range(1.0, 30.0, 0.5) var revive_delay: float = 7.0
 var _aggro_time_left: float = 8.0
 
 var status: SkeletonState
@@ -50,9 +53,11 @@ var can_throw: bool = true
 var bones_thrown_in_burst: int = 0
 var burst_is_recharging: bool = false
 var player: Node2D
+var _active_collision_layer: int
 
 
 func _ready() -> void:
+	_active_collision_layer = collision_layer
 	direction = initial_direction
 	update_direction()
 
@@ -93,13 +98,16 @@ func _physics_process(delta: float) -> void:
 		SkeletonState.dead:
 			dead_state()
 
+		SkeletonState.reviving:
+			reviving_state()
+
 	move_and_slide()
 
 
 func go_to_idle_state() -> void:
 	status = SkeletonState.idle
 	velocity.x = 0
-	anim.play("walk")
+	anim.play("idle")
 
 
 func go_to_walk_state() -> void:
@@ -118,7 +126,7 @@ func go_to_pre_attack_state() -> void:
 		
 	status = SkeletonState.pre_attack
 	velocity.x = 0
-	# Animação de preparação ou pausa dramática (pode ser "idle" por enquanto)
+	# Animação de preparação ou pausa dramática
 	anim.play("idle")
 	anim.modulate = Color(1.5, 0.5, 0.5) # Fica avermelhado para avisar!
 
@@ -147,13 +155,27 @@ func go_to_dead_state() -> void:
 	anim.play("dead")
 
 	# Desliga a Hitbox para não continuar causando
-	# interações depois de morrer.
+	# interações depois de morrer. O corpo conserva a colisão com o cenário,
+	# mas sai da camada de inimigos para o jogador poder atravessá-lo.
 	hitbox.process_mode = Node.PROCESS_MODE_DISABLED
+	set_deferred("collision_layer", 0)
 	velocity = Vector2.ZERO
+
+	# Inicia o timer de ressurreição.
+	revive_timer.start(revive_delay)
+
+
+func go_to_revive_state() -> void:
+	status = SkeletonState.reviving
+	anim.play("dead_wake_up")
+	# Reativa a hitbox só quando a animação terminar (via _on_animated_sprite_2d_animation_finished)
 
 
 func dead_state() -> void:
 	velocity = Vector2.ZERO
+
+func reviving_state() -> void:
+	velocity.x = 0
 
 func pre_attack_state() -> void:
 	# Fica parado enquanto brilha de vermelho antes do ataque
@@ -381,10 +403,24 @@ func _on_burst_cooldown_timer_timeout() -> void:
 	burst_is_recharging = false
 
 
+func _on_revive_timer_timeout() -> void:
+	go_to_revive_state()
+
+
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == "attack":
 		if mode == SkeletonMode.monitoring:
 			go_to_chase_state()
 		else:
 			go_to_walk_state()
+		return
+
+	if anim.animation == "dead_wake_up":
+		# Ressurreição completa: reativa corpo e hitbox e volta a patrulhar.
+		set_deferred("collision_layer", _active_collision_layer)
+		hitbox.process_mode = Node.PROCESS_MODE_INHERIT
+		anim.modulate = Color.WHITE
+		burst_is_recharging = false
+		bones_thrown_in_burst = 0
+		go_to_walk_state()
 		return

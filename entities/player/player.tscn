@@ -1,20 +1,20 @@
-[gd_scene format=3 uid="uid://b1mcpjmilt0gt"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://bfx7naoqgcskq" path="res://scripts/player/player.gd" id="1_merdl"]
-[ext_resource type="Texture2D" uid="uid://uxyd0ggwl8no" path="res://sprites/1 - Penguin/Idle (16 x 16).png" id="2_b0kkn"]
-[ext_resource type="Texture2D" uid="uid://bgyt0ql85j78f" path="res://sprites/1 - Penguin/Ducking (16 x 16).png" id="2_qly61"]
-[ext_resource type="Texture2D" uid="uid://b0y8sahyxgw1h" path="res://sprites/1 - Penguin/Hurt (16 x 16).png" id="2_tjdhl"]
-[ext_resource type="Texture2D" uid="uid://b2gnfknjyc0un" path="res://sprites/1 - Penguin/Waddling (16 x 16).png" id="3_e4p34"]
-[ext_resource type="Texture2D" uid="uid://crul42buweuk5" path="res://sprites/1 - Penguin/Falling (16 x 16).png" id="3_qsoyl"]
-[ext_resource type="Texture2D" uid="uid://coo43tcsfmx5g" path="res://sprites/1 - Penguin/Jump (16 x 16).png" id="3_rfe5m"]
-[ext_resource type="Texture2D" uid="uid://biu7aq8rbvva2" path="res://sprites/1 - Penguin/Lying_On_Ground (16 x 16).png" id="3_x08pd"]
-[ext_resource type="Texture2D" uid="uid://c62btjdoop4gb" path="res://sprites/1 - Penguin/Victory_Dance (16 x 16).png" id="6_6nm46"]
-[ext_resource type="Texture2D" uid="uid://hrprm4n5h72" path="res://sprites/1 - Penguin/Belly_Sliding (16 x 16).png" id="6_i623q"]
-[ext_resource type="Texture2D" uid="uid://bmga7vqj5yhv3" path="res://sprites/1 - Penguin/Sitting (16 x 16).png" id="8_kdgjc"]
-[ext_resource type="Texture2D" uid="uid://cr851cmml6n0v" path="res://sprites/1 - Penguin/Swimming (16 x 16).png" id="9_dchgp"]
-[ext_resource type="Texture2D" uid="uid://b8f700i8vf1vl" path="res://sprites/1 - Penguin/Wall_Slide (16x16).png" id="11_x08pd"]
-[ext_resource type="AudioStream" uid="uid://bxcdn1ipny12a" path="res://audio/sfx/player/jump.wav" id="12_jump_sfx"]
-[ext_resource type="AudioStream" uid="uid://cg2yifuffp7e3" path="res://audio/sfx/environment/water/water_splash.wav" id="13_water_sfx"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_merdl"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Idle (16 x 16).png" id="2_b0kkn"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Ducking (16 x 16).png" id="2_qly61"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Hurt (16 x 16).png" id="2_tjdhl"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Waddling (16 x 16).png" id="3_e4p34"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Falling (16 x 16).png" id="3_qsoyl"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Jump (16 x 16).png" id="3_rfe5m"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Lying_On_Ground (16 x 16).png" id="3_x08pd"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Victory_Dance (16 x 16).png" id="6_6nm46"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Belly_Sliding (16 x 16).png" id="6_i623q"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Sitting (16 x 16).png" id="8_kdgjc"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Swimming (16 x 16).png" id="9_dchgp"]
+[ext_resource type="Texture2D" path="res://sprites/1 - Penguin/Wall_Slide (16x16).png" id="11_x08pd"]
+[ext_resource type="AudioStream" path="res://audio/sfx/player/jump.wav" id="12_jump_sfx"]
+[ext_resource type="AudioStream" path="res://audio/sfx/environment/water/water_splash.wav" id="13_water_sfx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxs8s"]
 radius = 6.0
@@ -311,7 +311,7 @@ size = Vector2(13, 15)
 
 [node name="Player" type="CharacterBody2D" unique_id=1696542837 groups=["Player"]]
 collision_layer = 2
-collision_mask = 73
+collision_mask = 77
 script = ExtResource("1_merdl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=935727018]

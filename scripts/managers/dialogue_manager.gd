@@ -32,4 +32,9 @@ func _on_dialogue_finished() -> void:
 	
 	var players = get_tree().get_nodes_in_group("Player")
 	if players.size() > 0:
-		players[0].change_state(players[0].PlayerState.idle)
+		var player = players[0]
+		# Volta para natação se estiver na água, caso contrário idle
+		if player.water_bodies.size() > 0:
+			player.go_to_swimming_state()
+		else:
+			player.go_to_idle_state()

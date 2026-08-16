@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhck138vptfxt"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/creatures/crab_base.tscn" id="1_crab"]
-[ext_resource type="Texture2D" uid="uid://ywetcmropa43" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_crab_00002_.png" id="2_blue"]
+[ext_resource type="Texture2D" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_crab_00002_.png" id="2_blue"]
 
 [node name="crab1" unique_id=1874063219 instance=ExtResource("1_crab")]
 

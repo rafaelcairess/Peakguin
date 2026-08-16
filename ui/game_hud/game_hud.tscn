@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://bm83pj4r4kc0t"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://2fqo2jl26ndt" path="res://scripts/ui/game_hud.gd" id="1_hud"]
-[ext_resource type="Texture2D" uid="uid://c3pdha0r2xart" path="res://sprites/Mini FX, Items & UI/Mini UI/Timer_Coin_Numbers_Drop-shadowed (8 x 8).png" id="2_numbers"]
-[ext_resource type="Texture2D" uid="uid://d0ti0xxe3iorv" path="res://sprites/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="3_health"]
+[ext_resource type="Script" path="res://scripts/ui/game_hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" path="res://sprites/Mini FX, Items & UI/Mini UI/Timer_Coin_Numbers_Drop-shadowed (8 x 8).png" id="2_numbers"]
+[ext_resource type="Texture2D" path="res://sprites/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="3_health"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_heart"]
 atlas = ExtResource("3_health")
@@ -109,7 +109,26 @@ texture = SubResource("AtlasTexture_zero")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Separator" type="Label" parent="TopRight/Layout/StatsRow/TimerGroup/TimeDigits"]
+custom_minimum_size = Vector2(3, 8)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.1, 0.11, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 8
+text = ":"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Digit3" type="TextureRect" parent="TopRight/Layout/StatsRow/TimerGroup/TimeDigits" unique_id=723032609]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_zero")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Digit4" type="TextureRect" parent="TopRight/Layout/StatsRow/TimerGroup/TimeDigits"]
 custom_minimum_size = Vector2(8, 8)
 layout_mode = 2
 mouse_filter = 2

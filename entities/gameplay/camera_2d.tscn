@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://cgu14otkjsei"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://dvbqw7ys007jy" path="res://scripts/gameplay/camera.gd" id="1_k0jm6"]
+[ext_resource type="Script" path="res://scripts/gameplay/camera.gd" id="1_k0jm6"]
 
 [node name="Camera2D" type="Camera2D" unique_id=1596842023]
 limit_left = 0

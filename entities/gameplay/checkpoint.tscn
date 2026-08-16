@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/gameplay/checkpoint.gd" id="1_checkpoint"]
-[ext_resource type="Texture2D" uid="uid://dc81tljf3v8rb" path="res://sprites/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="2_grassland_entities"]
+[ext_resource type="Texture2D" path="res://sprites/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="2_grassland_entities"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_checkpoint"]
 size = Vector2(24, 32)

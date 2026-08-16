@@ -35,7 +35,7 @@ enum PlayerState {
 @export var deceleration: float = 400.0
 @export var slide_deceleration: float = 100.0
 @export var slide_boost: float = 1.5
-@export var max_jump_count: int = 2
+@export var max_jump_count: int = 1
 @export var idle_to_sit_time: float = 25.0
 
 @export_category("Game Feel")
@@ -107,14 +107,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if coyote_timer > 0:
 		coyote_timer -= delta
-		
-	if is_on_floor() and jump_buffer_timer > 0.0:
-		_jump()
-
-	_check_interaction()
 	if jump_buffer_timer > 0:
 		jump_buffer_timer -= delta
-		
+
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = jump_buffer_time
 
@@ -151,13 +146,15 @@ func _physics_process(delta: float) -> void:
 		PlayerState.wall:
 			wall_state(delta)
 
-		PlayerState.dead: dead_state()
-		PlayerState.reading: reading_state()
+		PlayerState.dead: dead_state(delta)
+		PlayerState.reading: reading_state(delta)
 
 	if status != PlayerState.walk and footstep_sfx.playing:
 		footstep_sfx.stop()
 
+	var was_falling := velocity.y > 0.0
 	move_and_slide()
+	_handle_enemy_body_stomps(was_falling)
 	update_run_dust(delta)
 
 
@@ -362,7 +359,7 @@ func fall_state(delta: float) -> void:
 
 	if is_on_floor():
 		jump_count = 0
-		
+
 		if jump_buffer_timer > 0:
 			jump_buffer_timer = 0.0
 			go_to_jump_state()
@@ -581,10 +578,10 @@ func spawn_run_dust() -> void:
 
 	var scene_root := get_tree().current_scene
 	var dust_parent: Node = scene_root if scene_root != null else get_parent()
-	dust_parent.add_child(dust)
-	dust.global_position = global_position + Vector2(-direction * 6.0, 2.0)
+	dust_parent.add_child.call_deferred(dust)
+	dust.set_deferred("global_position", global_position + Vector2(-direction * 6.0, 2.0))
 	if dust.has_method("set_direction"):
-		dust.set_direction(direction)
+		dust.call_deferred("set_direction", direction)
 
 
 func update_grass_footsteps(delta: float) -> void:
@@ -607,7 +604,7 @@ func _update_grass_footstep_cutoff() -> void:
 	if not footstep_sfx.playing:
 		return
 
-	if footstep_sfx.get_playback_position() >= PauseMenu.get_footstep_cutoff_seconds():
+	if footstep_sfx.get_playback_position() >= SettingsManager.footstep_cutoff_seconds:
 		footstep_sfx.stop()
 
 
@@ -656,11 +653,11 @@ func spawn_water_splash(water_body: Node2D) -> void:
 
 	var scene_root := get_tree().current_scene
 	var splash_parent: Node = scene_root if scene_root != null else get_parent()
-	splash_parent.add_child(splash)
-	splash.global_position = Vector2(
+	splash_parent.add_child.call_deferred(splash)
+	splash.set_deferred("global_position", Vector2(
 		global_position.x,
 		find_water_surface_y(water_body)
-	)
+	))
 
 
 func find_water_surface_y(water_body: Node2D) -> float:
@@ -775,6 +772,27 @@ func hit_enemy(area: Area2D) -> void:
 		take_damage()
 
 
+func _handle_enemy_body_stomps(was_falling: bool) -> void:
+	if not was_falling or status == PlayerState.dead:
+		return
+
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		# A normal para cima confirma que o contato aconteceu sobre o inimigo,
+		# não pela lateral. Isso evita que o corpo sólido bloqueie o pisão.
+		if collision.get_normal().y > -0.5:
+			continue
+
+		var enemy := collision.get_collider()
+		if enemy == null or not enemy.has_method("take_damage"):
+			continue
+
+		enemy.take_damage()
+		apply_screen_shake(3.0, 0.15)
+		go_to_jump_state()
+		return
+
+
 func hit_lethal_area(source: Node) -> void:
 	if source.is_in_group("Lava") or source.is_in_group("InstantDeath"):
 		go_to_dead_state()
@@ -830,15 +848,29 @@ func _on_invulnerability_timer_timeout() -> void:
 func _on_reload_timer_timeout() -> void:
 	get_tree().reload_current_scene()
 
-func reading_state() -> void:
-	anim.play("idle")
-	velocity.x = move_toward(velocity.x, 0, deceleration * get_physics_process_delta_time())
+func reading_state(delta: float) -> void:
+	apply_gravity(delta)
+	# Se estiver na água, mantém a animação de natacao
+	if water_bodies.size() > 0:
+		anim.play("swimming")
+	else:
+		anim.play("idle")
+	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
 
-func _check_interaction() -> void:
-	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_accept"):
+
+func unlock_double_jump() -> void:
+	max_jump_count = 2
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Não abre um novo diálogo se já está lendo
+	if status == PlayerState.reading:
+		return
+
+	if event.is_action_pressed("interact"):
 		var interactables = interaction_detector.get_overlapping_areas()
 		if interactables.size() > 0:
 			var closest = interactables[0]
 			if closest is InteractableArea:
 				closest.interact()
-				change_state(PlayerState.reading)
+				status = PlayerState.reading

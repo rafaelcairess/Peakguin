@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://3ncxfwvcrk85"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://blhv1qhd4vx82" path="res://scripts/npcs/mermaid.gd" id="1_mermaid"]
-[ext_resource type="Texture2D" uid="uid://p30d1m7uttlh" path="res://sprites/2 - Mermaid/mermaid_blue.png" id="2_xvsjc"]
+[ext_resource type="Script" path="res://scripts/npcs/mermaid.gd" id="1_mermaid"]
+[ext_resource type="Texture2D" path="res://sprites/2 - Mermaid/mermaid_blue.png" id="2_xvsjc"]
 [ext_resource type="Script" path="res://scripts/gameplay/interactable_area.gd" id="3_interact"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_interact"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/creatures/crab.gd" id="1_crab"]
-[ext_resource type="Texture2D" uid="uid://ywetcmropa43" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_crab_00002_.png" id="2_crab_blue"]
+[ext_resource type="Texture2D" path="res://sprites/Seasonal Tilesets/7 - Ocean/cw_free_crab_00002_.png" id="2_crab_blue"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crab"]
 size = Vector2(16, 8)

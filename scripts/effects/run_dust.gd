@@ -4,7 +4,10 @@ extends Node2D
 
 
 func set_direction(run_direction: float) -> void:
-	sprite.flip_h = run_direction < 0.0
+	if sprite == null:
+		sprite = $AnimatedSprite2D
+	if sprite != null:
+		sprite.flip_h = run_direction < 0.0
 
 
 func _on_animation_finished() -> void:

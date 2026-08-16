@@ -1,14 +1,12 @@
 extends Control
 
-## Menu principal do Peakguin — estilo Fields of Mistria.
+## Menu principal do Peakguin
 ##
 ## O fundo cicla automaticamente entre os backgrounds dos 4 biomas
 ## (Pradaria → Floresta → Trópicos → Inverno) usando crossfade suave.
 ## Fases e visual podem ser trocados pelo Inspector.
 
 const PLAYER_SCENE := "res://entities/player/player.tscn"
-const SETTINGS_PATH := "user://settings.cfg"
-const MIN_VOLUME_DB := -80.0
 
 ## Quanto tempo cada bioma fica visível antes de trocar (em segundos).
 const BG_DISPLAY_TIME := 8.0
@@ -19,6 +17,7 @@ const BG_FADE_TIME := 2.0
 
 @export_category("Fases")
 @export var default_level: PackedScene
+@export var intro_scene: PackedScene
 @export var grassland_level: PackedScene
 @export var winter_level: PackedScene
 @export var forest_level: PackedScene
@@ -81,10 +80,12 @@ const BG_FADE_TIME := 2.0
 @onready var master_slider: HSlider = %MasterSlider
 @onready var music_slider: HSlider = %MusicSlider
 @onready var sfx_slider: HSlider = %SFXSlider
+@onready var resolution_option: OptionButton = %ResolutionOption
 @onready var master_value: Label = %MasterValue
 @onready var music_value: Label = %MusicValue
 @onready var sfx_value: Label = %SFXValue
 @onready var fullscreen_toggle: CheckButton = %FullscreenToggle
+@onready var apply_video_button: Button = %ApplyVideoButton
 @onready var menu_music_player: AudioStreamPlayer = %MenuMusic
 @onready var penguin_preview: AnimatedSprite2D = %PenguinPreview
 @onready var penguin_sitting: AnimatedSprite2D = %PenguinSitting
@@ -115,6 +116,7 @@ func _ready() -> void:
 	RunTimer.pause_run()
 
 	_connect_interface()
+	_setup_resolution_options()
 	_apply_optional_art()
 	_setup_penguin()
 	_setup_continue_button()
@@ -244,7 +246,7 @@ func _connect_interface() -> void:
 	master_slider.value_changed.connect(_on_master_volume_changed)
 	music_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
-	fullscreen_toggle.toggled.connect(_on_fullscreen_toggled)
+	apply_video_button.pressed.connect(_on_apply_video_pressed)
 
 
 # ═══════════════════════════════════════════════════════════
@@ -276,6 +278,10 @@ func _apply_optional_art() -> void:
 	logo_slot.visible = logo_texture != null
 	title_label.text = title_text
 	title_label.visible = logo_texture == null
+	version_label.text = "v" + String(ProjectSettings.get_setting(
+		"application/config/version",
+		"0.02 Pre-Alpha"
+	))
 
 	# Ícones opcionais nos botões.
 	continue_button.icon = play_icon
@@ -291,11 +297,14 @@ func _apply_optional_art() -> void:
 	# Se texturas de botão foram fornecidas, aplica em TODOS os botões.
 	for button in _get_all_buttons():
 		if button_texture != null:
-			button.add_theme_stylebox_override("normal", _make_texture_style(button_texture))
+			var normal_style := _make_texture_style(button_texture)
+			button.add_theme_stylebox_override("normal", normal_style)
+			button.add_theme_stylebox_override("disabled", normal_style)
 		if button_hover_texture != null:
 			var hover_style := _make_texture_style(button_hover_texture)
 			button.add_theme_stylebox_override("hover", hover_style)
 			button.add_theme_stylebox_override("focus", hover_style)
+			button.add_theme_stylebox_override("pressed", hover_style)
 
 
 func _setup_penguin() -> void:
@@ -350,6 +359,7 @@ func _get_all_buttons() -> Array[Button]:
 		forest_button,
 		tropic_button,
 		levels_back_button,
+		apply_video_button,
 		settings_back_button,
 		credits_back_button,
 	]
@@ -360,10 +370,10 @@ func _make_texture_style(texture: Texture2D) -> StyleBoxTexture:
 	## Usado quando o usuário fornece texturas customizadas para os botões.
 	var style := StyleBoxTexture.new()
 	style.texture = texture
-	style.texture_margin_left = 4.0
-	style.texture_margin_top = 4.0
-	style.texture_margin_right = 4.0
-	style.texture_margin_bottom = 4.0
+	style.content_margin_left = 7.0
+	style.content_margin_top = 3.0
+	style.content_margin_right = 7.0
+	style.content_margin_bottom = 3.0
 	return style
 
 
@@ -396,6 +406,7 @@ func _show_levels_screen() -> void:
 
 func _show_settings_screen() -> void:
 	_hide_all_screens()
+	_load_settings()
 	settings_screen.show()
 	master_slider.grab_focus()
 
@@ -434,7 +445,10 @@ func _start_new_game() -> void:
 	## Limpa qualquer checkpoint/save e inicia a fase padrão do zero.
 	CheckpointManager.clear_checkpoint()
 	RunTimer.reset_run()
-	_start_level(default_level)
+	if intro_scene != null:
+		_start_level(intro_scene)
+	else:
+		_start_level(default_level)
 
 
 func _start_level(level: PackedScene) -> void:
@@ -476,102 +490,71 @@ func _on_quit_pressed() -> void:
 # ═══════════════════════════════════════════════════════════
 
 func _on_master_volume_changed(value: float) -> void:
-	_set_bus_volume(&"Master", value)
+	if _updating_controls:
+		return
+	SettingsManager.set_master_volume(value)
 	master_value.text = _format_percent(value)
 	_save_settings()
 
 
 func _on_music_volume_changed(value: float) -> void:
-	_set_bus_volume(&"Music", value)
+	if _updating_controls:
+		return
+	SettingsManager.set_music_volume(value)
 	music_value.text = _format_percent(value)
 	_save_settings()
 
 
 func _on_sfx_volume_changed(value: float) -> void:
-	_set_bus_volume(&"SFX", value)
+	if _updating_controls:
+		return
+	SettingsManager.set_sfx_volume(value)
 	sfx_value.text = _format_percent(value)
 	_save_settings()
 
 
-func _on_fullscreen_toggled(enabled: bool) -> void:
-	if _updating_controls:
+func _on_apply_video_pressed() -> void:
+	var index := resolution_option.selected
+	if index < 0 or index >= WindowManager.RESOLUTIONS.size():
 		return
-
-	var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if enabled else DisplayServer.WINDOW_MODE_WINDOWED
-	DisplayServer.window_set_mode(mode)
+	SettingsManager.set_video(
+		WindowManager.RESOLUTIONS[index],
+		fullscreen_toggle.button_pressed
+	)
 	_save_settings()
 
 
-func _load_settings() -> void:
-	var config := ConfigFile.new()
-	var loaded := config.load(SETTINGS_PATH) == OK
-	var master := float(config.get_value("audio", "master", _get_bus_percent(&"Master"))) if loaded else _get_bus_percent(&"Master")
-	var music := float(config.get_value("audio", "music", _get_bus_percent(&"Music"))) if loaded else _get_bus_percent(&"Music")
-	var sfx := float(config.get_value("audio", "sfx", _get_bus_percent(&"SFX"))) if loaded else _get_bus_percent(&"SFX")
-	var fullscreen := bool(config.get_value("video", "fullscreen", _is_fullscreen())) if loaded else _is_fullscreen()
+func _setup_resolution_options() -> void:
+	resolution_option.clear()
+	for resolution in WindowManager.RESOLUTIONS:
+		var label := "%d x %d" % [resolution.x, resolution.y]
+		resolution_option.add_item(label)
 
+
+func _resolution_index(resolution: Vector2i) -> int:
+	var index := WindowManager.RESOLUTIONS.find(resolution)
+	return index if index >= 0 else WindowManager.RESOLUTIONS.find(WindowManager.DEFAULT_WINDOW_SIZE)
+
+
+func _load_settings() -> void:
 	# _updating_controls evita que os callbacks de value_changed salvem
 	# as configurações enquanto estamos apenas carregando valores.
 	_updating_controls = true
-	master_slider.value = master
-	music_slider.value = music
-	sfx_slider.value = sfx
-	fullscreen_toggle.button_pressed = fullscreen
-	master_value.text = _format_percent(master)
-	music_value.text = _format_percent(music)
-	sfx_value.text = _format_percent(sfx)
+	master_slider.value = SettingsManager.master_volume
+	music_slider.value = SettingsManager.music_volume
+	sfx_slider.value = SettingsManager.sfx_volume
+	fullscreen_toggle.button_pressed = SettingsManager.fullscreen
+	resolution_option.select(_resolution_index(SettingsManager.resolution))
+	master_value.text = _format_percent(SettingsManager.master_volume)
+	music_value.text = _format_percent(SettingsManager.music_volume)
+	sfx_value.text = _format_percent(SettingsManager.sfx_volume)
 	_updating_controls = false
-
-	_set_bus_volume(&"Master", master)
-	_set_bus_volume(&"Music", music)
-	_set_bus_volume(&"SFX", sfx)
-	if loaded:
-		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
-		DisplayServer.window_set_mode(mode)
 
 
 func _save_settings() -> void:
 	if _updating_controls:
 		return
-
-	var config := ConfigFile.new()
-	config.load(SETTINGS_PATH)
-	config.set_value("audio", "master", master_slider.value)
-	config.set_value("audio", "music", music_slider.value)
-	config.set_value("audio", "sfx", sfx_slider.value)
-	config.set_value("video", "fullscreen", fullscreen_toggle.button_pressed)
-	var error := config.save(SETTINGS_PATH)
-	if error != OK:
-		push_warning("Nao foi possivel salvar as configuracoes: " + error_string(error))
-
-
-func _set_bus_volume(bus_name: StringName, percent: float) -> void:
-	## Converte o percentual (0-100) para decibéis e aplica no bus de áudio.
-	## 0% = mudo (-80 dB), 100% = volume máximo (0 dB).
-	var bus_index := AudioServer.get_bus_index(bus_name)
-	if bus_index == -1:
-		push_warning("Bus de audio nao encontrado: " + String(bus_name))
-		return
-
-	var normalized := clampf(percent / 100.0, 0.0, 1.0)
-	AudioServer.set_bus_mute(bus_index, is_zero_approx(normalized))
-	AudioServer.set_bus_volume_db(
-		bus_index,
-		MIN_VOLUME_DB if is_zero_approx(normalized) else linear_to_db(normalized)
-	)
-
-
-func _get_bus_percent(bus_name: StringName) -> float:
-	var bus_index := AudioServer.get_bus_index(bus_name)
-	if bus_index == -1 or AudioServer.is_bus_mute(bus_index):
-		return 0.0
-	return db_to_linear(AudioServer.get_bus_volume_db(bus_index)) * 100.0
-
-
-func _is_fullscreen() -> bool:
-	var mode := DisplayServer.window_get_mode()
-	return mode == DisplayServer.WINDOW_MODE_FULLSCREEN \
-		or mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
+	SettingsManager.save_settings()
 
 
 func _format_percent(value: float) -> String:

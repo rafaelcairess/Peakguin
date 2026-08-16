@@ -57,7 +57,16 @@ func _find_and_bind_player() -> void:
 
 
 func _update_timer(total_seconds: int) -> void:
-	_set_number(time_digits, total_seconds)
+	var minutes := mini(total_seconds / 60, 99)
+	var seconds := total_seconds % 60
+	var text := "%02d%02d" % [minutes, seconds]
+	var digit_index := 0
+	for node in time_digits.get_children():
+		var digit_node := node as TextureRect
+		if digit_node == null:
+			continue
+		digit_node.texture = digit_cache[text.substr(digit_index, 1).to_int()]
+		digit_index += 1
 
 
 func _build_texture_cache() -> void:

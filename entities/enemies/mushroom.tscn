@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://dxstmt45gxa1u"]
+[gd_scene format=3]
 
-[ext_resource type="Texture2D" uid="uid://jcuiweasqili" path="res://sprites/4 - Mushroom/Mushroom-Hit.png" id="1_615di"]
-[ext_resource type="Texture2D" uid="uid://b0ccvh4j32fr1" path="res://sprites/4 - Mushroom/Mushroom-Attack.png" id="2_2y2ba"]
-[ext_resource type="Texture2D" uid="uid://clh3udydx3j4x" path="res://sprites/4 - Mushroom/Mushroom-Die.png" id="3_1spko"]
-[ext_resource type="Texture2D" uid="uid://dfj6wqucn4yld" path="res://sprites/4 - Mushroom/Mushroom-Idle.png" id="4_idv7n"]
-[ext_resource type="Texture2D" uid="uid://c6yvvn4tofbcy" path="res://sprites/4 - Mushroom/Mushroom without VFX/Mushroom-Run.png" id="5_jhhrv"]
-[ext_resource type="Script" uid="uid://v8jfrgtsvtl4" path="res://scripts/enemies/mushroom.gd" id="6_script"]
+[ext_resource type="Texture2D" path="res://sprites/4 - Mushroom/Mushroom-Hit.png" id="1_615di"]
+[ext_resource type="Texture2D" path="res://sprites/4 - Mushroom/Mushroom-Attack.png" id="2_2y2ba"]
+[ext_resource type="Texture2D" path="res://sprites/4 - Mushroom/Mushroom-Die.png" id="3_1spko"]
+[ext_resource type="Texture2D" path="res://sprites/4 - Mushroom/Mushroom-Idle.png" id="4_idv7n"]
+[ext_resource type="Texture2D" path="res://sprites/4 - Mushroom/Mushroom without VFX/Mushroom-Run.png" id="5_jhhrv"]
+[ext_resource type="Script" path="res://scripts/enemies/mushroom.gd" id="6_script"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxs8s"]
 radius = 7.0
@@ -335,7 +335,7 @@ size = Vector2(15, 16)
 size = Vector2(14, 14)
 
 [node name="Cogumelo" type="CharacterBody2D" unique_id=309110489]
-collision_layer = 4
+collision_layer = 0
 script = ExtResource("6_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1080787873]
