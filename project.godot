@@ -26,6 +26,7 @@ UIManager="*res://scripts/managers/ui_manager.gd"
 RunTimer="*uid://cgb742cqpxu3h"
 WindowManager="*res://scripts/managers/window_manager.gd"
 SettingsManager="*res://scripts/managers/settings_manager.gd"
+SaveManager="*res://scripts/managers/save_manager.gd"
 PauseMenu="*res://ui/pause_menu/pause_menu.tscn"
 
 [display]

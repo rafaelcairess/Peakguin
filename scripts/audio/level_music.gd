@@ -8,6 +8,12 @@ extends Node
 
 func _ready() -> void:
 	RunTimer.resume_run()
+	var current_scene := get_tree().current_scene
+	if current_scene != null:
+		SaveManager.begin_level(
+			current_scene.scene_file_path,
+			get_tree().get_nodes_in_group("Coins").size()
+		)
 	if loop_music:
 		_enable_loop(music)
 	MusicManager.play_music(music, fade_duration)

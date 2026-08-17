@@ -9,3 +9,11 @@ func collect(body: Node2D) -> bool:
 
 	body.collect_coin(value)
 	return true
+
+
+func is_persistently_collected(scene_path: String, item_id: String) -> bool:
+	return SaveManager.is_coin_collected(scene_path, item_id)
+
+
+func register_persistent_collection(scene_path: String, item_id: String) -> void:
+	SaveManager.record_coin(scene_path, item_id)

@@ -297,21 +297,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
 text = "Configurações"
 
-[node name="CreditsButton" type="Button" parent="MainScreen" unique_id=555932511]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(104, 18)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
-theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
-theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
-theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
-text = "Créditos"
-
 [node name="QuitButton" type="Button" parent="MainScreen" unique_id=1723903727]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(104, 18)
@@ -337,9 +322,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -82.0
-offset_top = -60.0
+offset_top = -70.0
 offset_right = 82.0
-offset_bottom = 60.0
+offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_subpanel")
@@ -415,9 +400,90 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
 text = "Trópicos - Em desenvolvimento"
 
+[node name="ProgressButton" type="Button" parent="LevelsScreen/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Progresso"
+
 [node name="LevelsBackButton" type="Button" parent="LevelsScreen/Layout" unique_id=788862194]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "Voltar"
+
+[node name="ProgressScreen" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -88.0
+offset_right = 135.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_subpanel")
+
+[node name="Layout" type="VBoxContainer" parent="ProgressScreen"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Heading" type="Label" parent="ProgressScreen/Layout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_font_sizes/font_size = 12
+text = "Progresso"
+horizontal_alignment = 1
+
+[node name="Sep" type="HSeparator" parent="ProgressScreen/Layout"]
+layout_mode = 2
+
+[node name="ProgressSummary" type="Label" parent="ProgressScreen/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_font_sizes/font_size = 8
+text = "Fases: 0/4   Moedas: 0/0\nMortes: 0   Tempo total: 00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sep2" type="HSeparator" parent="ProgressScreen/Layout"]
+layout_mode = 2
+
+[node name="ProgressDetails" type="Label" parent="ProgressScreen/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.32, 0.24, 0.14, 1)
+theme_override_font_sizes/font_size = 7
+text = "Tutorial | Não iniciada\n  Moedas 0/0 | Mortes 0 | Melhor --:--"
+vertical_alignment = 1
+
+[node name="ProgressBackButton" type="Button" parent="ProgressScreen/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
 theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
@@ -602,67 +668,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
-theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
-theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)
-theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.04, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
-text = "Voltar"
-
-[node name="CreditsScreen" type="PanelContainer" parent="." unique_id=1939937727]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -60.0
-offset_right = 90.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_subpanel")
-
-[node name="Layout" type="VBoxContainer" parent="CreditsScreen" unique_id=1795913606]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="Heading" type="Label" parent="CreditsScreen/Layout" unique_id=785628038]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
-theme_override_font_sizes/font_size = 12
-text = "Créditos"
-horizontal_alignment = 1
-
-[node name="Sep" type="HSeparator" parent="CreditsScreen/Layout" unique_id=2068397191]
-layout_mode = 2
-
-[node name="Body" type="Label" parent="CreditsScreen/Layout" unique_id=774708176]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.32, 0.24, 0.14, 1)
-theme_override_font_sizes/font_size = 9
-text = "Desenvolvimento
-Rafael Caires
-
-Pixel Art e Fonte
-GrafxKid · CC0
-
-Engine
-Godot 4"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CreditsBackButton" type="Button" parent="CreditsScreen/Layout" unique_id=879964542]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 18)
-layout_mode = 2
 theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
 theme_override_colors/font_focus_color = Color(0.18, 0.12, 0.04, 1)
 theme_override_colors/font_pressed_color = Color(0.12, 0.08, 0.02, 1)

@@ -55,6 +55,12 @@ func _find_and_bind_player() -> void:
 	if player.has_signal("coins_changed"):
 		player.coins_changed.connect(_on_coins_changed)
 
+	_on_health_changed(
+		int(player.get("current_health")),
+		int(player.get("max_health"))
+	)
+	_on_coins_changed(int(player.get("coins")))
+
 
 func _update_timer(total_seconds: int) -> void:
 	var minutes := mini(total_seconds / 60, 99)

@@ -95,6 +95,7 @@ func _ready() -> void:
 	var current_scene := get_tree().current_scene
 
 	if current_scene != null:
+		coins = SaveManager.get_collected_coin_count(current_scene.scene_file_path)
 		global_position = CheckpointManager.get_respawn_position(
 			current_scene.scene_file_path,
 			global_position
@@ -250,6 +251,10 @@ func exit_from_victory_state() -> void:
 func go_to_dead_state() -> void:
 	if status == PlayerState.dead:
 		return
+
+	var current_scene := get_tree().current_scene
+	if current_scene != null:
+		SaveManager.record_death(current_scene.scene_file_path)
 
 	status = PlayerState.dead
 	if current_health != 0:

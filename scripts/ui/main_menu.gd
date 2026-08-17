@@ -40,7 +40,6 @@ const BG_FADE_TIME := 2.0
 @export var new_game_icon: Texture2D
 @export var levels_icon: Texture2D
 @export var settings_icon: Texture2D
-@export var credits_icon: Texture2D
 @export var quit_icon: Texture2D
 @export var back_icon: Texture2D
 
@@ -63,20 +62,22 @@ const BG_FADE_TIME := 2.0
 @onready var main_screen: Control = %MainScreen
 @onready var levels_screen: Control = %LevelsScreen
 @onready var settings_screen: Control = %SettingsScreen
-@onready var credits_screen: Control = %CreditsScreen
+@onready var progress_screen: Control = %ProgressScreen
 @onready var continue_button: Button = %ContinueButton
 @onready var new_game_button: Button = %NewGameButton
 @onready var levels_button: Button = %LevelsButton
+@onready var progress_button: Button = %ProgressButton
 @onready var settings_button: Button = %SettingsButton
-@onready var credits_button: Button = %CreditsButton
 @onready var quit_button: Button = %QuitButton
 @onready var grassland_button: Button = %GrasslandButton
 @onready var winter_button: Button = %WinterButton
 @onready var forest_button: Button = %ForestButton
 @onready var tropic_button: Button = %TropicButton
 @onready var levels_back_button: Button = %LevelsBackButton
+@onready var progress_back_button: Button = %ProgressBackButton
 @onready var settings_back_button: Button = %SettingsBackButton
-@onready var credits_back_button: Button = %CreditsBackButton
+@onready var progress_summary: Label = %ProgressSummary
+@onready var progress_details: Label = %ProgressDetails
 @onready var master_slider: HSlider = %MasterSlider
 @onready var music_slider: HSlider = %MusicSlider
 @onready var sfx_slider: HSlider = %SFXSlider
@@ -110,6 +111,7 @@ var _bg_cycling := false
 
 func _ready() -> void:
 	get_tree().paused = false
+	SaveManager.stop_tracking()
 	if PauseMenu.has_method("set_pause_allowed"):
 		PauseMenu.set_pause_allowed(false)
 
@@ -230,8 +232,8 @@ func _connect_interface() -> void:
 	continue_button.pressed.connect(_continue_game)
 	new_game_button.pressed.connect(_start_new_game)
 	levels_button.pressed.connect(_show_levels_screen)
+	progress_button.pressed.connect(_show_progress_screen)
 	settings_button.pressed.connect(_show_settings_screen)
-	credits_button.pressed.connect(_show_credits_screen)
 	quit_button.pressed.connect(_on_quit_pressed)
 
 	grassland_button.pressed.connect(_start_level.bind(grassland_level))
@@ -239,8 +241,8 @@ func _connect_interface() -> void:
 	forest_button.pressed.connect(_start_level.bind(forest_level))
 	tropic_button.pressed.connect(_start_level.bind(tropic_level))
 	levels_back_button.pressed.connect(_show_main_screen)
+	progress_back_button.pressed.connect(_show_levels_screen)
 	settings_back_button.pressed.connect(_show_main_screen)
-	credits_back_button.pressed.connect(_show_main_screen)
 
 	# Sliders e fullscreen — cada vez que o valor muda, atualiza o áudio.
 	master_slider.value_changed.connect(_on_master_volume_changed)
@@ -257,7 +259,7 @@ func _setup_continue_button() -> void:
 	## O botão "Jogar" só aparece se o jogador tem um checkpoint ativo
 	## (ex: voltou ao menu sem fechar o jogo). O CheckpointManager armazena
 	## isso em memória — não persiste entre sessões.
-	var has_save := CheckpointManager.has_active_checkpoint
+	var has_save := CheckpointManager.has_active_checkpoint or SaveManager.has_progress()
 	continue_button.visible = has_save
 
 
@@ -287,12 +289,12 @@ func _apply_optional_art() -> void:
 	continue_button.icon = play_icon
 	new_game_button.icon = new_game_icon
 	levels_button.icon = levels_icon
+	progress_button.icon = levels_icon
 	settings_button.icon = settings_icon
-	credits_button.icon = credits_icon
 	quit_button.icon = quit_icon
 	levels_back_button.icon = back_icon
+	progress_back_button.icon = back_icon
 	settings_back_button.icon = back_icon
-	credits_back_button.icon = back_icon
 
 	# Se texturas de botão foram fornecidas, aplica em TODOS os botões.
 	for button in _get_all_buttons():
@@ -351,17 +353,17 @@ func _get_all_buttons() -> Array[Button]:
 		continue_button,
 		new_game_button,
 		levels_button,
+		progress_button,
 		settings_button,
-		credits_button,
 		quit_button,
 		grassland_button,
 		winter_button,
 		forest_button,
 		tropic_button,
 		levels_back_button,
+		progress_back_button,
 		apply_video_button,
 		settings_back_button,
-		credits_back_button,
 	]
 
 
@@ -384,8 +386,8 @@ func _make_texture_style(texture: Texture2D) -> StyleBoxTexture:
 func _hide_all_screens() -> void:
 	main_screen.hide()
 	levels_screen.hide()
+	progress_screen.hide()
 	settings_screen.hide()
-	credits_screen.hide()
 
 
 func _show_main_screen() -> void:
@@ -404,6 +406,13 @@ func _show_levels_screen() -> void:
 	grassland_button.grab_focus()
 
 
+func _show_progress_screen() -> void:
+	_hide_all_screens()
+	_update_progress_screen()
+	progress_screen.show()
+	progress_back_button.grab_focus()
+
+
 func _show_settings_screen() -> void:
 	_hide_all_screens()
 	_load_settings()
@@ -411,23 +420,15 @@ func _show_settings_screen() -> void:
 	master_slider.grab_focus()
 
 
-func _show_credits_screen() -> void:
-	_hide_all_screens()
-	credits_screen.show()
-	credits_back_button.grab_focus()
-
-
 # ═══════════════════════════════════════════════════════════
 #  INICIAR JOGO
 # ═══════════════════════════════════════════════════════════
 
 func _continue_game() -> void:
-	## Continua a partir do checkpoint ativo (mesma sessão).
-	if not CheckpointManager.has_active_checkpoint:
-		_start_level(default_level)
-		return
-
-	var scene_path := CheckpointManager.active_scene_path
+	## Prioriza o checkpoint da sessão; caso contrário, usa a última fase salva.
+	var scene_path := CheckpointManager.active_scene_path \
+		if CheckpointManager.has_active_checkpoint \
+		else SaveManager.last_level_path
 	if scene_path.is_empty():
 		_start_level(default_level)
 		return
@@ -559,3 +560,62 @@ func _save_settings() -> void:
 
 func _format_percent(value: float) -> String:
 	return "%d%%" % roundi(value)
+
+
+func _update_progress_screen() -> void:
+	progress_summary.text = (
+		"Fases: %d/%d   Moedas: %d/%d\nMortes: %d   Tempo total: %s"
+		% [
+			SaveManager.get_completed_level_count(),
+			SaveManager.LEVEL_PATHS.size(),
+			SaveManager.get_total_collected_coins(),
+			SaveManager.get_total_available_coins(),
+			SaveManager.get_total_deaths(),
+			_format_time(SaveManager.total_play_time),
+		]
+	)
+
+	var lines: Array[String] = []
+	for scene_path in SaveManager.LEVEL_PATHS:
+		var stats := SaveManager.get_level_stats(scene_path)
+		var completed := bool(stats.get("completed", false))
+		var collected := SaveManager.get_collected_coin_count(scene_path)
+		var available := int(stats.get("total_coins", 0))
+		var deaths := int(stats.get("deaths", 0))
+		var play_time := float(stats.get("play_time", 0.0))
+		var best_time := float(stats.get("best_time", 0.0))
+		var started := (
+			completed
+			or collected > 0
+			or deaths > 0
+			or play_time > 0.0
+			or SaveManager.last_level_path == scene_path
+		)
+		var status_text := (
+			"Concluída" if completed else
+			"Em andamento" if started else
+			"Não iniciada"
+		)
+		var best_text := _format_time(best_time) if best_time > 0.0 else "--:--"
+		lines.append(
+			"%s | %s\n  Moedas %d/%d | Mortes %d | Melhor %s"
+			% [
+				String(SaveManager.LEVEL_NAMES.get(scene_path, scene_path)),
+				status_text,
+				collected,
+				available,
+				deaths,
+				best_text,
+			]
+		)
+	progress_details.text = "\n".join(lines)
+
+
+func _format_time(total_seconds: float) -> String:
+	var seconds := maxi(floori(total_seconds), 0)
+	var hours := seconds / 3600
+	var minutes := (seconds % 3600) / 60
+	var remaining_seconds := seconds % 60
+	if hours > 0:
+		return "%02d:%02d:%02d" % [hours, minutes, remaining_seconds]
+	return "%02d:%02d" % [minutes, remaining_seconds]
