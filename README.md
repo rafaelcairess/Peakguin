@@ -1,227 +1,181 @@
-<h1 align="center">Peakguin 🐧</h1>
+<div align="center">
 
-<p align="center">
-  Um jogo de plataforma 2D em pixel art, desenvolvido sozinho na Godot.
+<img src="docs/screenshots/penguin_sit.gif" alt="Peakguin" width="116">
+
+# Peakguin
+
+### Um platformer 2D em pixel art sobre explorar, superar obstáculos e conhecer um mundo em construção.
+
+Projeto indie solo desenvolvido com Godot e GDScript — da programação e das mecânicas
+ao level design, integração de assets e montagem das fases.
+
+<p>
+  <img alt="Godot 4.7.1" src="https://img.shields.io/badge/Godot-4.7.1-478CBF?style=for-the-badge&logo=godotengine&logoColor=white">
+  <img alt="Versão 0.02 Pre-Alpha" src="https://img.shields.io/badge/VERSÃO-0.02_PRE--ALPHA-f59e0b?style=for-the-badge">
+  <img alt="Desenvolvimento solo" src="https://img.shields.io/badge/PROJETO-SOLO-7c3aed?style=for-the-badge">
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Godot-4.7.1-478CBF?logo=godotengine&logoColor=white" alt="Godot 4.7.1">
-  <img src="https://img.shields.io/badge/GDScript-Language-355570" alt="GDScript">
-  <img src="https://img.shields.io/badge/version-v0.02%20Pre--Alpha-orange" alt="v0.02 Pre-Alpha">
-  <img src="https://img.shields.io/badge/license-TBD-lightgrey" alt="Licença a definir">
-</p>
+[**Baixar para Windows**](./downloads/Peakguin-v0.02-pre-alpha.exe) ·
+[Ver o gameplay](#gameplay) ·
+[Conhecer as mecânicas](#mecânicas) ·
+[Executar o projeto](#como-executar)
 
-<p align="center">
-  <img src="docs/screenshots/penguin_sit.gif" alt="Pinguim sentado" width="108">
-</p>
+<br>
 
----
+<img src="docs/screenshots/world_tour.gif" alt="Peakguin atravessando pradaria, inverno, floresta e trópicos" width="760">
 
-## 🐧 Sobre
+<sub>Pradaria · Inverno · Floresta · Trópicos</sub>
 
-**Peakguin** é meu primeiro jogo indie de plataforma 2D. O projeto está sendo desenvolvido inteiramente por mim — programação, level design, mecânicas, inimigos, interações e toda a montagem das fases, usando Godot e GDScript.
+</div>
 
-A ideia é um platformer relativamente curto (~3 horas de duração), passando por diferentes regiões e introduzindo novas mecânicas ao longo do caminho. Não quero que seja só uma sequência de plataformas: também pretendo trazer momentos de exploração e interação com personagens pelo mapa — como a **sereia da fase tropical**, que futuramente terá diálogos com o pinguim.
+## Sobre o jogo
 
-O projeto muda bastante conforme eu aprendo mais sobre desenvolvimento de jogos e testo novas ideias.
+**Peakguin** é meu primeiro jogo indie: um platformer 2D de aproximadamente três horas planejadas, dividido em regiões que introduzem novas mecânicas gradualmente.
 
-<p align="center">
-  <img src="docs/screenshots/world_tour.gif" alt="O pinguim atravessa inverno, floresta, pradaria e trópicos" width="640">
-  <br>
-  <sub>Pradaria · Inverno · Floresta · Trópicos</sub>
-</p>
+O objetivo não é criar apenas uma sequência de plataformas. As fases também incluem exploração, inimigos, áreas submersas, objetos interativos e encontros com personagens. O projeto evolui enquanto estudo desenvolvimento de jogos e testo novas ideias de movimentação, combate e level design.
 
----
+> [!NOTE]
+> O jogo está em **Pre-Alpha**. Mecânicas, fases, arte e balanceamento ainda podem mudar significativamente.
 
-## 🗺️ Fases
+## Gameplay
 
-| Fase | Descrição |
-|---|---|
-| **Pradaria** | Área introdutória, usada para apresentar a movimentação básica. |
-| **Inverno** | Plataformas em cenário congelado e montanhoso. |
-| **Floresta** | Esqueletos, projéteis, lava e blocos interativos. |
-| **Trópicos** | Plataformas, natação, caranguejos e área submersa com uma sereia. |
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/screenshots/forest_gameplay.gif" alt="Gameplay da floresta com esqueletos, projéteis e lava" width="100%">
+      <p align="center"><strong>Floresta, combate e plataformas</strong></p>
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/screenshots/ocean_gameplay.gif" alt="Exploração submersa com caranguejos e uma sereia" width="100%">
+      <p align="center"><strong>Exploração submersa</strong></p>
+    </td>
+  </tr>
+</table>
 
-As fases ainda não estão finalizadas e devem mudar bastante até uma versão completa do jogo.
+## Mecânicas
 
----
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <strong>Movimentação</strong><br>
+      Aceleração, múltiplos saltos, agachamento, deslize, paredes e natação.
+    </td>
+    <td width="33%" valign="top">
+      <strong>Level design</strong><br>
+      Plataformas móveis, blocos quebráveis, checkpoints, paralaxe, lava e projéteis.
+    </td>
+    <td width="33%" valign="top">
+      <strong>Mundo</strong><br>
+      Inimigos, criaturas, moedas, corações, NPCs e diálogos progressivos.
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <strong>Estado do jogador</strong><br>
+      Três corações, dano, cura, invulnerabilidade temporária, morte e respawn.
+    </td>
+    <td width="33%" valign="top">
+      <strong>Interface</strong><br>
+      HUD em pixel art, cronômetro persistente, menus, créditos e configurações.
+    </td>
+    <td width="33%" valign="top">
+      <strong>Polimento</strong><br>
+      Partículas, cursores próprios, efeitos de água e animações contextuais.
+    </td>
+  </tr>
+</table>
 
-## 🎮 Gameplay
+A movimentação do personagem é organizada por uma máquina de estados. O sistema de diálogos possui áreas de interação, retratos, nomes e efeito de máquina de escrever. A sereia da região tropical é a primeira personagem integrada a esse fluxo.
 
-**Floresta** — esqueletos, projéteis, lava e plataformas.
-<p align="center">
-  <img src="docs/screenshots/forest_gameplay.gif" alt="O pinguim atravessa a floresta, enfrenta esqueletos e supera plataformas sobre a lava" width="640">
-</p>
+## Regiões
 
-**Movimentação** — algumas das mecânicas disponíveis atualmente.
-<p align="center">
-  <img src="docs/screenshots/tutorial_gameplay.gif" alt="O pinguim aprende movimentação, natação, escalada, plataformas e agachamento" width="640">
-</p>
+| Região | Experiência planejada |
+| --- | --- |
+| **Pradaria** | Introdução à movimentação e aos primeiros obstáculos |
+| **Inverno** | Plataformas em um cenário congelado e montanhoso |
+| **Floresta** | Esqueletos, projéteis, lava e blocos interativos |
+| **Trópicos** | Natação, caranguejos, exploração submersa e uma sereia |
 
-**Área submersa** — a fase tropical também tem exploração debaixo d'água.
-<p align="center">
-  <img src="docs/screenshots/ocean_gameplay.gif" alt="O pinguim explora a superfície, nada entre caranguejos e encontra a sereia" width="640">
-</p>
-
----
-
-## ⚙️ Mecânicas implementadas
-
-**Movimentação e combate**
-- Movimento com aceleração e desaceleração
-- Pulo e múltiplos saltos configuráveis
-- Agachamento e deslize
-- Interação e salto em paredes
-- Natação
-- Máquina de estados para as ações do personagem
-
-**Level design**
-- Plataformas móveis
-- Blocos quebráveis
-- Blocos que caem e reaparecem
-- Lava, projéteis e outras áreas letais
-- Checkpoints e transição entre fases
-- Cenários com paralaxe
-
-**Inimigos e criaturas**
-- Inimigos com patrulha
-- Esqueletos capazes de detectar e atacar o jogador
-- Caranguejos que detectam paredes e bordas
-
-**Sistemas e interface**
-- Sistema de morte e respawn
-- Três corações de vida, com dano, cura e breve invulnerabilidade
-- HUD reformulada: fonte clássica em sprites, cronômetro persistente, moedas e vidas
-- Sistema de interação e diálogos (retratos, texto progressivo, caixas dinâmicas)
-- Moedas coletáveis e corações giratórios que recuperam vida
-- Poeira animada após corrida contínua
-- Tela inicial com seletor de fases, configurações e créditos
-- Cursores pixel art para mouse e botões da interface
-- NPCs (fase inicial de implementação)
-
-Também há pequenas animações extras — se o pinguim ficar parado por um tempo, ele acaba sentando sozinho.
-
----
-
-## 💬 NPCs e diálogos
-
-A ideia é que, durante as fases, seja possível encontrar personagens e conversar com eles, dando mais vida ao mundo sem tirar o foco da plataforma. O sistema de diálogos, inspirado em clássicos de RPG e em Stardew Valley, já está funcional:
-
-- Detecção de áreas de interação ao redor do pinguim
-- Caixas de diálogo animadas na parte inferior da tela
-- Efeito "máquina de escrever" avançando o texto gradualmente
-- Retratos customizados e nome de quem está falando
-
-A primeira personagem a usar esse sistema é a **sereia da área submersa da fase tropical**. Vale a pena se aproximar e interagir.
-
----
-
-## 🎮 Controles
+## Controles
 
 | Ação | Teclas |
-|---|---|
-| Mover para a esquerda | `A` ou `←` |
-| Mover para a direita | `D` ou `→` |
-| Pular / nadar | `W`, `↑` ou `Espaço` |
-| Agachar / deslizar | `S` ou `↓` |
-| Sentar / levantar | `3` |
+| --- | --- |
+| Mover | `A` / `D` ou setas laterais |
+| Pular ou nadar | `W`, seta para cima ou `Espaço` |
+| Agachar ou deslizar | `S` ou seta para baixo |
+| Sentar ou levantar | `3` |
 
 Os controles ainda podem mudar durante o desenvolvimento.
 
----
+## Como executar
 
-## 🚩 Checkpoints
+### Versão para Windows
 
-Quando o jogador ativa um checkpoint, a placa muda de aparência. Se o pinguim morrer depois disso, a fase recarrega e ele retorna ao último checkpoint alcançado — ou ao início da fase, se nenhum tiver sido ativado. Ao avançar para outra fase, o checkpoint anterior é descartado.
+Baixe [**Peakguin v0.02 Pre-Alpha**](./downloads/Peakguin-v0.02-pre-alpha.exe) e execute em Windows 64 bits. O arquivo ainda não possui assinatura digital, portanto o Windows pode solicitar confirmação.
 
----
-
-## 🚀 Como executar
-
-### Executável para Windows
-
-Para jogar sem instalar a Godot, baixe e execute:
-
-**[Peakguin v0.02 Pre-Alpha para Windows](downloads/Peakguin-v0.02-pre-alpha.exe)**
-
-O executável é uma versão **Pre-Alpha** para Windows 64 bits. Como ainda não
-possui assinatura digital, o Windows pode pedir confirmação antes de abri-lo.
-
-### Executar pelo projeto
+### Projeto Godot
 
 Requer **Godot 4.7.1**.
 
-Clone o repositório:
-
 ```bash
-git clone https://github.com/rafaelcairess/JogoPlataforma.git
+git clone https://github.com/rafaelcairess/Peakguin.git
+cd Peakguin
 ```
 
-1. Abra a Godot
-2. Clique em **Importar**
-3. Selecione o arquivo `project.godot`
-4. Abra o projeto
-5. Pressione `F5` para executar
+Importe o arquivo `project.godot` no Godot e pressione `F5`. O projeto não requer dependências externas adicionais.
 
-Não há dependências externas adicionais no momento.
+## Engenharia do projeto
 
----
+| Área | Implementação |
+| --- | --- |
+| Gameplay | Cenas e scripts GDScript organizados por responsabilidade |
+| Estado global | Autoloads para checkpoint, colecionáveis, diálogo, música, interface, save e configurações |
+| Personagem | Máquina de estados para ações e transições de movimento |
+| Level design | Cenas reutilizáveis para plataformas, perigos, projéteis, pickups e saídas |
+| Apresentação | Viewport base de 288 × 208 com expansão para diferentes janelas |
+| Conteúdo | 35 scripts GDScript e quatro regiões jogáveis em evolução |
 
-## 📁 Estrutura do projeto
+<details>
+<summary><strong>Ver estrutura principal do projeto</strong></summary>
 
 ```text
-JogoPlataforma/
-├── entities/                   # Cenas que você arrasta para os níveis
-│   ├── player/                 # Pinguim jogável
-│   ├── enemies/                # Cogumelo, laranja e esqueletos
-│   ├── creatures/               # Animais sem dano, como os caranguejos
-│   ├── npcs/                   # NPCs, como a sereia
-│   ├── pickups/                 # Moedas e corações prontos para arrastar
-│   ├── gameplay/                # Checkpoint, câmera, plataformas e saída
-│   └── projectiles/             # Projéteis reutilizáveis
-├── scene/                      # Grassland, Forest, Tropic e Winter
-├── tiles/                       # Terrain, Decoration, Water e Lava juntos
-├── audio/
-│   ├── music/                   # Músicas das fases
-│   └── sfx/                     # Efeitos sonoros do player e do ambiente
-├── effects/                     # Splash da água e poeira de corrida
-├── scripts/                     # Código separado pelas mesmas categorias
-├── sprites/                     # Sprites brutos e pacotes de arte
-├── fonts/                       # Fontes usadas pelo jogo
-├── themes/                      # Temas globais da interface
-├── ui/                          # HUD, menu principal e menu de pausa
-├── docs/                        # GIFs e imagens usados no README
+Peakguin/
+├── entities/       # Jogador, inimigos, criaturas, NPCs e objetos
+├── scene/          # Fases e regiões
+├── scripts/        # Gameplay, estados e gerenciadores
+├── tiles/          # Terrenos, água, lava e decoração
+├── ui/             # HUD, menus e diálogos
+├── audio/          # Música e efeitos sonoros
+├── effects/        # Partículas e efeitos visuais
+├── docs/           # GIFs e screenshots
 └── project.godot
 ```
 
----
+</details>
 
-## 🚧 Roadmap
+## Roadmap
 
-Peakguin ainda está no começo do desenvolvimento. Já existem várias mecânicas funcionando e algumas áreas jogáveis, mas falta bastante conteúdo até chegar ao jogo que tenho em mente.
+- [x] Movimentação, natação e interação com paredes
+- [x] Checkpoints, dano, cura e respawn
+- [x] Inimigos, criaturas e objetos interativos
+- [x] HUD, menus e sistema inicial de diálogos
+- [ ] Expandir diálogos e adicionar novos NPCs
+- [ ] Criar mais inimigos, regiões e áreas secretas
+- [ ] Refinar animações, áudio e equilíbrio de dificuldade
+- [ ] Construir uma progressão próxima de três horas
 
-- [ ] Expandir sistema de diálogos
-- [ ] Mais NPCs
-- [ ] Novos inimigos
-- [ ] Mais fases e áreas
-- [ ] Sons e músicas
-- [ ] Interface e menus
-- [ ] Melhorias nas animações
-- [ ] Mais objetos interativos
-- [ ] Refinamento das fases existentes
-- [ ] Melhor equilíbrio de dificuldade
-- [ ] Progressão que resulte em ~3 horas de jogo
+Não há previsão de conclusão. Como primeiro jogo e projeto solo, a prioridade é aprender e melhorar cada sistema de forma sustentável.
 
-Por ser um projeto solo (e meu primeiro jogo), não há previsão definida de conclusão. A prioridade é continuar aprendendo e evoluir aos poucos.
+## Créditos e licença
 
----
+Os assets de pixel art utilizados no projeto são de **GrafxKid**, disponibilizados sob a licença **CC0 1.0 Universal**. Consulte [`sprites/Seasonal Tilesets/LICENSE.txt`](./sprites/Seasonal%20Tilesets/LICENSE.txt).
 
-## 🙌 Créditos
+Programação, integração, level design, mecânicas e desenvolvimento geral são realizados por **[Rafael Caires](https://github.com/rafaelcairess)**.
 
-Os assets de pixel art utilizados no projeto são de **GrafxKid**, disponibilizados sob a licença **CC0 1.0 Universal** ([`sprites/Seasonal Tilesets/LICENSE.txt`](sprites/Seasonal%20Tilesets/LICENSE.txt)).
+A licença do código-fonte ainda não foi definida. A licença CC0 dos assets citados não se estende automaticamente ao código do jogo.
 
-Programação, montagem das fases, implementação das mecânicas e desenvolvimento geral são feitos por mim.
+<div align="center">
 
-## 📄 Licença
+Se quiser acompanhar a evolução do Peakguin, deixe uma ⭐ no repositório.
 
-A licença do código-fonte ainda não foi definida.
+</div>
